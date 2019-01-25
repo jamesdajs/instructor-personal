@@ -1,0 +1,83 @@
+<!--
+  Generated template for the DatosinstructorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="normal">
+    <ion-title>Instructor</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card color="listdivisor">
+        <img [src]="datos.foto" />
+        <ion-card-content>
+          <ion-card-title>
+            {{datos.nombres}} {{datos.apellidos}}
+          </ion-card-title>
+            <ion-grid>
+            <ion-row>
+              <ion-col col-5>fecha de nacimiento</ion-col>
+              <ion-col col-7>{{edad}}</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-5>Telefono</ion-col>
+                <ion-col col-7>
+                  <a href="https://wa.me/591{{datos.telefono}}">{{datos.telefono}} 
+                  </a>
+                  <ion-icon name="logo-whatsapp"></ion-icon>
+                </ion-col>
+              </ion-row> 
+              <ion-row>
+                <ion-col col-5>Email</ion-col>
+                <ion-col col-7>{{datos.email}}</ion-col>
+              </ion-row>
+            <ion-row>
+              <ion-col col-5>Genero</ion-col>
+              <ion-col col-7>{{datos.genero}}</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col >
+                  <h4>Constitucion</h4>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-5>Peso {{datos.peso}}kg</ion-col>
+              <ion-col col-7>Altura: {{datos.altura}} centimetros</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col >
+                  <h4>Formacion</h4>
+                  <div>{{datosins.deslarga}}</div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col >
+                  <h4>Datos del curso</h4>
+                  <div>{{datosins.cursos}}</div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col *ngIf="estadobut;else elseBlock">
+                <button ion-button  block color="normal" (click)="solicitud()">Enviar solicitud del curso</button>
+              </ion-col>
+              <ng-template #elseBlock>
+                  <ion-col *ngIf="estado;else elseBlock2">
+                      <button ion-button  block color="normal" (click)="solicitud()"disabled>Solicitud en curso</button>
+                    </ion-col>
+                    <ng-template #elseBlock2>
+                        <ion-col >
+                            <button ion-button  block color="normal" (click)="solicitud()"disabled>Curso Activo</button>
+                          </ion-col>
+                    </ng-template>
+            </ng-template>
+          </ion-row>
+            </ion-grid>
+        </ion-card-content>
+      </ion-card>
+</ion-content>

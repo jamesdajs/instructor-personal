@@ -1,0 +1,31 @@
+<!--
+  Generated template for the AdmTipodietaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="normal">
+    <ion-title>Tipos de dietas</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="crear()">
+        <ion-icon name="md-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  
+</ion-header>
+
+
+<ion-content >
+    <div *ngFor="let dieta of tipodieta">
+        <ion-item color="carts"  (click)="verejercicios(dieta.nombre)"> 
+            <p>Dieta para {{dieta.nombre}} </p>
+          <button ion-button clear item-end icon-only>
+              <ion-icon color="light" name='ios-arrow-forward'></ion-icon>
+          </button>
+      </ion-item>
+    </div>
+
+</ion-content>

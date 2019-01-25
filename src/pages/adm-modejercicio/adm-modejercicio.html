@@ -1,0 +1,63 @@
+<!--
+  Generated template for the AdmModejercicioPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="normal">
+      <ion-title>Modificar Ejercicio</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-grid>
+      <ion-row align-items-end>
+        <ion-col col-12>
+          <div class="login">
+            <p>Nombre</p>
+            
+            <ion-input type="text" [(ngModel)]="datos.nombre" clearInput></ion-input>
+          </div>
+          <div class="login">
+            <p>Descripcion Corta</p>
+              <ion-input type="text" [(ngModel)]="datos.descorta" clearInput></ion-input>
+          </div>
+          <div class="login">
+            <p>Descripcion larga</p>
+              <ion-textarea  type="text" [(ngModel)]="datos.deslarga" ></ion-textarea >
+          </div>
+          
+          <div class="login">
+            <p> </p>
+              <ion-item>
+                  <ion-label>Tipo</ion-label>
+                  <ion-select [(ngModel)]="datos.tipo" interface="action-sheet" cancelText="Cancelar" >
+                    <ion-option value="hombro">Hombro</ion-option>
+                    <ion-option value="brazos">Brazos</ion-option>
+                    <ion-option value="piernas">Piernas</ion-option>
+                  </ion-select>
+                </ion-item>
+          </div>
+          <div class="login">
+            <p>Imagen (opcional) </p>
+              <button ion-button  block color="normal" (click)="seleccionarImagen()">
+                  <ion-icon name="image"></ion-icon>
+              </button>
+          </div>
+          <div class="login">
+              <p>Video (opcional)</p>
+                <ion-input  type="text" placeholder="Link video de youtube" [(ngModel)]="datos.linkyoutube" ></ion-input >
+            </div>
+          <div class="login">
+              <button ion-button  block color="normal" (click)="guardar()">Modificar</button>
+          </div>
+          
+          
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

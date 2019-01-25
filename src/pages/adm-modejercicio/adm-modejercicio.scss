@@ -1,0 +1,8 @@
+page-adm-modejercicio {
+    ion-item{
+        background-color: rgba(255, 255, 255, 0) !important;
+    border:solid 2px !important;
+    border-color:map-get($colors, secondary) !important;
+    color: map-get($colors, light) !important;
+    }
+}

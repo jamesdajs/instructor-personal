@@ -1,0 +1,59 @@
+<!--
+  Generated template for the AdmClientesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="normal">
+        <ion-searchbar [(ngModel)]="buscar" (search)="getItems($event)" placeholder="Buscar alumno"></ion-searchbar>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content >
+      <ion-list >
+          <ion-item color="listdivisor" >
+            
+            <h2>Alumnos buscados </h2>
+            
+          </ion-item>
+          <div *ngIf="datosbuscado.length!=0;else elseBlock">
+              <ion-item color="carts" *ngFor="let item of datosbuscado" (click)="verCliente(item.idcliente)">
+                    <ion-avatar item-start>
+                            <img [src]="item.fotocli ">
+                    </ion-avatar>
+                  <h2>{{item.fullnamecli}}</h2>
+                  <button ion-button clear item-end icon-only>
+                      <ion-icon color="light" name='ios-arrow-forward'></ion-icon>
+                  </button>
+                </ion-item>
+          </div>
+          <ng-template #elseBlock>
+              <ion-item color="carts">
+                <h2>No se encontro resultados</h2>
+              </ion-item>
+          </ng-template>
+          <ion-item  color="listdivisor">
+              <h3>Solicitudes </h3>
+          </ion-item>
+          <div *ngIf="solicitudes.length!=0;else elseBlock2">
+              <ion-item color="carts" *ngFor="let item of solicitudes" >
+                    <ion-avatar item-start>
+                            <img [src]="item.fotocli ">
+                    </ion-avatar>
+                    <h2>{{item.fullnamecli}}</h2>
+                    <button ion-button color="normal" (click)="aceptar(item)">
+                        Aceptar solicitud
+                    </button>
+                </ion-item>
+            </div>
+            <ng-template #elseBlock2>
+                <ion-item color="carts">
+                    <h2>No tiene ninguna solicitud</h2>
+                </ion-item>
+            </ng-template>
+        </ion-list>
+  </ion-content>

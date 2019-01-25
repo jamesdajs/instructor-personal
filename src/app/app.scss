@@ -1,0 +1,69 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+ion-content{
+    background:  url("../assets/imgs/fondo.jpg") no-repeat center top;
+    background-attachment: fixed;
+    background-size: cover;
+    position: relative;
+    color: map-get($colors, light) !important;
+}
+@media (orientation: landscape) {
+    ion-content{
+        background:  url("../assets/imgs/fondo2.jpg") no-repeat center top;
+        background-attachment: fixed;
+        background-size: cover;
+        position: relative;
+        color: map-get($colors, light) !important;
+    }
+}
+
+ion-input,ion-datetime,ion-textarea{
+        border:solid 2px !important;
+        border-color:map-get($colors, secondary) !important;
+        color: map-get($colors, light) !important;
+    }
+ion-icon {
+    &[class*="custom-"] {
+    mask-size: contain;
+    mask-position: 50% 50%;
+    mask-repeat: no-repeat;
+    background: currentColor;
+    width: 1em;
+    height: 1em;
+    }
+    &[class*="custom-pesas"] {
+    mask-image: url(../assets/icon/dumbbell.svg);
+    }
+    &[class*="custom-dieta"] {
+    mask-image: url(../assets/icon/covered-food-tray-on-a-hand-of-hotel-room-service.svg);
+    }
+    &[class*="custom-estadisticas"] {
+    mask-image: url(../assets/icon/line-chart.svg);
+    }
+    &[class*="custom-persona"] {
+    mask-image: url(../assets/icon/user-silhouette.svg);
+    }
+    &[class*="custom-team"] {
+    mask-image: url(../assets/icon/team.svg);
+    }
+}
+img {
+    background:transparent url(../assets/loading/ajax-loader.gif) center no-repeat;
+    }
+    ion-content.has-refresher > .scroll-content {
+         background-color: #ffffff00 !important; 
+    }

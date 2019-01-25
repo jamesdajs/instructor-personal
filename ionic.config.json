@@ -1,0 +1,8 @@
+{
+  "name": "entre-personal",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "ionic-angular"
+}

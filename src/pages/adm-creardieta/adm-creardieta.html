@@ -1,0 +1,66 @@
+<!--
+  Generated template for the AdmCreardietaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="normal">
+    <ion-title>Crear Dieta</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row align-items-end>
+      <ion-col col-12>
+        <div class="login">
+          <p>Nombre</p>
+          
+          <ion-input type="text"  [(ngModel)]="datos.nombre" clearInput></ion-input>
+        </div>
+        <div class="login">
+          <p>Descripcion Corta</p>
+            <ion-input type="text" placeholder="Para que es" [(ngModel)]="datos.descorta" clearInput></ion-input>
+        </div>
+        <div class="login">
+          <p>Descripcion larga</p>
+            <ion-textarea  type="text" placeholder="ingredietes completos" [(ngModel)]="datos.deslarga" ></ion-textarea >
+        </div>
+        <div class="login">
+          <p> </p>
+            <ion-item>
+                <ion-label>Tipo</ion-label>
+                <ion-select [(ngModel)]="datos.tipo" interface="action-sheet" cancelText="Cancelar" >
+                  <ion-option value="desgym">Despues del gym</ion-option>
+                  <ion-option value="desayuno">Desayuno</ion-option>
+                  <ion-option value="merienda">Merienda</ion-option>
+                  <ion-option value="almuerzo">Almuerzo</ion-option>
+                  <ion-option value="cena">Cena</ion-option>
+                </ion-select>
+              </ion-item>
+        </div>
+        <div class="login">
+          <p> </p>
+            <button ion-button  block color="normal" (click)="seleccionarImagen()">
+                <ion-icon name="image"></ion-icon>
+            </button>
+        </div>
+        <!--<div class="login">
+            <p> </p>
+              <button ion-button  block color="normal" (click)="seleccionarfile()">
+                  <ion-icon name="image"></ion-icon>
+              </button>
+          </div>-->
+        <div class="login">
+            <button ion-button  block color="normal" (click)="guardar()">Guardar</button>
+        </div>
+        
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

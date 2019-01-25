@@ -1,0 +1,57 @@
+<!--
+  Generated template for the AdmDatosclientePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="normal">
+    <ion-title>Datos del cliente</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row class="menu">
+          <ion-col  col-6>
+              <button ion-button block color="normal" (click)="Rutinas()">Rutinas</button>
+          </ion-col>
+          <ion-col col-6>
+              <button ion-button outline block color="normal" (click)="Dietas()">Dietas</button>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-card color="carts">
+        <img [src]="datos.foto" />
+        <ion-card-content>
+          <ion-card-title>
+            {{datos.nombres}} {{datos.apellidos}}
+          </ion-card-title>
+            <ion-grid>
+            <ion-row>
+              <ion-col col-5>fecha de nacimiento</ion-col>
+              <ion-col col-7>{{edad}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-5>Genero</ion-col>
+              <ion-col col-7>{{datos.genero}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-5>Peso {{datos.peso}}kg</ion-col>
+              <ion-col col-7>Altura: {{datos.altura}} centimetros</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-5>Telefono</ion-col>
+              <ion-col col-7>{{datos.telefono}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-5>Email</ion-col>
+              <ion-col col-7>{{datos.email}}</ion-col>
+            </ion-row>
+            </ion-grid>
+        </ion-card-content>
+      </ion-card>
+</ion-content>

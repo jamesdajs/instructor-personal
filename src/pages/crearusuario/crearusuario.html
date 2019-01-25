@@ -1,0 +1,103 @@
+<!--
+  Generated template for the CrearusuarioPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="normal">
+    <ion-title>Crear Datos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+  
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row align-items-end>
+          <ion-col col-12>
+            <p>Nombres</p>
+            <div class="login">
+              <ion-input type="text" placeholder="Username"></ion-input>
+            </div>
+            <p>Apelldios</p>
+            <div class="login">
+                <ion-input type="text" placeholder="Apellidos"></ion-input>
+            </div>
+            
+            <ion-list radio-group no-lines inset>
+              <ion-item class="fechapadd">
+                <ion-label>Fecha de Nacimiento</ion-label>
+                <ion-datetime displayFormat="DD MMMM YYYY" min="1940" [(ngModel)]="event.month" cancelText =Cancelar doneText=Ok></ion-datetime>
+              </ion-item>
+            </ion-list>
+            <p>foto</p>
+            <div class="login" >
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-md-4 offset-md-4>
+                    <button ion-button (click)="seleccionarImagen()">Select Photo</button>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-md-4 offset-md-4>
+                    <button ion-button (click)="openImagePickerCrop()">Select Photo (Crop)</button>
+                    <button ion-button color="primary" (click)="guardar__datos()" >Agregar</button>
+                  </ion-col>
+                </ion-row>
+            </ion-grid>
+            </div>
+            <p>Peso</p>
+            
+              <ion-list radio-group no-lines inset>
+                <ion-item>
+                  <ion-range min="40" max="120" pin="true"  color="secondary">
+
+                    </ion-range>
+                </ion-item>
+              </ion-list>
+            
+            <p>Altura</p>
+              
+              <ion-list radio-group no-lines inset>
+                <ion-item>
+                <ion-range min="120" max="220" pin="true"  color="secondary">
+
+                  </ion-range>
+                </ion-item>
+                
+              </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col>
+            <p>Genero</p>
+          </ion-col>
+          <ion-col>
+              <ion-list radio-group no-lines inset>
+                
+                  <ion-item>
+                    <ion-label>Masculino</ion-label>
+                    <ion-radio color="secondary" checked="true" value="go"></ion-radio>
+                  </ion-item>
+                
+                  <ion-item>
+                    <ion-radio color="secondary" value="rust"></ion-radio>
+                    
+                    <ion-label>Femenino</ion-label>
+                  </ion-item>
+                
+                </ion-list>
+                
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+              <div class="login">
+                  <button ion-button  block color="normal" (click)="GurdarDatos()">Gurdar Datos</button>
+              </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>

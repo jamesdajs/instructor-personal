@@ -1,0 +1,39 @@
+page-login {
+    ion-item{
+        background-color: rgba(255, 255, 255, 0) !important;
+    }
+    ion-label{
+
+        padding-left: 10px;
+        color: white !important;
+    }
+    .item-inner{
+        padding-right: 0 !important;
+    }
+    .button-effect{
+        background-color: rgba(0, 249, 224, 0);
+    }
+    ion-content{
+        text-align: center !important;
+        color: white !important
+    }
+    p{
+        margin: 0 !important;
+    }
+    .login{
+        padding: 10px 16px;
+    }
+    .abajo{
+        
+        margin-top:170px   
+    }
+    ion-row,ion-grid{
+        height: 100%;
+    }
+    @media (max-height: 600px) {
+        ion-row,ion-grid{
+            height: 400px;
+        }
+      }
+      
+}

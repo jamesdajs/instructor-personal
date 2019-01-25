@@ -1,0 +1,73 @@
+<!--
+  Generated template for the AdmCrearrutinaclientePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="normal">
+    <ion-title>Crear Rutina</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row align-items-end>
+          <ion-col col-12>
+            
+              <div class="login">
+                  <p>Nombre</p>
+                <ion-input type="text"  [(ngModel)]="event.nombre"></ion-input>
+              </div>
+              <div class="login">
+                  <p>Descripcion</p>
+                <ion-input type="text"  [(ngModel)]="event.descripcion"></ion-input>
+              </div>
+            <ion-list radio-group no-lines inset>
+              <ion-item class="fechapadd">
+                <ion-label>Fecha inicio</ion-label>
+                <ion-datetime displayFormat="DD MMMM YYYY" min="2019" max="2020"[(ngModel)]="fechaini" cancelText =Cancelar doneText=Ok></ion-datetime>
+              </ion-item>
+              <ion-item class="fechapadd">
+                  <ion-label>Fecha fin</ion-label>
+                  <ion-datetime displayFormat="DD MMMM YYYY" min="2019"max="2020" [(ngModel)]="fechafin" cancelText =Cancelar doneText=Ok></ion-datetime>
+                </ion-item>
+                
+            </ion-list>
+            <div class="login">
+                <button ion-button  block color="normal" (click)="addEjercicio()">Añadir ejercicio</button>
+            </div>
+            <ion-list>
+              <div *ngIf="ejercicios.length!=0;else elseBlock">
+                  <ion-item color="carts" *ngFor="let item of ejercicios; let o = index;" >
+                      
+                      <ion-avatar item-start>
+                        <img [src]="item.imagen ">
+                      </ion-avatar>
+                        
+                      
+                      <h2>{{item.nombre}}</h2>
+                      <p>{{item.tipo}}</p>
+                      <p>{{item.descorta}}</p>
+                      <button ion-button clear item-end icon-only (click)="eliminar(o)">
+                          <ion-icon color="light" name='trash'></ion-icon>
+                      </button>
+                    </ion-item>
+              </div>
+              <ng-template #elseBlock>
+                  <ion-item color="carts">
+                    <h2>Tiene que añadir ejercicios</h2>
+                  </ion-item>
+              </ng-template>
+              <div class="login">
+                <button ion-button  block color="normal" (click)="guardar()">Guardar rutina</button>
+            </div>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

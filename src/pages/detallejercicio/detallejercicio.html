@@ -1,0 +1,45 @@
+<!--
+  Generated template for the DetallejercicioPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="normal">
+    <ion-title>Detalle de Ejercicio</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card color="listdivisor">
+      
+        <img *ngIf="item.imagen!=''; else elseBlock" [src]="item.imagen" />
+        <ng-template #elseBlock>
+            <img  src="../../assets/imgs/defecto.jpeg" />
+      </ng-template>
+      <ion-card-content>
+          <ion-card-title>
+            {{item.nombre}}
+            </ion-card-title>
+          <p>
+                tipo : {{item.tipo}}
+          </p>
+          <p>
+            Descripcion : {{item.deslarga}}
+          </p>
+          <p *ngIf="itemcompleto.repeticiones!=''; ">Repeticiones: {{itemcompleto.repeticiones}}</p>
+          <p *ngIf="itemcompleto.peso!=''; ">Peso: {{itemcompleto.peso}}</p>
+          <p *ngIf="itemcompleto.duracion!=''; ">Duracion: {{itemcompleto.duracion}}</p>
+          <a *ngIf="item.linkyoutube!=''; " href="{{item.linkyoutube}}">ver video en toytube</a>
+        </ion-card-content>
+      </ion-card>
+      <!--
+        video en youtube
+<iframe width="100%"  src="https://www.youtube.com/embed/6njvCvfzMi8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+      -->
+      
+</ion-content>
