@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "com.hegaro.entrenadorpersonal",
   "appName": "entre-personal",
   "bundledWebRuntime": false,
   "webDir": "www"
