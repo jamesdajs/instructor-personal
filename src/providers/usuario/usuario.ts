@@ -53,6 +53,9 @@ export class UsuarioProvider {
   crearusuario(id,data){
     return this.db.collection("cliente").doc(id).set(data,{ merge: true })
   }
+  modusuario(data){
+    return this.db.collection("cliente").doc(this.authfb.auth.currentUser.uid).set(data,{ merge: true })
+  }
   private getcollArrayconkey(coll,query?):Observable<any>{
     return this.db.collection(coll,query)
     .snapshotChanges().pipe(map(change=>{
@@ -180,10 +183,25 @@ verSitienenDatos() {
     //this.db.collection('cliente').doc("OwURqGHpPggxLbTlKp0L").valueChanges()
     
   }
+  creardatosInstructor(datos){
+    return this.db.collection(`${firebaseConfig.cliente_endpoint}/${this.authfb.auth.currentUser.uid}/instructor`)
+    .doc("modo_instructor").set(datos,{ merge: true })
+  }
+  modificardatocli(id,data){
+    return this.db.collection("instructor_cliente").doc(id).set(data,{ merge: true })
+  }
   leerOtrosdatosinstructor(datos):any{
     
     return this.db
     .doc(`${firebaseConfig.cliente_endpoint}/${datos}/instructor/modo_instructor`)
+    .valueChanges()
+    //this.db.collection('cliente').doc("OwURqGHpPggxLbTlKp0L").valueChanges()
+    
+  }
+  leerMisdatosinstructor():any{
+    
+    return this.db
+    .doc(`${firebaseConfig.cliente_endpoint}/${this.authfb.auth.currentUser.uid}/instructor/modo_instructor`)
     .valueChanges()
     //this.db.collection('cliente').doc("OwURqGHpPggxLbTlKp0L").valueChanges()
     

@@ -41,8 +41,15 @@ export class DatospersonalesPage {
     telefono:0,
     genero:null,
     fechanac:null,
+    instructor:null
     
   }
+  datosins={
+    cursos:"",
+    descorta:"",
+    deslarga:""
+  }
+  rol
   edad=""
   edad2=""
   activador=false
@@ -59,6 +66,13 @@ export class DatospersonalesPage {
     ) {
     //this.datos=this.navParams.data.res
     //this.edad=this.navParams.data.edad
+    this.store.get("rol").then(rol=>{
+      this.rol=rol
+    })
+    this.user.leerMisdatosinstructor()
+    .subscribe(data=>{
+      this.datosins=data
+    })
   }
 
   ionViewDidLoad() {
@@ -90,7 +104,7 @@ export class DatospersonalesPage {
           img.onload = function() {
 
         }*/
-        //console.log(this.datos)
+        console.log(this.datos)
       })
 
     
@@ -140,9 +154,15 @@ export class DatospersonalesPage {
       .then(id=>{
         this.datos.fechanac=new Date(this.edad2.replace(/-/g, '\/'))
 
-        console.log(this.datos.fechanac,this.edad2)
-        this.user.crearusuario(id,this.datos)
+        //console.log(this.datos.fechanac,this.edad2)
+        let func=[
+          this.user.crearusuario(id,this.datos)
+        ]
+        if(this.rol=="instructor")
+          func.push(this.user.creardatosInstructor(this.datosins))
+        Promise.all(func)
         .then(()=>{
+
           console.log("usuario modificado correctamente")
           toast.present()
           this.activador=false
@@ -178,9 +198,44 @@ export class DatospersonalesPage {
     this.store.set("rol","instructor")
     this.store.get("rol").then(rol=>{
       if(rol!="instructor")
-        window.location.reload();
         
-        location.reload(true);
+        if(!this.datos.instructor){
+          this.alert.create({
+            title: 'Cambiar de rol',
+            message: 'El modo instructor esta activo de forma de prueva en la version actual',
+            buttons: [
+              {
+                text: 'Cancelar',
+                role: 'cancel',
+                handler: () => {
+                  console.log('Cancel clicked');
+                }
+              },
+              {
+                text: 'Ok',
+                handler: () => {
+                  let funciones=[]
+                  funciones.push(this.user.modusuario({instructor:true}))
+                  funciones.push(this.user.creardatosInstructor({cursos:"",descorta:"",deslarga:""}))
+                  Promise.all(funciones)
+                  .then(()=>{
+
+                    window.location.reload();
+        
+                    location.reload(true);
+                  })
+                  .catch(err=>{
+                    console.log(err)
+                  })
+                }
+              }
+            ]
+          }).present();
+        }else{
+          window.location.reload();
+        
+          location.reload(true);
+        }
     })
     
     //this.event.publish('cambiar a instructor')

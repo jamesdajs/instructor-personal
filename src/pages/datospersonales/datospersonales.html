@@ -24,9 +24,16 @@
 
 
 <ion-content padding>
-  
-    <button ion-button block color="normal" (click)="canbiarRolAlum()">alumno</button>
-    <button ion-button outline block color="normal" (click)="canbiarRolIst()">Instructor</button>
+
+    <button *ngIf="rol=='instructor';else botonAlum;" ion-button outline block color="normal" (click)="canbiarRolAlum()">alumno</button>
+    <ng-template #botonAlum>
+      <button  ion-button block color="normal" (click)="canbiarRolAlum()">alumno</button>
+    </ng-template>
+    <button *ngIf="rol=='instructor'else botonIns;" ion-button block color="normal" (click)="canbiarRolIst()">Instructor</button>
+    <ng-template #botonIns>
+      <button  ion-button outline block color="normal" (click)="canbiarRolIst()">Instructor</button>
+    </ng-template>
+    
     <ion-card color="listdivisor">
         <img [src]="datos.foto" />
         <ion-card-content>
@@ -60,6 +67,8 @@
                   </ion-row>
                 <ion-row align-items-end>
                     <ion-col col-12>
+                      
+                      
                       <p>Telefono</p>
                         <div class="login">
                           <ion-input type="text" placeholder="telefono" [(ngModel)]="datos.telefono"></ion-input>
@@ -118,6 +127,22 @@
                   
                   <ion-row>
                     <ion-col>
+                        
+                        <div *ngIf="rol=='instructor'">
+                            <p>Datos de instructor</p>
+                            <p>Descripcion corta</p>
+                            <div class="login">
+                              <ion-input type="text" placeholder="Descripcion para mostrar" [(ngModel)]="datosins.descorta"></ion-input>
+                            </div>
+                          <p>Descripcion larga</p>
+                            <div class="login">
+                              <ion-input type="text" placeholder="Descripcion completa del instructor" [(ngModel)]="datosins.deslarga"></ion-input>
+                            </div>
+                          <p>Cursos</p>
+                          <div class="login">
+                            <ion-input type="text" placeholder="Descripcion acerca del curso" [(ngModel)]="datosins.cursos"></ion-input>
+                          </div>
+                        </div>
                         <div class="login">
                             <button ion-button  block color="normal" (click)="GurdarDatos()">Gurdar Datos</button>
                         </div>
