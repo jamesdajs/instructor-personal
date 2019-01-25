@@ -59,6 +59,7 @@ export class UsuarioProvider {
       return change.map(c=>({key:c.payload.doc.id, ...c.payload.doc.data()}))
     }))
   }
+  
   buscarinstuctor(buscar){
     let query=res=>res.orderBy('fullname')
                       .startAt(buscar)
