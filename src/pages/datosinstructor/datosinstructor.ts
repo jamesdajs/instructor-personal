@@ -89,7 +89,7 @@ export class DatosinstructorPage {
         if(datos[0].estado==true)
           this.estado=false
       }
-      
+      console.log(this.estadobut,this.estado)
 
     })
     //console.log(this.key)

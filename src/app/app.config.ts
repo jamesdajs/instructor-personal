@@ -24,7 +24,8 @@ export const firebaseConfig = {
     telefono:number;
     genero:boolean;
     fechanac:Timestamp<any>;
-    instructor:boolean
+    instructor:boolean,
+    descorta:string
   }
   
   export interface Instructor {

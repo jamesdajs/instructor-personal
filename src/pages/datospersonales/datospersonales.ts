@@ -41,7 +41,8 @@ export class DatospersonalesPage {
     telefono:0,
     genero:null,
     fechanac:null,
-    instructor:null
+    instructor:null,
+    descorta:""
     
   }
   datosins={
@@ -140,9 +141,6 @@ export class DatospersonalesPage {
         ]
       });
       alert.present();
-    
-
-
   }
   GurdarDatos(){
     const toast = this.toastCtr.create({
@@ -163,7 +161,7 @@ export class DatospersonalesPage {
         Promise.all(func)
         .then(()=>{
 
-          console.log("usuario modificado correctamente")
+          console.log("Usuario modificado correctamente")
           toast.present()
           this.activador=false
         })
@@ -186,13 +184,23 @@ export class DatospersonalesPage {
     }
   }
   modificardatos(){
-    this.navCtrl.push(ModificarusuarioPage,{
-    fechanac: this.convertirfecha2(this.datos.fechanac),
-    peso:this.datos.peso,
-    altura:this.datos.altura,
-    genero:this.datos.genero,
-    telefono:this.datos.telefono
-    })
+    let datos={
+      fechanac: this.convertirfecha2(this.datos.fechanac),
+      peso:this.datos.peso,
+      altura:this.datos.altura,
+      genero:this.datos.genero,
+      telefono:this.datos.telefono,
+      instructor:this.datos.instructor,
+      descorta:this.datos.descorta
+      }
+    if(this.rol=="instructor"){
+
+      this.navCtrl.push(ModificarusuarioPage,{datos:datos,datosins:this.datosins,rol:this.rol})
+    }else{
+      
+    this.navCtrl.push(ModificarusuarioPage,{datos:datos,rol:this.rol})
+    }
+
   }
   canbiarRolIst(){
     this.store.set("rol","instructor")

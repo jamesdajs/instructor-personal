@@ -36,6 +36,7 @@ export class UsuarioProvider {
   versihaysolicitud(idins){
     let query=res=>res.where("idcliente","==",this.authfb.auth.currentUser.uid)
                       .where("idinstructor","==",idins)
+                      .where("rol","==","cliente")
     return this.getcollArrayconkey("instructor_cliente",query)
   }
   verMissolicitud(estado,rol){
@@ -64,7 +65,8 @@ export class UsuarioProvider {
   }
   
   buscarinstuctor(buscar){
-    let query=res=>res.orderBy('fullname')
+    let query=res=>res.where("instructor","==",true)
+                      .orderBy('fullname')
                       .startAt(buscar)
     return this.getcollArrayconkey("cliente",query)
   }

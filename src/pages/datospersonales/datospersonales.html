@@ -8,7 +8,7 @@
 
   <ion-toolbar color="normal" >
     <ion-buttons start>
-        <button ion-button icon-only color="royal" (click)="activarmodificardatos()">
+        <button ion-button icon-only color="royal" (click)="modificardatos()">
           <ion-icon name="create"></ion-icon>
         </button>
       </ion-buttons>
@@ -61,6 +61,8 @@
               <ion-col col-5>Email</ion-col>
               <ion-col col-7>{{datos.email}}</ion-col>
             </ion-row>
+            <button ion-button  block color="normal" (click)="activarmodificardatos()">Modificar datos</button>
+                        
             <div *ngIf="activador">
                 <ion-row>
                     <ion-col><h3>Modificar datos</h3></ion-col>
@@ -70,7 +72,7 @@
                       
                       
                       <p>Telefono</p>
-                        <div class="login">
+                        <div >
                           <ion-input type="text" placeholder="telefono" [(ngModel)]="datos.telefono"></ion-input>
                         </div>
                       <ion-list radio-group no-lines inset>
@@ -131,15 +133,15 @@
                         <div *ngIf="rol=='instructor'">
                             <p>Datos de instructor</p>
                             <p>Descripcion corta</p>
-                            <div class="login">
+                            <div >
                               <ion-input type="text" placeholder="Descripcion para mostrar" [(ngModel)]="datosins.descorta"></ion-input>
                             </div>
                           <p>Descripcion larga</p>
-                            <div class="login">
+                            <div >
                               <ion-input type="text" placeholder="Descripcion completa del instructor" [(ngModel)]="datosins.deslarga"></ion-input>
                             </div>
                           <p>Cursos</p>
-                          <div class="login">
+                          <div >
                             <ion-input type="text" placeholder="Descripcion acerca del curso" [(ngModel)]="datosins.cursos"></ion-input>
                           </div>
                         </div>

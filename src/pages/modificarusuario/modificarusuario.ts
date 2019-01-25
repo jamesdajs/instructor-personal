@@ -22,25 +22,36 @@ export class ModificarusuarioPage {
     peso:null,
     altura:null,
     genero:"",
-    telefono:null
+    telefono:null,
+    instructor:null,
+    descorta:""
   }
+  datosins={
+    descorta:"",
+    deslarga:"",
+    cursos:""
+  }
+  rol
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public user:UsuarioProvider,
     public loadCtrl:LoadingController,
     public toastCtrl:ToastController
     ) {
-      console.log(this.navParams.data)
-      this.event=this.navParams.data
-      if(this.navParams.data.fechanac!==null)this.fechanac=this.navParams.data.fechanac
+      this.event=this.navParams.data.datos
+      this.rol=this.navParams.data.rol
+      if(this.navParams.data.datosins)this.datosins=this.navParams.data.datosins
+      if(this.navParams.data.datos.fechanac!==null)this.fechanac=this.navParams.data.datos.fechanac
+      
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModificarusuarioPage');
+    console.log(this.event)
   }
   GurdarDatos(){
   const toast = this.toastCtrl.create({
-      message: 'datos modificados correctamente',
+      message: 'Datos modificados correctamente',
       duration: 3000
     });
     const cargar= this.loadCtrl.create({
@@ -51,11 +62,18 @@ export class ModificarusuarioPage {
     this.user.veriduser()
     .then(id=>{
       this.event.fechanac=new Date(this.fechanac)
-      this.user.crearusuario(id,this.event)
+      this.event.descorta=this.datosins.descorta
+      let func=[
+        this.user.crearusuario(id,this.event)
+      ]
+      if(this.rol=="instructor")
+        func.push(this.user.creardatosInstructor(this.datosins))
+      Promise.all(func)
       .then(()=>{
-        console.log("usuario modificado correctamente")
-        cargar.dismiss()
+
+        console.log("Usuario modificado correctamente")
         toast.present()
+        cargar.dismiss()
         this.navCtrl.pop()
       })
     })
