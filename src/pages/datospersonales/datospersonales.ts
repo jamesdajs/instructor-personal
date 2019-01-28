@@ -203,10 +203,10 @@ export class DatospersonalesPage {
 
   }
   canbiarRolIst(){
-    this.store.set("rol","instructor")
     this.store.get("rol").then(rol=>{
-      if(rol!="instructor")
+      if(rol!="instructor"){
         
+        this.store.set("rol","instructor")
         if(!this.datos.instructor){
           this.alert.create({
             title: 'Cambiar de rol',
@@ -244,18 +244,23 @@ export class DatospersonalesPage {
         
           location.reload(true);
         }
+      }
+        
+        
     })
     
     //this.event.publish('cambiar a instructor')
   }
   canbiarRolAlum(){
     
-    this.store.set("rol","alumno")
     this.store.get("rol").then(rol=>{
-      if(rol!="alumno")
-      
-      location.reload(true);
-      window.location.reload();
+      if(rol!="alumno"){
+        this.store.set("rol","alumno")
+        location.reload(true);
+        window.location.reload();
+      }
+        
+    
     })
     //this.event.publish("cambiar a alumno")
   }

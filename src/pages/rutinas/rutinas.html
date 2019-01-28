@@ -14,15 +14,7 @@
 
 
 <ion-content >
-        <ion-refresher  color="refresh" (ionRefresh)="doRefresh($event)">
-                <ion-refresher-content color="refresh"
-                  pullingIcon="arrow-dropdown"
-                  pullingText="Actualiza"
-                  refreshingSpinner="circles">
 
-
-                </ion-refresher-content>
-              </ion-refresher>
               <ion-list >
                     <div *ngIf="items.length!=0;else elseBlock">
                       <div *ngFor="let item of items" class="delay">
