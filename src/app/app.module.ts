@@ -40,6 +40,8 @@ import { AdmAñadirejercicioPage } from '../pages/adm-añadirejercicio/adm-añad
 import { AdmDietasclientePage } from '../pages/adm-dietascliente/adm-dietascliente';
 import { AdmCreardietaclientePage } from '../pages/adm-creardietacliente/adm-creardietacliente';
 import { AdmAsignardietaclientePage } from '../pages/adm-asignardietacliente/adm-asignardietacliente';
+import { AdmCreartiporutinaPage } from '../pages/adm-creartiporutina/adm-creartiporutina'
+import { AdmModtiporutinaPage } from '../pages/adm-modtiporutina/adm-modtiporutina';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -112,7 +114,9 @@ import { DietasProvider } from '../providers/dietas/dietas';
     AdmAñadirejercicioPage,
     AdmDietasclientePage,
     AdmCreardietaclientePage,
-    AdmAsignardietaclientePage
+    AdmAsignardietaclientePage,
+    AdmCreartiporutinaPage,
+    AdmModtiporutinaPage
   ],
   imports: [
     BrowserModule,
@@ -177,7 +181,9 @@ import { DietasProvider } from '../providers/dietas/dietas';
     AdmAñadirejercicioPage,
     AdmDietasclientePage,
     AdmCreardietaclientePage,
-    AdmAsignardietaclientePage
+    AdmAsignardietaclientePage,
+    AdmCreartiporutinaPage,
+    AdmModtiporutinaPage
 
   ],
   providers: [

@@ -13,23 +13,23 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
   <ion-grid>
     <ion-row align-items-end>
       <ion-col col-12>
-        <div class="login">
-          <p>Nombre</p>
+        <ion-item class="input">
+          <ion-label  floating>Nombre</ion-label>
           
           <ion-input type="text" [(ngModel)]="datos.nombre" clearInput></ion-input>
-        </div>
-        <div class="login">
-          <p>Descripcion Corta</p>
-            <ion-input type="text" placeholder="Para que sirve" [(ngModel)]="datos.descorta" clearInput></ion-input>
-        </div>
-        <div class="login">
-          <p>Descripcion larga</p>
-            <ion-textarea  type="text" placeholder="forma de realizar el ejercicio" [(ngModel)]="datos.deslarga" ></ion-textarea >
-        </div>
+        </ion-item>
+        <ion-item class="input">
+          <ion-label  floating>Descripcion</ion-label>
+            <ion-input type="text"  [(ngModel)]="datos.descorta" clearInput></ion-input>
+        </ion-item>
+        <ion-item class="input">
+          <ion-label  floating>Instrucciones del ejercicio</ion-label>
+            <ion-textarea  type="text"  [(ngModel)]="datos.deslarga" ></ion-textarea >
+        </ion-item>
         
         <div class="login">
           <p> </p>
@@ -48,10 +48,10 @@
                 <ion-icon name="image"></ion-icon>
             </button>
         </div>
-        <div class="login">
-            <p>Video (opcional)</p>
+        <ion-item class="input">
+          <ion-label  floating>Video (opcional)</ion-label>
               <ion-input  type="text" placeholder="Link video de youtube" [(ngModel)]="datos.linkyoutube" ></ion-input >
-          </div>
+              </ion-item>
         <!--
           <div class="login">
             <p> </p>

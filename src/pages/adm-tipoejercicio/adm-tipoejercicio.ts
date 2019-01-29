@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { AdmCrearejercicioPage } from "../adm-crearejercicio/adm-crearejercicio"
+import { AdmCreartiporutinaPage } from "../adm-creartiporutina/adm-creartiporutina"
 import { AdmEjerciciosPage } from "../adm-ejercicios/adm-ejercicios"
 /**
  * Generated class for the AdmTipoejercicioPage page.
@@ -31,7 +31,7 @@ export class AdmTipoejercicioPage {
     }
  
     crear(){
-      this.navCtrl.push(AdmCrearejercicioPage)
+      this.navCtrl.push(AdmCreartiporutinaPage)
     }
     verejercicios(nombre){
       this.navCtrl.push(AdmEjerciciosPage,nombre)

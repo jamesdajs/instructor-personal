@@ -79,10 +79,12 @@ $refresher-text-color:map-get($colors, light);
 // --------------------------------------------------
 // iOS only Sass variables can go here
 $range-ios-pin-color:map-get($colors, light);
+$text-input-ios-highlight-color: 	color($colors, light);
 
 
 
 // App Material Design Variables
+$text-input-md-highlight-color:map-get($colors, light);
 $tabs-md-tab-opacity	:.5;
 $tabs-md-tab-text-color	: map-get($colors, light);
 $tabs-md-tab-icon-color	: map-get($colors, light);

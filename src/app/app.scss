@@ -30,9 +30,19 @@ ion-content{
         color: map-get($colors, light) !important;
     }
 }
-
-ion-input,ion-datetime,ion-textarea{
-        border:solid 2px !important;
+ion-item.input{
+    background-color: rgba(255, 255, 255, 0) !important;
+    color: map-get($colors, light) !important;
+}
+ion-item.input ion-label{
+    color: map-get($colors, light) !important ;
+}
+button{
+    margin-top: 10px !important ;
+}
+ion-datetime{
+        border-bottom:solid 2px !important;
+        //border-left:solid 2px !important;
         border-color:map-get($colors, secondary) !important;
         color: map-get($colors, light) !important;
     }

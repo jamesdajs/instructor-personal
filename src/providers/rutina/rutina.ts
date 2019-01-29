@@ -39,6 +39,21 @@ export class RutinaProvider {
     data["idinstructor"]=this.auth.auth.currentUser.uid
     return this.db.collection("ejercicios").add(data)
   }
+  
+  listaTipoEjercicio(idins){
+    let query=res=>res.where("idinstructor","==",idins)
+    return this.getcollArrayconkey("tipoejercicio",query)
+  }
+  creartipoEjercicio(data){
+    data["idinstructor"]=this.auth.auth.currentUser.uid
+    return this.db.collection("tipoejercicio").add(data)
+  }
+  modiTipoEjercicio(id,data){
+    return this.db.collection("tipoejercicio").doc(id).set(data,{ merge: true })
+  }
+  eliminarTipoEjercicio(id){
+    return this.db.collection("tipoejercicio").doc(id).delete()
+  }
   añadirfotoEjercicio(id,data){
     return this.db.collection("ejercicios").doc(id).set(data,{ merge: true })
   }

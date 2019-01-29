@@ -13,25 +13,25 @@
   </ion-header>
   
   
-  <ion-content padding>
+  <ion-content >
       <ion-grid>
           <ion-row align-items-end>
             <ion-col col-12>
               
-                <div class="login">
-                    <p>Nombre</p>
+              <ion-item class="input">
+                <ion-label  floating>Nombre</ion-label>
                   <ion-input type="text"  [(ngModel)]="event.nombre"></ion-input>
-                </div>
-                <div class="login">
-                    <p>Descripcion</p>
+              </ion-item>
+                <ion-item class="input">
+                  <ion-label  floating>Descripcion</ion-label>
                   <ion-input type="text"  [(ngModel)]="event.descripcion"></ion-input>
-                </div>
+                </ion-item>
               <ion-list radio-group no-lines inset>
-                <ion-item class="fechapadd">
+                <ion-item class="fechapadd input">
                   <ion-label>Fecha inicio</ion-label>
                   <ion-datetime displayFormat="DD MMMM YYYY" min="2019" max="2020"[(ngModel)]="fechaini" cancelText =Cancelar doneText=Ok></ion-datetime>
                 </ion-item>
-                <ion-item class="fechapadd">
+                <ion-item class="fechapadd input">
                     <ion-label>Fecha fin</ion-label>
                     <ion-datetime displayFormat="DD MMMM YYYY" min="2019"max="2020" [(ngModel)]="fechafin" cancelText =Cancelar doneText=Ok></ion-datetime>
                   </ion-item>

@@ -13,23 +13,23 @@
   </ion-header>
   
   
-  <ion-content padding>
+  <ion-content >
     <ion-grid>
       <ion-row align-items-end>
         <ion-col col-12>
-          <div class="login">
-            <p>Nombre</p>
+          <ion-item class="input">
+            <ion-label  floating>Nombre</ion-label>
             
             <ion-input type="text" [(ngModel)]="datos.nombre" clearInput></ion-input>
-          </div>
-          <div class="login">
-            <p>Descripcion Corta</p>
+          </ion-item>
+          <ion-item class="input">
+            <ion-label  floating>Descripcion</ion-label>
               <ion-input type="text" [(ngModel)]="datos.descorta" clearInput></ion-input>
-          </div>
-          <div class="login">
-            <p>Descripcion larga</p>
+          </ion-item>
+          <ion-item class="input">
+            <ion-label  floating>Instrucciones</ion-label>
               <ion-textarea  type="text" [(ngModel)]="datos.deslarga" ></ion-textarea >
-          </div>
+          </ion-item>
           
           <div class="login">
             <p> </p>

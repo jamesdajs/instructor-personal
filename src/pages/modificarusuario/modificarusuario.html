@@ -13,29 +13,28 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-grid>
     <ion-row align-items-end>
       <ion-col col-12>
         <div *ngIf="rol=='instructor'">
-            <p>Descripcion corta</p>
-            <div class="login">
+            <ion-item class="input">
+              <ion-label  floating>Descripcion corta</ion-label>
               <ion-input type="text" placeholder="Descripcion para mostrar" [(ngModel)]="datosins.descorta"></ion-input>
-            </div>
-            <p>Descripcion larga</p>
-            <div class="login">
-              <ion-textarea type="text" placeholder="Descripcion completa" [(ngModel)]="datosins.deslarga"></ion-textarea>
-            </div>
-            <p>Curso</p>
-            <div class="login">
-              <ion-textarea type="text" placeholder="Descripcion del curso" [(ngModel)]="datosins.cursos"></ion-textarea>
-            </div>
+            </ion-item>
+            <ion-item class="input">
+              <ion-label  floating>Descripcion larga</ion-label>
+              <ion-textarea type="text"  [(ngModel)]="datosins.deslarga"></ion-textarea>
+            </ion-item>
+            <ion-item class="input">
+              <ion-label  floating>Curso</ion-label>
+              <ion-textarea type="text"  [(ngModel)]="datosins.cursos"></ion-textarea>
+            </ion-item>
         </div>
-        
-          <p>Telefono</p>
-          <div class="login">
-            <ion-input type="text" placeholder="telefono" [(ngModel)]="event.telefono"></ion-input>
-          </div>
+          <ion-item class="input">
+            <ion-label  floating>Telefono</ion-label>
+            <ion-input type="text" [(ngModel)]="event.telefono"></ion-input>
+          </ion-item>
         <ion-list radio-group no-lines inset>
           <ion-item class="fechapadd">
             <ion-label>Fecha de Nacimiento</ion-label>
