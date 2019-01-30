@@ -91,7 +91,7 @@ console.log("splas abierto")
     cargar.present()
     this.conectarFacebook()
     .then(res=>{
-      //console.log(res)
+      console.log(res)
       this.store.set("rol","alumno")
       this.navCtrl.setRoot(TabsPage)
       cargar.dismiss()
@@ -132,7 +132,14 @@ console.log("splas abierto")
                          resolve('datos creados correctos')
                        })
                      })
-                   }else resolve("ya se crearon datos antes")
+                   }else {
+                     this.user.modusuario({
+                      foto:data.additionalUserInfo.profile.picture.data.url})
+                      .then(()=>{
+                        console.log(data.additionalUserInfo.profile.picture.data.url)
+                        resolve("ya se crearon datos antes")
+                      })
+                    }
                    
                  })
                

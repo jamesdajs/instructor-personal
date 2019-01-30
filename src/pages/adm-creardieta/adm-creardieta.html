@@ -29,25 +29,35 @@
           <ion-label  floating>Instrucciones</ion-label>
             <ion-textarea  type="text"  [(ngModel)]="datos.deslarga" ></ion-textarea >
         </ion-item>
-        <div class="login">
-          <p> </p>
-            <ion-item>
-                <ion-label>Tipo</ion-label>
-                <ion-select [(ngModel)]="datos.tipo" interface="action-sheet" cancelText="Cancelar" >
-                  <ion-option value="desgym">Despues del gym</ion-option>
-                  <ion-option value="desayuno">Desayuno</ion-option>
-                  <ion-option value="merienda">Merienda</ion-option>
-                  <ion-option value="almuerzo">Almuerzo</ion-option>
-                  <ion-option value="cena">Cena</ion-option>
-                </ion-select>
-              </ion-item>
-        </div>
+        <!--
+          <div class="login">
+            <p> </p>
+              <ion-item>
+                  <ion-label>Tipo</ion-label>
+                  <ion-select [(ngModel)]="datos.tipo" interface="action-sheet" cancelText="Cancelar" >
+                    <ion-option value="desgym">Despues del gym</ion-option>
+                    <ion-option value="desayuno">Desayuno</ion-option>
+                    <ion-option value="merienda">Merienda</ion-option>
+                    <ion-option value="almuerzo">Almuerzo</ion-option>
+                    <ion-option value="cena">Cena</ion-option>
+                  </ion-select>
+                </ion-item>
+          </div>
+        -->
+
         <div class="login">
           <p> </p>
             <button ion-button  block color="normal" (click)="seleccionarImagen()">
                 <ion-icon name="image"></ion-icon>
             </button>
         </div>
+        <ion-row>
+          <ion-col col-6>
+            
+            <img *ngIf="imagen64!=''" [src]="imagen64" alt="Select Image" />
+          </ion-col>
+          <ion-col col-6></ion-col>
+        </ion-row>
         <!--<div class="login">
             <p> </p>
               <button ion-button  block color="normal" (click)="seleccionarfile()">

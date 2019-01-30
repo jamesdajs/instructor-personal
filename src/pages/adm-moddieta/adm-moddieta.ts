@@ -29,7 +29,7 @@ export class AdmModdietaPage {
     imagen:"",
     key:""
   }
-  imagen64
+  imagen64=""
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private toastCtrl:ToastController,
     private loadCtrl:LoadingController,
@@ -77,7 +77,7 @@ export class AdmModdietaPage {
           
           Promise.all(funciones)
         })
-        if(this.imagen64){
+        if(this.imagen64!=''){
           this.uploadImgB64("dietas/"+key,this.imagen64).then(url=>{
             
             this.dieta.añadirfotoDieta(key,{imagen:url})

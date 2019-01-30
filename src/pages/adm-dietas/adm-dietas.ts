@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams ,AlertController,ToastController} f
 
 import { DietasProvider } from "../../providers/dietas/dietas"
 import { AdmModdietaPage } from "../adm-moddieta/adm-moddieta"
+import { AdmCreardietaPage } from "../adm-creardieta/adm-creardieta"
 /**
  * Generated class for the AdmDietasPage page.
  *
@@ -29,6 +30,9 @@ export class AdmDietasPage {
     ionViewDidLoad() {
       console.log('ionViewDidLoad AdmEjerciciosPage');
       this.cargardatos()
+    }
+    crear(){
+      this.navCtrl.push(AdmCreardietaPage,this.nombre)
     }
     cargardatos(){
       if(this.nombre=="despues del gym")

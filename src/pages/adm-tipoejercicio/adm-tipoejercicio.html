@@ -20,12 +20,26 @@
   
   <ion-content >
       <div *ngFor="let ejer of tipoejer">
-          <ion-item color="carts"  (click)="verejercicios(ejer.nombre)"> 
-              <p>Ejercicio para {{ejer.nombre}} </p>
+          <ion-item color="carts"  (click)="verejercicios(ejer)"> 
+              <p>Ejercicios para {{ejer.nombre}} </p>
             <button ion-button clear item-end icon-only>
                 <ion-icon color="light" name='ios-arrow-forward'></ion-icon>
             </button>
         </ion-item>
       </div>
+      <div *ngFor="let tipo of tipos">
+        <ion-item color="carts" > 
+          <p>{{tipo.nombre}} </p>
+          <button ion-button clear item-end icon-only (click)="editar(tipo)">
+              <ion-icon color="light" name='paper'></ion-icon>
+          </button>
+          <button ion-button clear item-end icon-only (click)="eliminar(tipo.key)">
+              <ion-icon color="light" name='trash'></ion-icon>
+          </button>
+          <button ion-button clear item-end icon-only  (click)="verejercicios(tipo)">
+              <ion-icon color="light" name='ios-arrow-forward'></ion-icon>
+          </button>
+      </ion-item>
+    </div>
   
   </ion-content>

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams ,AlertController,ToastController} f
 
 import { RutinaProvider } from "../../providers/rutina/rutina"
 import { AdmModejercicioPage } from "../adm-modejercicio/adm-modejercicio"
+import { AdmCrearejercicioPage } from "../adm-crearejercicio/adm-crearejercicio"
 
 /**
  * Generated class for the AdmEjerciciosPage page.
@@ -37,6 +38,9 @@ list=[]
       this.list=data
       //console.log(data)
     })
+  }
+  crear(){
+    this.navCtrl.push(AdmCrearejercicioPage,this.nombre)
   }
   editar(item){
     this.navCtrl.push(AdmModejercicioPage,item)

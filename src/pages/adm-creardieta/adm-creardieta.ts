@@ -36,10 +36,12 @@ export class AdmCreardietaPage {
     private loadCtrl:LoadingController,
     private toastCtrl:ToastController
     ) {
+      this.datos.tipo=navParams.data
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdmCrearejercicioPage');
+    console.log(this.datos)
   }
   //para subir videos falta
   

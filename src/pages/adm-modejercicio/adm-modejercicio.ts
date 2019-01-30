@@ -30,7 +30,7 @@ export class AdmModejercicioPage {
     key:"",
     linkyoutube:""
   }
-  imagen64
+  imagen64=""
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private toastCtrl:ToastController,
     private loadCtrl:LoadingController,
@@ -43,6 +43,7 @@ export class AdmModejercicioPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdmModejercicioPage');
+    console.log(this.datos)
     
   }
   guardar(){
@@ -80,7 +81,7 @@ export class AdmModejercicioPage {
           Promise.all(funciones)
           
         })
-        if(this.imagen64){
+        if(this.imagen64!=''){
           this.uploadImgB64("ejercicios/"+key,this.imagen64).then(url=>{
             this.rutina.añadirfotoEjercicio(key,{imagen:url})
             .then(()=>{

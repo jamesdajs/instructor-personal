@@ -60,7 +60,8 @@ export class DietasProvider {
     }))
   }*/
   verDietasporTipo(tipo){
-    let query=res => res.where("tipo","==",tipo)
+    let query=res => res.where("idinstructor","==",this.auth.auth.currentUser.uid)
+                        .where("tipo","==",tipo)
     return this.getcollArrayconkey("dietas",query)
   }
   verSubdietas(iddietaP){

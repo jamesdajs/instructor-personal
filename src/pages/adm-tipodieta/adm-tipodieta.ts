@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { AdmCreardietaPage } from "../adm-creardieta/adm-creardieta"
 import { AdmDietasPage } from "../adm-dietas/adm-dietas"
 /**
  * Generated class for the AdmTipodietaPage page.
@@ -17,10 +16,12 @@ import { AdmDietasPage } from "../adm-dietas/adm-dietas"
 })
 export class AdmTipodietaPage {
   tipodieta=[
+    {nombre:"antes de entrenar"},
     {nombre:"despues del gym"},
     {nombre:"desayuno"},
-    {nombre:"merienda"},
+    {nombre:"merienda mañana"},
     {nombre:"almuerzo"},
+    {nombre:"merienda tarde"},
     {nombre:"cena"}
   ]
   list=[]
@@ -32,9 +33,7 @@ export class AdmTipodietaPage {
       console.log('ionViewDidLoad AdmtipoEjerciciosPage');
     }
  
-    crear(){
-      this.navCtrl.push(AdmCreardietaPage)
-    }
+
     verejercicios(nombre){
       this.navCtrl.push(AdmDietasPage,nombre)
     }
