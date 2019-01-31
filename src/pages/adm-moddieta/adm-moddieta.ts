@@ -44,6 +44,9 @@ export class AdmModdietaPage {
     console.log('ionViewDidLoad AdmModejercicioPage');
     
   }
+  borrarimg(){
+    this.imagen64=''
+  }
   guardar(){
     
     if(this.datos.nombre==""||this.datos.descorta==""||this.datos.deslarga==""||this.datos.tipo=="")

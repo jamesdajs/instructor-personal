@@ -20,8 +20,11 @@ export class DetallejercicioPage {
     nombre:"",
     deslarga:"",
     linkyoutube:"",
+    imagen1:"",
+    imagen:'',
     tipo:""
   }
+  imagenaux=true
   constructor(public navCtrl: NavController, public navParams: NavParams,public rutina:RutinaProvider) {
     this.itemcompleto=this.navParams.data
   }
@@ -29,12 +32,24 @@ export class DetallejercicioPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetallejercicioPage');
     this.verdetalle()
+    setInterval(() => {this.cambiarImagen()},1000);
+    
+  }
+  cambiarImagen(){
+    //console.log(this.imagenaux)
+    if(this.item.imagen1!='' && this.item.imagen1)
+      this.imagenaux=!this.imagenaux
+    else{
+      this.imagenaux=true
+    }
   }
   verdetalle(){
     this.rutina.verDetalleEjercicios(this.itemcompleto.idejercicio)
     .subscribe(data=>{
-      console.log(data,this.itemcompleto)
+      //console.log(data,this.itemcompleto)
       this.item=data
+      
+        
     })
     
   }

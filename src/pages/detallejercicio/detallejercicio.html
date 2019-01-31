@@ -15,8 +15,13 @@
 
 <ion-content padding>
     <ion-card color="listdivisor">
-      
-        <img *ngIf="item.imagen!=''; else elseBlock" [src]="item.imagen" />
+        <div *ngIf="item.imagen!=''; else elseBlock">
+
+            <img *ngIf="imagenaux==true; else elseBlock2" [src]="item.imagen" />
+            <ng-template #elseBlock2>
+                <img  [src]="item.imagen1" />
+          </ng-template>
+        </div>
         <ng-template #elseBlock>
             <img  src="../../assets/imgs/defecto.jpeg" />
       </ng-template>

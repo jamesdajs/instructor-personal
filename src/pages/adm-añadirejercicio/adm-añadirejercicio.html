@@ -15,6 +15,21 @@
       </ion-buttons>
   </ion-navbar>
 
+        <ion-scroll scrollX="true" scroll-avatar>
+                <div class="itemsel" *ngFor="let item of ejerselec; let o = index;" >
+                    <div class="cerrar">
+                        <ion-icon name="close-circle-outline" (click)="borrarselecionado(o)">
+
+                        </ion-icon>
+                    </div>
+                    <img class="selecionados" *ngIf="item.imagen!=''; else elseBlock" [src]="item.imagen" />
+                    <ng-template #elseBlock>
+                       <img class="selecionados" src="../../assets/imgs/defecto.jpeg" />
+                    </ng-template>
+                
+                </div>
+        </ion-scroll>
+                
 </ion-header>
 
 
@@ -30,16 +45,17 @@
                   </ng-template>
                 </ion-avatar>
                   
-                
-                <h2>{{item.nombre}}</h2>
-                <p>{{item.tipo}}</p>
-                <p>{{item.descorta}}</p>
+                <ion-label>
+                        <h2>{{item.nombre}}</h2>
+                        <p>{{item.descorta}}</p>
+                </ion-label>
                 <div *ngIf="item.estadoadd">
                     <button  ion-button  block color="normal" (click)="solicitud(item,o)">selecionar</button>              
                 </div>
                 <div *ngIf="!item.estadoadd">
                     <button  ion-button  block color="normal" disabled> ya selecionar</button>              
                 </div>
+                <ion-checkbox color="dark" item-right checked="false" (ionChange)="solicitud(item,o,$event)"></ion-checkbox>
                   
               </ion-item>
         </div>

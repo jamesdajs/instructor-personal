@@ -43,8 +43,9 @@ export class AdmCreardietaPage {
     console.log('ionViewDidLoad AdmCrearejercicioPage');
     console.log(this.datos)
   }
-  //para subir videos falta
-  
+  borrarimg(){
+    this.imagen64=''
+  }
   guardar(){
     
     if(this.datos.nombre==""||this.datos.descorta==""||this.datos.deslarga==""||this.datos.tipo=="")

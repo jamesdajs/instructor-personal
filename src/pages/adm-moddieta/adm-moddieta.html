@@ -46,21 +46,32 @@
           </div>
         -->
 
-        <div class="login">
-          <p> </p>
-            <button ion-button  block color="normal" (click)="seleccionarImagen()">
-                <ion-icon name="image"></ion-icon>
-            </button>
-        </div>
-        <ion-row>
-          <ion-col col-6>
-            
-            <img *ngIf="imagen64!=''; else imagendefecto" [src]="imagen64" alt="Select Image" />
-              <ng-template #imagendefecto>
-                <img  [src]="datos.imagen" />
-              </ng-template>
-          </ion-col>
-          <ion-col col-6></ion-col>
+        <ion-row justify-content-center>
+                  <p>Seleccinar imagenes de la dieta(opcional)  </p> 
+                <ion-col col-6>
+                  <div class="colbtn">
+                      <div *ngIf="imagen64==''; else imagendefecto;">
+                        <div *ngIf="datos.imagen!=''; else sinImg;">
+                            <div class="fondobtn" ><ion-icon name="image-outline" (click)="seleccionarImagen()"></ion-icon><br></div>
+                            <img   [src]="datos.imagen"   /> 
+                        </div>  
+                        <ng-template #sinImg>
+                            <button ion-button  block color="normal" (click)="seleccionarImagen()">
+                                <ion-icon name="image"></ion-icon>
+                            </button>
+    
+                        </ng-template>
+                          
+                      </div>
+                      
+                      <ng-template #imagendefecto>
+                        
+                        <div class="fondobtn" ><ion-icon name="close-circle-outline" (click)="borrarimg()"></ion-icon><br></div>
+                        <img  [src]="imagen64" />
+                      </ng-template>
+                  </div>
+                  
+                </ion-col>
         </ion-row>
         <div class="login">
             <button ion-button  block color="normal" (click)="guardar()">Modificar</button>

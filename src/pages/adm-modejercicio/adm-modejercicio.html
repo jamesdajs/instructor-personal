@@ -44,26 +44,70 @@
             </div>
           -->
           
-          <div class="login">
-            <p>Imagen (opcional) </p>
-              <button ion-button  block color="normal" (click)="seleccionarImagen()">
-                  <ion-icon name="image"></ion-icon>
-              </button>
-          </div>
+          
+          
           <ion-row>
+              <p>Seleccinar imagenes de las posiciones del ejercicio(opcional)  </p> 
             <ion-col col-6>
               
-              <img *ngIf="imagen64!=''; else imagendefecto;" [src]="imagen64" alt="Select Image" />
-              <ng-template #imagendefecto>
-                <img  [src]="datos.imagen" />
-              </ng-template>
+                <p>Posicion 1 (opcional) </p>
+              <div class="colbtn">
+                  <div *ngIf="imagen64==''; else imagendefecto;">
+                    <div *ngIf="datos.imagen!=''; else sinImg;">
+                        <div class="fondobtn" ><ion-icon name="image-outline" (click)="seleccionarImagen()"></ion-icon><br></div>
+                        <img   [src]="datos.imagen"   /> 
+                    </div>  
+                    <ng-template #sinImg>
+                        <button ion-button  block color="normal" (click)="seleccionarImagen()">
+                            <ion-icon name="image"></ion-icon>
+                        </button>
+
+                    </ng-template>
+                      
+                  </div>
+                  
+                  <ng-template #imagendefecto>
+                    
+                    <div class="fondobtn" ><ion-icon name="close-circle-outline" (click)="borrarimg()"></ion-icon><br></div>
+                    <img  [src]="imagen64" />
+                  </ng-template>
+              </div>
+              
             </ion-col>
-            <ion-col col-6></ion-col>
+            <ion-col col-6>
+                
+                <p>Posicion 2 (opcional) </p>
+                <div class="colbtn">
+                  
+                    <div *ngIf="imagen64_2==''; else imagendefecto2;">
+                      
+                      <div *ngIf="datos.imagen1!='' && datos.imagen1; else sinImg2;">
+                          <div class="fondobtn" >
+                            <ion-icon name="image" (click)="seleccionarImagen2()"></ion-icon>
+                          </div>
+                          <img   [src]="datos.imagen1"   /> 
+                      </div>  
+                      <ng-template #sinImg2>
+                          <button ion-button  block color="normal" (click)="seleccionarImagen2()">
+                              <ion-icon name="image"></ion-icon>
+                          </button>
+  
+                      </ng-template>
+                    </div>
+                    <ng-template #imagendefecto2>
+                      
+                      <div class="fondobtn" ><ion-icon name="close-circle-outline" (click)="borrarimg2()"></ion-icon></div>
+                      <img  [src]="imagen64_2" />
+                    </ng-template>
+                </div>
+                
+              </ion-col>
           </ion-row>
-          <div class="login">
-              <p>Video (opcional)</p>
-                <ion-input  type="text" placeholder="Link video de youtube" [(ngModel)]="datos.linkyoutube" ></ion-input >
-            </div>
+          
+          <ion-item class="input">
+            <ion-label  floating>Link video de youtube (opcional)</ion-label>
+                <ion-input  type="text" [(ngModel)]="datos.linkyoutube" ></ion-input >
+                </ion-item>
           <div class="login">
               <button ion-button  block color="normal" (click)="guardar()">Modificar</button>
           </div>

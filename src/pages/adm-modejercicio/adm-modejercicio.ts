@@ -27,10 +27,12 @@ export class AdmModejercicioPage {
     deslarga:"",
     tipo:"",
     imagen:"",
+    imagen1:"",
     key:"",
     linkyoutube:""
   }
   imagen64=""
+  imagen64_2=''
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private toastCtrl:ToastController,
     private loadCtrl:LoadingController,
@@ -45,6 +47,12 @@ export class AdmModejercicioPage {
     console.log('ionViewDidLoad AdmModejercicioPage');
     console.log(this.datos)
     
+  }
+  borrarimg(){
+    this.imagen64=''
+  }
+  borrarimg2(){
+    this.imagen64_2=''
   }
   guardar(){
     //modificar nombre descorta y tipo en rutina_ejer
@@ -85,14 +93,23 @@ export class AdmModejercicioPage {
           this.uploadImgB64("ejercicios/"+key,this.imagen64).then(url=>{
             this.rutina.añadirfotoEjercicio(key,{imagen:url})
             .then(()=>{
+                          
               load.dismiss()
               toast.present()
-              this.navCtrl.pop()
+              this.navCtrl.setRoot(AdmTipoejercicioPage)
             })
+
+            
+          })
+        }else if(this.imagen64_2!=''){
+          this.uploadImgB64("ejercicios/"+key+'1',this.imagen64_2).then(url=>{
+            this.rutina.añadirfotoEjercicio(key,{imagen1:url})
+            .then(()=>{
             
               load.dismiss()
               toast.present()
               this.navCtrl.setRoot(AdmTipoejercicioPage)
+            })
             
           })
         }else{
@@ -127,7 +144,28 @@ export class AdmModejercicioPage {
     });
     
   }
+  seleccionarImagen2(){
+    const options: CameraOptions = {
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      sourceType:this.camera.PictureSourceType.PHOTOLIBRARY,
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit:true,
+      targetHeight:300,
+      targetWidth:300,
 
+    }
+     
+    this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+     let base64Image = 'data:image/jpeg;base64,' + imageData;
+     this.imagen64_2=base64Image;
+    }, (err) => {
+     // Handle error
+    });
+    
+  }
   uploadImgB64(path:string,imageB64):Promise<any>{
     return new Promise((resolve, reject)=>{
       let ref=this.storage.ref(path)

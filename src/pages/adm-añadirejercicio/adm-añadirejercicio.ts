@@ -10,10 +10,12 @@ import { RutinaProvider} from '../../providers/rutina/rutina'
 
 @IonicPage()
 @Component({
-  selector: 'page-adm-añadirejercicio',
+  selector: 'page-adm-aadirejercicio ',
   templateUrl: 'adm-añadirejercicio.html',
 })
 export class AdmAñadirejercicioPage {
+  c1=true
+
 ejercicios=[]
 ejerselec=[]
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -31,6 +33,12 @@ ejerselec=[]
   }
   dismiss(){
     this.view.dismiss(this.ejerselec)
+  }
+  borrarselecionado(i){
+    this.ejerselec[i].check.checked=false
+    this.ejerselec.splice(i, 0);
+
+    console.log(i,this.ejerselec)
   }
   cargardatos(){
     this.rutina.verMisEjerciciostodo()
@@ -50,68 +58,87 @@ ejerselec=[]
       console.log(this.ejercicios)
     })
   }
-  solicitud(item,i){
-    let alert = this.alertCtrl.create({
-      title: 'Login',
-      inputs: [
-        {
-          name: 'peso',
-          placeholder: 'Peso en kg',
-          type:"number",
-          min:0,
-          max:300
-        },
-        {
-          name: 'repeticiones',
-          placeholder: 'Repeticiones',
-          type: 'text'
-        },
-        {
-          name: 'duracion',
-          placeholder: 'Duracion en min',
-          type: 'number',
-          min:0,
-          max:180
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
+  solicitud(item,i,e?){
+    //console.log(e)
+
+    if(!item.estadoadd || !e.checked){
+      let encontrado
+      for(let i=0;i<this.ejerselec.length;i++){
+        
+          if(this.ejerselec[i].key==item.key){
+            encontrado=i
+            break
           }
-        },
-        {
-          text: 'Aceptar',
-          handler: data => {
-            if(data.peso=="" && data.duracion=="" && data.repeticiones==""){
-              this.toastCtrl.create({
-                message:"Tiene que llenar al menos un campo",
-                duration:3000
-              }).present()
-              return false
+      }
+      this.ejerselec.splice(encontrado, 1);
+      item.estadoadd=true
+
+    }else{
+      let alert = this.alertCtrl.create({
+        title: 'Login',
+        inputs: [
+          {
+            name: 'peso',
+            placeholder: 'Peso en kg',
+            type:"number",
+            min:0,
+            max:300
+          },
+          {
+            name: 'repeticiones',
+            placeholder: 'Repeticiones',
+            type: 'text'
+          },
+          {
+            name: 'duracion',
+            placeholder: 'Duracion en min',
+            type: 'number',
+            min:0,
+            max:180
+          }
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: data => {
+              console.log('Cancel clicked');
+              e.checked=false
             }
-            else{
-              
-              console.log(item,i)
-              let dato:any={}
-              for(let j in item){
-                  dato[j]=item[j]
+          },
+          {
+            text: 'Aceptar',
+            handler: data => {
+              if(data.peso=="" && data.duracion=="" && data.repeticiones==""){
+                this.toastCtrl.create({
+                  message:"Tiene que llenar al menos un campo",
+                  duration:3000
+                }).present()
+                return false
               }
-              dato["peso"]=data.peso
-              dato["duracion"]=data.duracion
-              dato["repeticiones"]=data.repeticiones
-              dato["idejercicio"]=dato.key
-              dato["key"]
-              item.estadoadd=false
-              this.ejerselec.push(dato)
+              else{
+                
+                console.log(item,i)
+                let dato:any={}
+                for(let j in item){
+                    dato[j]=item[j]
+                }
+                dato["peso"]=data.peso
+                dato["duracion"]=data.duracion
+                dato["repeticiones"]=data.repeticiones
+                dato["idejercicio"]=dato.key
+                dato["key"]
+                dato["check"]=e
+                item.estadoadd=false
+                this.ejerselec.push(dato)
+              }
             }
           }
-        }
-      ]
-    });
-    alert.present();
+        ]
+      });
+      alert.present();
+    }
+
     
 
   }

@@ -136,7 +136,14 @@ import { DietasProvider } from '../providers/dietas/dietas';
         monthShortNames: ['Ene', 'Feb', 'Mar', "Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic" ],
         dayNames: ['Domingo', 'Lunes',
                    'Martes', "Miercoles","Jueves","Viernes","Sabado" ],
-        dayShortNames: ['Dom', 'Lun', 'Mar', "Mie","Jue","Vie","Sab" ]
+        dayShortNames: ['Dom', 'Lun', 'Mar', "Mie","Jue","Vie","Sab" ],
+        iconMode: 'ios',
+        pageTransition: 'ios',
+        platforms: {
+          ios: {
+            backButtonText: 'Atras'
+          }
+        }
     }),
     AngularFireModule.initializeApp(firebaseConfig.firebase),
     AngularFirestoreModule,
