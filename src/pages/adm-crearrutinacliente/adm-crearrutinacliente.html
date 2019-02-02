@@ -26,48 +26,72 @@
               <ion-label  floating>Descripcion</ion-label>
                 <ion-input type="text"  [(ngModel)]="event.descripcion"></ion-input>
             </ion-item>
-            <ion-list radio-group no-lines inset>
-              <ion-item class="fechapadd">
-                <ion-label>Fecha inicio</ion-label>
-                <ion-datetime displayFormat="DD MMMM YYYY" min="2019" max="2020"[(ngModel)]="fechaini" cancelText =Cancelar doneText=Ok></ion-datetime>
-              </ion-item>
-              <ion-item class="fechapadd">
-                  <ion-label>Fecha fin</ion-label>
-                  <ion-datetime displayFormat="DD MMMM YYYY" min="2019"max="2020" [(ngModel)]="fechafin" cancelText =Cancelar doneText=Ok></ion-datetime>
-                </ion-item>
+            <ion-list  no-lines >
+                <ion-row align-items-end>
+                    <ion-col col-6>
+                      <p>Inicio</p>
+                        <ion-item class="fechapadd">
+                            <ion-datetime displayFormat="DD MMMM YYYY" min="2019" max="2020"[(ngModel)]="fechaini" cancelText =Cancelar doneText=Ok></ion-datetime>
+                          </ion-item>
+                    </ion-col>
+                    <ion-col col-6>
+                      
+                        <p>Fin</p>
+                        <ion-item class="fechapadd">
+                            <ion-datetime displayFormat="DD MMMM YYYY" min="2019"max="2020" [(ngModel)]="fechafin" cancelText =Cancelar doneText=Ok></ion-datetime>
+                          </ion-item>
+                    </ion-col>
+                </ion-row>
+              
+              
                 
             </ion-list>
-            <div class="login">
-                <button ion-button  block color="normal" (click)="addEjercicio()">Añadir ejercicio</button>
-            </div>
-            <ion-list>
-              <div *ngIf="ejercicios.length!=0;else elseBlock">
-                  <ion-item color="carts" *ngFor="let item of ejercicios; let o = index;" >
-                      
-                      <ion-avatar item-start>
-                        <img [src]="item.imagen ">
-                      </ion-avatar>
-                        
-                      
-                      <h2>{{item.nombre}}</h2>
-                      <p>{{item.tipo}}</p>
-                      <p>{{item.descorta}}</p>
-                      <button ion-button clear item-end icon-only (click)="eliminar(o)">
-                          <ion-icon color="light" name='trash'></ion-icon>
-                      </button>
-                    </ion-item>
-              </div>
-              <ng-template #elseBlock>
-                  <ion-item color="carts">
-                    <h2>Tiene que añadir ejercicios</h2>
-                  </ion-item>
-              </ng-template>
-              <div class="login">
-                <button ion-button  block color="normal" (click)="guardar()">Guardar rutina</button>
-            </div>
-            </ion-list>
+            <p>Ejercicios selecionados</p>
           </ion-col>
         </ion-row>
     </ion-grid>
+            
+            <div color="carts">
+                <ion-scroll scrollX="true" scroll-avatar >
+                    <div class="itemsel" >
+                        <div class="cerrar">
+                            <ion-icon name="ios-add-circle-outline" (click)="addEjercicio()"></ion-icon> 
+                        </div>
+                        <div class="selecionados add"  >
+                            <ion-icon name="custom-pesas" (click)="addEjercicio()"></ion-icon>
+                        </div>
+                        <div>
+                            <p>Agregar ejercicio</p>
+                            
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="itemsel" *ngFor="let item of ejercicios; let o = index;" >
+                        <div class="cerrar">
+                            <ion-icon name="close-circle-outline" (click)="eliminar(o)">
+    
+                            </ion-icon>
+                        </div>
+                        <img class="selecionados" *ngIf="item.imagen!=''; else elseBlock" [src]="item.imagen" />
+                        <ng-template #elseBlock>
+                           <img class="selecionados" src="../../assets/imgs/defecto.jpeg" />
+                        </ng-template>
+                        <div>
+                            <p>{{item.nombre}}</p>
+                            
+                        </div>
+                        
+                    </div>
+              </ion-scroll>
+            </div>
+                
+              
+              
+              <div class="login">
+                <button ion-button  block color="normal" (click)="guardar()">Guardar rutina</button>
+            </div>
+            
+          
 
 </ion-content>

@@ -41,7 +41,7 @@ export class AdmCrearrutinaclientePage {
 
   ionViewDidLoad() {
     let date=new Date()
-    this.fechaini=date.getFullYear()+"-"+(date.getMonth()<9?"0"+(date.getMonth()+1):(date.getMonth()+1))+"-"+date.getDate()
+    this.fechaini=date.getFullYear()+"-"+(date.getMonth()<9?"0"+(date.getMonth()+1):(date.getMonth()+1))+"-"+(date.getDate()<9?"0"+(date.getDate()):(date.getDate()))
     this.fechafin=this.fechaini
     console.log('ionViewDidLoad AdmCrearrutinaclientePage');
   }
@@ -57,19 +57,22 @@ export class AdmCrearrutinaclientePage {
     this.ejercicios.splice(i,1)
   }
   guardar(){
-    let load=this.loadCtrl.create({
-    content: "Guardando datos",
-    })
-    load.present()
-    const toast = this.toastCtrl.create({
-      message: 'Se guardo la rutina correctamente',
-      duration: 3000})
-    if(this.ejercicios.length==0)
+    
+    if(this.ejercicios.length==0){
       this.toastCtrl.create({
-        message:"Tiene q seleccionar almenos un ejercicio",
+        message:"Tiene que agregar al menos un ejercicio",
         duration:3000
       }).present()
+    }
+      
     else{
+      let load=this.loadCtrl.create({
+        content: "Guardando datos",
+        })
+        load.present()
+        const toast = this.toastCtrl.create({
+          message: 'Se guardo la rutina correctamente',
+          duration: 3000})
       this.event["fechaini"]=new Date(this.fechaini.replace(/-/g, '\/'))
       this.event["fechafin"]=new Date(this.fechafin.replace(/-/g, '\/'))
       this.user.guardarrutinacliente(this.key,this.event)
@@ -81,6 +84,7 @@ export class AdmCrearrutinaclientePage {
           delete item.deslarga
           delete item.imagen
           delete item.estadoadd
+          delete item.event
 
           item["idrutina"]=res.id
           funciones.push(this.user.guardarRutina_ejercicio(item))

@@ -24,21 +24,31 @@ ejerselec=[]
     private alertCtrl:AlertController,
     private toastCtrl:ToastController
     ) {
-      this.ejerselec=navParams.data
+      for(let i=0;i<navParams.data.length;i++){
+        this.ejerselec.push(navParams.data[i])
+      }
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AdmAñadirejercicioPage');
+    console.log('ionViewDidLoad AdmAñadirejercicioPage' ,this.navParams.data);
     this.cargardatos()
+    console.log(this.navParams.data.length)
+
   }
   dismiss(){
     this.view.dismiss(this.ejerselec)
   }
-  borrarselecionado(i){
-    this.ejerselec[i].check.checked=false
-    this.ejerselec.splice(i, 0);
+  borrarselecionado(i,e,key){
 
-    console.log(i,this.ejerselec)
+   // this.ejerselec[i].event.checked=false
+   
+   this.ejerselec.splice(i, 1);
+    this.ejercicios.forEach(elem=>{
+      if(elem.key==key){
+        elem.estadoadd=true
+      }
+    })
+    //console.log(key,this.ejercicios)
   }
   cargardatos(){
     this.rutina.verMisEjerciciostodo()
@@ -49,20 +59,23 @@ ejerselec=[]
         
       });
       data.forEach(element => {
+
         this.ejerselec.forEach(sel => {
           if(element["key"]==sel["key"])
             element["estadoadd"]=false
         });
+        
       });
       this.ejercicios=data
-      console.log(this.ejercicios)
+      //console.log(this.ejercicios)
     })
   }
   solicitud(item,i,e?){
-    //console.log(e)
+
+    console.log("funcion solicitud")
 
     if(!item.estadoadd || !e.checked){
-      let encontrado
+      let encontrado=null
       for(let i=0;i<this.ejerselec.length;i++){
         
           if(this.ejerselec[i].key==item.key){
@@ -70,8 +83,10 @@ ejerselec=[]
             break
           }
       }
-      this.ejerselec.splice(encontrado, 1);
-      item.estadoadd=true
+      if(encontrado!=null){
+        this.ejerselec.splice(encontrado, 1);
+        item.estadoadd=true
+      }
 
     }else{
       let alert = this.alertCtrl.create({
@@ -127,8 +142,7 @@ ejerselec=[]
                 dato["duracion"]=data.duracion
                 dato["repeticiones"]=data.repeticiones
                 dato["idejercicio"]=dato.key
-                dato["key"]
-                dato["check"]=e
+                dato["event"]=e
                 item.estadoadd=false
                 this.ejerselec.push(dato)
               }

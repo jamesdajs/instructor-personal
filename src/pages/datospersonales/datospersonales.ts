@@ -178,7 +178,7 @@ export class DatospersonalesPage {
   convertirfecha2(timestamp){
     if(timestamp){
       let fecha=timestamp.toDate()
-      return fecha.getFullYear()+"-"+(fecha.getMonth()<9?"0"+(fecha.getMonth()+1):(fecha.getMonth()+1))+"-"+fecha.getDate()
+      return fecha.getFullYear()+"-"+(fecha.getMonth()<9?"0"+(fecha.getMonth()+1):(fecha.getMonth()+1))+"-"+(fecha.getDate()<9?"0"+(fecha.getDate()):(fecha.getDate()))
     }else{
       return null
     }

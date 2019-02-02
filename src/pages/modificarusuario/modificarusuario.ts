@@ -61,7 +61,7 @@ export class ModificarusuarioPage {
     //console.log(this.event)
     this.user.veriduser()
     .then(id=>{
-      this.event.fechanac=new Date(this.fechanac)
+      this.event.fechanac=new Date(this.fechanac.replace(/-/g, '\/'))
       this.event.descorta=this.datosins.descorta
       let func=[
         this.user.crearusuario(id,this.event)

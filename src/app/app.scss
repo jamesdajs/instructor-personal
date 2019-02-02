@@ -41,9 +41,7 @@ button{
     margin-top: 10px !important ;
 }
 ion-datetime{
-        border-bottom:solid 2px !important;
-        //border-left:solid 2px !important;
-        border-color:map-get($colors, secondary) !important;
+        border-bottom:solid 1px !important;
         color: map-get($colors, light) !important;
     }
 ion-icon {
