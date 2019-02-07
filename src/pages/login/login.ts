@@ -145,7 +145,7 @@ console.log("splas abierto")
                
              }
       }, error=>{
-        console.log(error);
+        //console.log(error);
         reject(error)
       });
     })

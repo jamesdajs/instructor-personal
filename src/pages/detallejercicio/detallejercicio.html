@@ -35,9 +35,12 @@
           <p>
             Descripcion : {{item.deslarga}}
           </p>
-          <p *ngIf="itemcompleto.repeticiones!=''; ">Repeticiones: {{itemcompleto.repeticiones}}</p>
-          <p *ngIf="itemcompleto.peso!=''; ">Peso: {{itemcompleto.peso}}</p>
-          <p *ngIf="itemcompleto.duracion!=''; ">Duracion: {{itemcompleto.duracion}}</p>
+          <div *ngIf="itemcompleto.idejercicio">
+              <p *ngIf="itemcompleto.repeticiones!=''; ">Repeticiones: {{itemcompleto.repeticiones}}</p>
+              <p *ngIf="itemcompleto.peso!=''; ">Peso: {{itemcompleto.peso}}</p>
+              <p *ngIf="itemcompleto.duracion!=''; ">Duracion: {{itemcompleto.duracion}}</p>
+          </div >
+          
           <a *ngIf="item.linkyoutube!=''; " href="{{item.linkyoutube}}">ver video en toytube</a>
         </ion-card-content>
       </ion-card>

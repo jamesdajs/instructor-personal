@@ -31,6 +31,7 @@ export class DetallejercicioPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetallejercicioPage');
+    console.log('ionViewDidLoad DetallejercicioPage');
     this.verdetalle()
     setInterval(() => {this.cambiarImagen()},1000);
     
@@ -44,13 +45,16 @@ export class DetallejercicioPage {
     }
   }
   verdetalle(){
-    this.rutina.verDetalleEjercicios(this.itemcompleto.idejercicio)
-    .subscribe(data=>{
-      //console.log(data,this.itemcompleto)
-      this.item=data
-      
-        
-    })
+    if(this.itemcompleto.idejercicio){
+      this.rutina.verDetalleEjercicios(this.itemcompleto.idejercicio)
+      .subscribe(data=>{
+        //console.log(data,this.itemcompleto)
+        this.item=data
+      })
+    }else{
+
+      this.item=this.itemcompleto
+    }
     
   }
 }

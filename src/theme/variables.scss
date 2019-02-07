@@ -40,6 +40,7 @@ $colors: (
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
+  sincolor:hsla(0, 0%, 100%, 0),
   facebook: (
     base: #4267B2,
     contrast: #f4f4f4
@@ -53,11 +54,11 @@ $colors: (
     contrast: #f4f4f4
   ),
   carts: (
-    base: hsla(188, 90%, 12%, 0.4),
+    base: #03313a,
     contrast: #f4f4f4
   ),
   listdivisor: (
-    base:  hsla(188, 90%, 12%, 0.8),
+    base:  hsla(189, 90%, 12%, 0.5),
     contrast: #f4f4f4
   ),
   head: (
@@ -75,7 +76,7 @@ $colors: (
 $refresher-icon-color:map-get($colors, light);
 $refresher-text-color:map-get($colors, light);
 // App iOS Variables
-
+$list-ios-background-color:map-get($colors,sincolor);
 // --------------------------------------------------
 // iOS only Sass variables can go here
 $range-ios-pin-color:map-get($colors, light);
@@ -84,6 +85,8 @@ $text-input-ios-highlight-color: 	color($colors, light);
 
 
 // App Material Design Variables
+
+$list-md-background-color:map-get($colors,sincolor);
 $text-input-md-highlight-color:map-get($colors, light);
 $tabs-md-tab-opacity	:.5;
 $tabs-md-tab-text-color	: map-get($colors, light);

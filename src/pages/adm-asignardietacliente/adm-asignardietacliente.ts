@@ -26,9 +26,23 @@ export class AdmAsignardietaclientePage {
     private view:ViewController,
     private dieta:DietasProvider
     ) {
-      this.dietasselec=navParams.data
-  }
+      for(let i=0;i<navParams.data.length;i++){
+        this.dietasselec.push(navParams.data[i])
+      }
 
+  }
+  borrarselecionado(i,key){
+    this.dietasselec.splice(i, 1);
+    this.tipodieta.forEach(tipo=>{
+      this.ejers[tipo.key].forEach(ejer => {
+        if(ejer.key==key){
+          ejer.estadoadd=true
+          console.log(ejer.key)
+
+        }
+      });
+    })
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdmAsignardietaclientePage');
     
@@ -64,7 +78,22 @@ verejercicios(item){
   }
   
 }
-solicitud(dieta,i){
+solicitud(dieta,i,e?){
+  if(!dieta.estadoadd || !e.checked){
+    let encontrado=null
+    for(let i=0;i<this.dietasselec.length;i++){
+      
+        if(this.dietasselec[i].key==dieta.key){
+          encontrado=i
+          break
+        }
+    }
+    if(encontrado!=null){
+      this.dietasselec.splice(encontrado, 1);
+      dieta.estadoadd=true
+    }
+
+  }else{
   let dato:any={}
     for(let j in dieta){
         dato[j]=dieta[j]
@@ -73,7 +102,7 @@ solicitud(dieta,i){
     dieta.estadoadd=false
     this.dietasselec.push(dato)
   console.log(this.dietasselec)
-
+  }
 }
 
 }

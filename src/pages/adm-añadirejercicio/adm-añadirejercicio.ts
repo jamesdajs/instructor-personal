@@ -38,7 +38,7 @@ ejerselec=[]
   dismiss(){
     this.view.dismiss(this.ejerselec)
   }
-  borrarselecionado(i,e,key){
+  borrarselecionado(i,key){
 
    // this.ejerselec[i].event.checked=false
    

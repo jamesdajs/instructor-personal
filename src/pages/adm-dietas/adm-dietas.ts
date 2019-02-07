@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams ,AlertController,ToastController} f
 import { DietasProvider } from "../../providers/dietas/dietas"
 import { AdmModdietaPage } from "../adm-moddieta/adm-moddieta"
 import { AdmCreardietaPage } from "../adm-creardieta/adm-creardieta"
+import { DetalledietaPage } from "../detalledieta/detalledieta"
 /**
  * Generated class for the AdmDietasPage page.
  *
@@ -45,6 +46,9 @@ export class AdmDietasPage {
     }
     editar(item){
       this.navCtrl.push(AdmModdietaPage,item)
+    }
+    verdetalle(item){
+      this.navCtrl.push(DetalledietaPage,item)
     }
     eliminar(key){
       const toast = this.toastCtrl.create({

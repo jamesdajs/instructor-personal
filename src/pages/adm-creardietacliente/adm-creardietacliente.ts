@@ -50,19 +50,20 @@ export class AdmCreardietaclientePage {
     this.ejercicios.splice(i,1)
   }
   guardar(){
-    let load=this.loadCtrl.create({
-    content: "Guardando datos",
-    })
-    load.present()
-    const toast = this.toastCtrl.create({
-      message: 'Se guardo la dieta correctamente',
-      duration: 3000})
+    
     if(this.ejercicios.length==0)
       this.toastCtrl.create({
         message:"Tiene que asignar almenos una dieta",
         duration:3000
       }).present()
     else{
+      let load=this.loadCtrl.create({
+        content: "Guardando datos",
+        })
+        load.present()
+        const toast = this.toastCtrl.create({
+          message: 'Se guardo la dieta correctamente',
+          duration: 3000})
       this.event["fechaini"]=new Date(this.fechaini.replace(/-/g, '\/'))
       this.event["fechafin"]=new Date(this.fechafin.replace(/-/g, '\/'))
       this.user.guardarDietacliente(this.key,this.event)

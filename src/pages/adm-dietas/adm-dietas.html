@@ -21,7 +21,8 @@
 <ion-content >
   <ion-list>
     <div *ngIf="list.length!=0;else elseBlock">
-        <ion-item color="carts" *ngFor="let item of list" >
+      <ion-item-sliding  *ngFor="let item of list">
+        <ion-item color="carts"  >
             <ion-thumbnail item-start>
                 <img *ngIf="item.imagen!=''; else elseBlock" [src]="item.imagen" />
                 <ng-template #elseBlock>
@@ -31,13 +32,22 @@
             <h2>{{item.nombre}}</h2>
             <p>{{item.tipo}}</p>
             <p>{{item.descorta}}</p>
-            <button ion-button clear item-end icon-only (click)="editar(item)">
-                <ion-icon color="light" name='paper'></ion-icon>
-            </button>
-            <button ion-button clear item-end icon-only (click)="eliminar(item.key)">
-                <ion-icon color="light" name='trash'></ion-icon>
-            </button>
           </ion-item>
+          <ion-item-options >
+              <button ion-button color="tabss" (click)="verdetalle(item)" icon-start>
+                  <ion-icon name="eye"> </ion-icon>
+                  ver
+                </button>
+              <button ion-button color="tabss" (click)="editar(item)" icon-start>
+                <ion-icon name="paper"> </ion-icon>
+                Modificar
+              </button>
+              <button ion-button color="tabss" (click)="eliminar(item.key)" icon-start>
+                <ion-icon name="trash"></ion-icon>
+                Eliminar
+              </button>
+          </ion-item-options>
+        </ion-item-sliding>
     </div>
     <ng-template #elseBlock>
         <ion-item color="carts">

@@ -37,9 +37,6 @@ ion-item.input{
 ion-item.input ion-label{
     color: map-get($colors, light) !important ;
 }
-button{
-    margin-top: 10px !important ;
-}
 ion-datetime{
         border-bottom:solid 1px !important;
         color: map-get($colors, light) !important;

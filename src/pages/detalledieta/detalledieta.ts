@@ -38,11 +38,17 @@ export class DetalledietaPage {
     this.mostrardetalle()
   }
   mostrardetalle(){
-    this.dieta.verDetalleDieta(this.item.iddietas)
-    .subscribe(list=>{
-      this.list=list
-      console.log(this.item,list)
-    })
+    if(this.item.iddietas){
+      this.dieta.verDetalleDieta(this.item.iddietas)
+      .subscribe(list=>{
+        this.list=list
+        console.log(this.item,list)
+      })
+  }else{
+    console.log(this.item)
+    this.list=this.item
+  }
+    
   }
 
 }
