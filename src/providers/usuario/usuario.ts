@@ -154,6 +154,10 @@ verSitienenDatos() {
     datos["estado"]=false
     return this.db.collection(`cliente/${keycli}/rutinas`).add(datos)
   }
+  guardarrutinaDefecto(datos){
+    datos["estado"]=true
+    return this.db.collection(`cliente/${this.authfb.auth.currentUser.uid}/rutinasdefecto`).add(datos)
+  }
   guardarRutina_ejercicio(data){
     return this.db.collection(`rutina_ejer`).add(data)
   }

@@ -20,8 +20,15 @@
 
   <ion-content >
             <ion-list >
+                <ion-item color="listdivisor" (click)="alercontime()">
+                    <h2>rutinas por defecto para asignar</h2>
+                </ion-item>
+                <ion-item color="listdivisor">
+                    <h2>rutinas asignadas al alumno
+                    </h2>
+                </ion-item>
                   <div *ngIf="items.length!=0;else elseBlock">
-                    <div *ngFor="let item of items" class="delay">
+                    <div *ngFor="let item of items" >
                         <ion-item-divider color="listdivisor"  (click)="verejercicios(item.key)">
                       
                             <h2>{{item.nombre}} </h2>
@@ -43,7 +50,7 @@
                   </div>
                   <ng-template #elseBlock>
                       <ion-item color="carts">
-                        <h2>No tiene rutinas en este curso o deslice abajo para cargar</h2>
+                        <h2>No tiene rutinas en este curso </h2>
                       </ion-item>
                   </ng-template>
                   

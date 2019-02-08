@@ -19,6 +19,7 @@
   
   
   <ion-content >
+    <ion-list>
       <div *ngFor="let ejer of tipoejer">
           <ion-item color="carts"  (click)="verejercicios(ejer)"> 
               <p>Ejercicios para {{ejer.nombre}} </p>
@@ -27,19 +28,28 @@
             </button>
         </ion-item>
       </div>
-      <div *ngFor="let tipo of tipos">
+      <ion-item  color="listdivisor">
+          <h3>Ejercicios creados </h3>
+      </ion-item>
+      <ion-item-sliding  *ngFor="let tipo of tipos">
         <ion-item color="carts" > 
           <p>{{tipo.nombre}} </p>
-          <button ion-button clear item-end icon-only (click)="editar(tipo)">
-              <ion-icon color="light" name='paper'></ion-icon>
-          </button>
-          <button ion-button clear item-end icon-only (click)="eliminar(tipo.key)">
-              <ion-icon color="light" name='trash'></ion-icon>
-          </button>
-          <button ion-button clear item-end icon-only  (click)="verejercicios(tipo)">
-              <ion-icon color="light" name='ios-arrow-forward'></ion-icon>
-          </button>
-      </ion-item>
-    </div>
-  
+          
+        </ion-item>
+        <ion-item-options >
+            <button ion-button color="tabss" (click)="verejercicios(tipo)" icon-start>
+                <ion-icon name="eye"> </ion-icon>
+                Ejercicios
+              </button>
+            <button ion-button color="tabss" (click)="editar(tipo)" icon-start>
+              <ion-icon name="paper"> </ion-icon>
+              Modificar
+            </button>
+            <button ion-button color="tabss" (click)="eliminar(tipo.key)" icon-start>
+              <ion-icon name="trash"></ion-icon>
+              Eliminar
+            </button>
+        </ion-item-options>
+      </ion-item-sliding >
+    </ion-list>
   </ion-content>

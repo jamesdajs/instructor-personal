@@ -24,15 +24,25 @@
 
 
 <ion-content padding>
+    <ion-grid>
+        <ion-row class="menu">
+          <ion-col  col-6>
+              <button *ngIf="rol=='instructor';else botonAlum;" ion-button outline block color="normal" (click)="canbiarRolAlum()">alumno</button>
+              <ng-template #botonAlum>
+                <button  ion-button block color="normal" (click)="canbiarRolAlum()">alumno</button>
+              </ng-template>
+          </ion-col>
+          <ion-col col-6>
+              <button *ngIf="rol=='instructor'else botonIns;" ion-button block color="normal" (click)="canbiarRolIst()">Instructor</button>
+              <ng-template #botonIns>
+                <button  ion-button outline block color="normal" (click)="canbiarRolIst()">Instructor</button>
+              </ng-template>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
 
-    <button *ngIf="rol=='instructor';else botonAlum;" ion-button outline block color="normal" (click)="canbiarRolAlum()">alumno</button>
-    <ng-template #botonAlum>
-      <button  ion-button block color="normal" (click)="canbiarRolAlum()">alumno</button>
-    </ng-template>
-    <button *ngIf="rol=='instructor'else botonIns;" ion-button block color="normal" (click)="canbiarRolIst()">Instructor</button>
-    <ng-template #botonIns>
-      <button  ion-button outline block color="normal" (click)="canbiarRolIst()">Instructor</button>
-    </ng-template>
+    
+    
     
     <ion-card color="listdivisor">
         <img [src]="datos.foto" />

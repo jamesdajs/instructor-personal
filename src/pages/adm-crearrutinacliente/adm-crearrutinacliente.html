@@ -26,12 +26,12 @@
               <ion-label  floating>Descripcion</ion-label>
                 <ion-input type="text"  [(ngModel)]="event.descripcion"></ion-input>
             </ion-item>
-            <ion-list  no-lines >
+            <ion-list *ngIf="key!=true" no-lines >
                 <ion-row align-items-end>
                     <ion-col col-6>
                       <p>Inicio</p>
                         <ion-item class="fechapadd">
-                            <ion-datetime displayFormat="DD MMMM YYYY" min="2019" max="2020"[(ngModel)]="fechaini" cancelText =Cancelar doneText=Ok></ion-datetime>
+                            <ion-datetime displayFormat="DD MMMM YYYY" min="2019" max="2020" [(ngModel)]="fechaini" cancelText =Cancelar doneText=Ok></ion-datetime>
                           </ion-item>
                     </ion-col>
                     <ion-col col-6>

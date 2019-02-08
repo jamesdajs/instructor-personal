@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams , LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams , LoadingController,AlertController } from 'ionic-angular';
 import { DetallejercicioPage } from '../detallejercicio/detallejercicio';
 import { AdmCrearrutinaclientePage } from '../adm-crearrutinacliente/adm-crearrutinacliente';
 
@@ -26,7 +26,8 @@ ejers={}
     public navParams: NavParams ,
     public rutina:RutinaProvider,
     public loadCtr:LoadingController,
-    public store:Storage
+    public store:Storage,
+    public alertCtrl:AlertController
     ) {
       this.key=navParams.data
   }
@@ -36,7 +37,40 @@ ejers={}
     console.log('ionViewDidLoad RutinasPage');
     this.listarutinas()
   }
-
+  alercontime(){
+    let alert = this.alertCtrl.create({
+      title: 'Asignar fechas',
+      inputs: [
+        {
+          name: 'fecha',
+          type:"date",
+          min:"2019"
+        },
+        {
+          name: 'fecha',
+          type:"date",
+          min:"2019"
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+            
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: data => {
+            
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
   crear(){
     this.navCtrl.push(AdmCrearrutinaclientePage,this.key)
   }

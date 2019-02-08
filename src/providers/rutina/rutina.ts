@@ -92,6 +92,11 @@ export class RutinaProvider {
     
     return this.getcollArrayconkey("cliente/"+keyins+"/rutinas",query)
   }
+  verRutinasDefecto(){
+    let query=res => res.where("estado", "==", true)
+    
+    return this.getcollArrayconkey(`cliente/${this.auth.auth.currentUser.uid}/rutinasdefecto`,query)
+  }
   verEjercicios(keyrut){
     let query=res=>res.where("idrutina","==",keyrut)
     return this.getcollArrayconkey("rutina_ejer",query)

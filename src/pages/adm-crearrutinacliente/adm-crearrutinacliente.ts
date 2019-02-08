@@ -36,14 +36,17 @@ export class AdmCrearrutinaclientePage {
      private toastCtrl:ToastController,
      private loadCtrl:LoadingController
      ) {
-    this.key=this.navParams.data
+    if(Object.keys(navParams.data).length==0)
+      this.key=true
+    else
+      this.key=this.navParams.data
   }
 
   ionViewDidLoad() {
     let date=new Date()
     this.fechaini=date.getFullYear()+"-"+(date.getMonth()<9?"0"+(date.getMonth()+1):(date.getMonth()+1))+"-"+(date.getDate()<9?"0"+(date.getDate()):(date.getDate()))
     this.fechafin=this.fechaini
-    console.log('ionViewDidLoad AdmCrearrutinaclientePage');
+    console.log('ionViewDidLoad AdmCrearrutinaclientePage', this.key);
   }
   addEjercicio(){
     let profileModal = this.modal.create(AdmAñadirejercicioPage,this.ejercicios,{enableBackdropDismiss:false});
@@ -73,32 +76,42 @@ export class AdmCrearrutinaclientePage {
         const toast = this.toastCtrl.create({
           message: 'Se guardo la rutina correctamente',
           duration: 3000})
-      this.event["fechaini"]=new Date(this.fechaini.replace(/-/g, '\/'))
-      this.event["fechafin"]=new Date(this.fechafin.replace(/-/g, '\/'))
-      this.user.guardarrutinacliente(this.key,this.event)
-      .then(res=>{
-        console.log(res.id)
-        let funciones=[]
-        this.ejercicios.forEach(item=>{
-          delete item.key
-          delete item.deslarga
-          delete item.imagen
-          delete item.estadoadd
-          delete item.event
-
-          item["idrutina"]=res.id
-          funciones.push(this.user.guardarRutina_ejercicio(item))
+      if(this.key!=true){
+        this.event["fechaini"]=new Date(this.fechaini.replace(/-/g, '\/'))
+        this.event["fechafin"]=new Date(this.fechafin.replace(/-/g, '\/'))
+        this.user.guardarrutinacliente(this.key,this.event)
+        .then(res=>{
+          //console.log(res.id)
+          this.guardarejercicios(res,load,toast)
         })
-        Promise.all(funciones)
-        .then(()=>{
-          load.dismiss()
-          toast.present()
-          this.navCtrl.pop()
+      }else{
+        this.user.guardarrutinaDefecto(this.event)
+        .then(res=>{
+          this.guardarejercicios(res,load,toast)
         })
-      })
-      
+      }
       
     }
   }
+  guardarejercicios(res,load,toast){
+      //console.log(res.id)
+      let funciones=[]
+      this.ejercicios.forEach(item=>{
+        delete item.key
+        delete item.deslarga
+        delete item.imagen
+        delete item.estadoadd
+        delete item.event
 
+        item["idrutina"]=res.id
+        funciones.push(this.user.guardarRutina_ejercicio(item))
+      })
+      Promise.all(funciones)
+      .then(()=>{
+        load.dismiss()
+        toast.present()
+        this.navCtrl.pop()
+      })
+    
+  }
 }

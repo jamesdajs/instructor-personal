@@ -7,6 +7,7 @@ import { TabsPage } from '../tabs/tabs';
 import { AdmTipoejercicioPage } from '../adm-tipoejercicio/adm-tipoejercicio';
 import { AdmTipodietaPage } from '../adm-tipodieta/adm-tipodieta';
 import { AdmClientesPage } from '../adm-clientes/adm-clientes';
+import { AdmRutinasdefPage } from '../adm-rutinasdef/adm-rutinasdef';
 /**
  * Generated class for the InstructorPage tabs.
  *
@@ -35,8 +36,9 @@ export class InstructorPage {
   }
 
   tabRoot  = AdmClientesPage
-  tab1Root = AdmTipoejercicioPage;
-  tab2Root = AdmTipodietaPage;
+  tab1Root = AdmRutinasdefPage;
+  tab2Root = AdmTipoejercicioPage;
+  tab3Root = AdmTipodietaPage;
   tab4Root = DatospersonalesPage
 
   constructor(public navCtrl: NavController,public event:Events) {

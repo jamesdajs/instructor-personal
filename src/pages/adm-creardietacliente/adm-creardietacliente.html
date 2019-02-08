@@ -68,10 +68,10 @@
                       <ion-icon name="ios-add-circle-outline" (click)="addEjercicio()"></ion-icon> 
                   </div>
                   <div class="selecionados add"  >
-                      <ion-icon name="custom-pesas" (click)="addEjercicio()"></ion-icon>
+                      <ion-icon name="custom-dieta" (click)="addEjercicio()"></ion-icon>
                   </div>
                   <div>
-                      <p>Agregar ejercicio</p>
+                      <p>Agregar dieta</p>
                       
                   </div>
                   
@@ -85,7 +85,7 @@
                   </div>
                   <img class="selecionados" *ngIf="item.imagen!=''; else elseBlock" [src]="item.imagen" />
                   <ng-template #elseBlock>
-                     <img class="selecionados" src="../../assets/imgs/defecto.jpeg" />
+                     <img class="selecionados" src="../../assets/imgs/defecto2.jpeg" />
                   </ng-template>
                   <div>
                       <p>{{item.nombre}}</p>

@@ -65,6 +65,9 @@ ion-icon {
     &[class*="custom-team"] {
     mask-image: url(../assets/icon/team.svg);
     }
+    &[class*="custom-run"] {
+        mask-image: url(../assets/icon/run.svg);
+    }
 }
 img {
     background:transparent url(../assets/loading/ajax-loader.gif) center no-repeat !important;
@@ -86,4 +89,7 @@ img {
     align-items: center;
     color: hsla(0, 0%, 100%, 0.603) !important;
     background-color: rgba(0, 0, 0, 0.5);
+}
+.picker-wrapper{
+background-color: white !important;
 }

@@ -39,34 +39,68 @@
 
 <ion-content>
     <ion-list>
-        <div *ngIf="ejercicios.length!=0;else elseBlock">
-            <ion-item color="carts" *ngFor="let item of ejercicios; let o = index;" >
+        <div *ngFor="let item of tipodefecto" >
+                <ion-item-divider color="carts"  (click)="verejercicios(item)">
                 
-                <ion-avatar item-start>
-                    <img *ngIf="item.imagen!=''; else elseBlock" [src]="item.imagen" />
-                    <ng-template #elseBlock>
-                        <img  src="../../assets/imgs/defecto.jpeg" />
-                  </ng-template>
-                </ion-avatar>
-                  
-                <ion-label>
-                        <h2>{{item.nombre}}</h2>
-                        <p>{{item.descorta}}</p>
-                </ion-label>
-                <div *ngIf="item.estadoadd">
-                    <button  ion-button  block color="normal" (click)="solicitud(item,o)">selecionar</button>              
-                </div>
-                <div *ngIf="!item.estadoadd">
-                    <button  ion-button  block color="normal" disabled> ya selecionar</button>              
-                </div>
-                <ion-checkbox color="dark" item-right checked="{{!item.estadoadd}}"  (ionChange)="solicitud(item,o,$event)"></ion-checkbox>
-                  
-              </ion-item>
+                    <h2>{{item.nombre}} </h2>
+                    <button ion-button clear item-end icon-only>
+                        <ion-icon color="light" name='ios-arrow-down'></ion-icon>
+                    </button>
+                    
+                </ion-item-divider>
+                <div *ngIf="item.estadohiide">
+                        <ion-item color="listdivisor" *ngFor="let ejer of ejers[item.nombre]; let o = index;" > 
+                          
+                              <ion-avatar item-start>
+                                  <img *ngIf="ejer.imagen!=''; else elseBlock" [src]="ejer.imagen" />
+                                    <ng-template #elseBlock>
+                                        <img  src="../../assets/imgs/defecto.jpeg" />
+                                </ng-template>
+                                </ion-avatar>
+                                <ion-label>
+                                        <h2>{{ejer.nombre}}</h2>
+                                        <p>{{ejer.descorta}}</p>
+                                </ion-label>
+                                <ion-checkbox 
+                                    color="dark" 
+                                    item-right checked="{{!ejer.estadoadd}}" 
+                                    (ionChange)="solicitud(ejer,o,$event)">
+                                </ion-checkbox>
+
+                        </ion-item>
+                        </div>
         </div>
-        <ng-template #elseBlock>
-            <ion-item color="carts">
-              <h2>no tiene ejercicios</h2>
-            </ion-item>
-        </ng-template>
+        <div *ngFor="let item of tipoejer" >
+                <ion-item-divider color="carts"  (click)="verejercicios(item)">
+                
+                    <h2>{{item.nombre}} </h2>
+                    <button ion-button clear item-end icon-only>
+                        <ion-icon color="light" name='ios-arrow-down'></ion-icon>
+                    </button>
+                    
+                </ion-item-divider>
+                <div *ngIf="item.estadohiide">
+                        <ion-item color="listdivisor" *ngFor="let ejer of ejers[item.nombre]; let o = index;" > 
+                          
+                              <ion-avatar item-start>
+                                  <img *ngIf="ejer.imagen!=''; else elseBlock" [src]="ejer.imagen" />
+                                    <ng-template #elseBlock>
+                                        <img  src="../../assets/imgs/defecto.jpeg" />
+                                </ng-template>
+                                </ion-avatar>
+                                <ion-label>
+                                        <h2>{{ejer.nombre}}</h2>
+                                        <p>{{ejer.descorta}}</p>
+                                </ion-label>
+                                <ion-checkbox 
+                                    color="dark" 
+                                    item-right checked="{{!ejer.estadoadd}}" 
+                                    (ionChange)="solicitud(ejer,o,$event)">
+                                </ion-checkbox>
+
+                        </ion-item>
+                        </div>
+        </div>
+        
       </ion-list>
 </ion-content>

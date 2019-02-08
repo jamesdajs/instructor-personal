@@ -15,8 +15,14 @@ import { RutinaProvider} from '../../providers/rutina/rutina'
 })
 export class AdmAñadirejercicioPage {
   c1=true
-
+tipoejer=[]
+tipodefecto=[
+  {nombre:"hombro",estadohiide:false},
+  {nombre:"brazos",estadohiide:false},
+  {nombre:"piernas",estadohiide:false}
+]
 ejercicios=[]
+ejers={}
 ejerselec=[]
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private view:ViewController,
@@ -43,14 +49,63 @@ ejerselec=[]
    // this.ejerselec[i].event.checked=false
    
    this.ejerselec.splice(i, 1);
-    this.ejercicios.forEach(elem=>{
-      if(elem.key==key){
-        elem.estadoadd=true
-      }
+
+    this.tipodefecto.forEach(tipo=>{
+      this.ejers[tipo.nombre].forEach(ejer => {
+        if(ejer.key==key){
+          ejer.estadoadd=true
+          console.log(ejer.key)
+
+        }
+      });
+    })
+    this.tipoejer.forEach(tipo=>{
+      this.ejers[tipo.nombre].forEach(ejer => {
+        if(ejer.key==key){
+          ejer.estadoadd=true
+          console.log(ejer.key)
+
+        }
+      });
     })
     //console.log(key,this.ejercicios)
   }
+  verejercicios(item){
+  item["estadohiide"]=!item["estadohiide"]
+  if(this.ejers[item.nombre].length==0 ){
+    this.rutina.verMisEjercicios(item.nombre)
+    .subscribe(list=>{
+      list.forEach(element => {
+        element["estadoadd"]=true
+      });
+      list.forEach(element => {
+        this.ejerselec.forEach(sel => {
+          if(element["key"]==sel["key"])
+            element["estadoadd"]=false
+        });
+      });
+      this.ejers[item.nombre]=list
+      console.log(list)
+    })
+  }
+  }
   cargardatos(){
+    
+    this.rutina.listaMisTipoEjercicio()
+    .subscribe(data=>{
+      this.tipoejer=data
+      this.tipoejer.forEach(elem=>{
+        this.ejers[elem.nombre]=[]
+      })
+    })
+    //crearkey por tipo
+    this.tipodefecto.forEach(elem=>{
+      elem["estadohiide"]=false
+      this.ejers[elem.nombre]=[]
+    })
+    
+    console.log(this.ejers)
+    /*
     this.rutina.verMisEjerciciostodo()
     .subscribe(data=>{
       data.forEach(element => {
@@ -68,7 +123,7 @@ ejerselec=[]
       });
       this.ejercicios=data
       //console.log(this.ejercicios)
-    })
+    })*/
   }
   solicitud(item,i,e?){
 
