@@ -22,7 +22,7 @@
   <ion-list>
     <div *ngIf="list.length!=0;else elseBlock">
       <ion-item-sliding  *ngFor="let item of list">
-        <ion-item color="carts"  >
+        <ion-item color="carts"  (click)="verdetalle(item)">
             <ion-thumbnail item-start>
                 <img *ngIf="item.imagen!=''; else elseBlock" [src]="item.imagen" />
                 <ng-template #elseBlock>
@@ -32,12 +32,12 @@
             <h2>{{item.nombre}}</h2>
             <p>{{item.tipo}}</p>
             <p>{{item.descorta}}</p>
+            <button ion-button clear item-end icon-only>
+              <ion-icon color="light" name='ios-arrow-forward'></ion-icon>
+          </button>
           </ion-item>
           <ion-item-options >
-              <button ion-button color="tabss" (click)="verdetalle(item)" icon-start>
-                  <ion-icon name="eye"> </ion-icon>
-                  ver
-                </button>
+              
               <button ion-button color="tabss" (click)="editar(item)" icon-start>
                 <ion-icon name="paper"> </ion-icon>
                 Modificar

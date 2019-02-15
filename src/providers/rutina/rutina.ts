@@ -92,6 +92,13 @@ export class RutinaProvider {
     
     return this.getcollArrayconkey("cliente/"+keyins+"/rutinas",query)
   }
+  asignar_rutina_defecto(keycli,datos,keyrut){
+    
+      datos["idinstructor"]=this.auth.auth.currentUser.uid
+      datos["estado"]=false
+      return this.db.collection(`cliente/${keycli}/rutinas`).doc(keyrut).set(datos)
+    
+  } 
   verRutinasDefecto(){
     let query=res => res.where("estado", "==", true)
     

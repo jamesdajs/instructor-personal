@@ -46,7 +46,8 @@ export class AdmCrearrutinaclientePage {
     let date=new Date()
     this.fechaini=date.getFullYear()+"-"+(date.getMonth()<9?"0"+(date.getMonth()+1):(date.getMonth()+1))+"-"+(date.getDate()<9?"0"+(date.getDate()):(date.getDate()))
     this.fechafin=this.fechaini
-    console.log('ionViewDidLoad AdmCrearrutinaclientePage', this.key);
+    this.addEjercicio()
+    console.log('ionViewDidLoad AdmCrearrutinaclientePage');
   }
   addEjercicio(){
     let profileModal = this.modal.create(AdmAñadirejercicioPage,this.ejercicios,{enableBackdropDismiss:false});
@@ -99,7 +100,7 @@ export class AdmCrearrutinaclientePage {
       this.ejercicios.forEach(item=>{
         delete item.key
         delete item.deslarga
-        delete item.imagen
+        delete item.imagen1
         delete item.estadoadd
         delete item.event
 

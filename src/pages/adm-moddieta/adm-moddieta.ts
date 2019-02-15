@@ -72,9 +72,13 @@ export class AdmModdietaPage {
         .subscribe(data=>{
           let funciones=[]
           data.forEach(element => {
-            funciones.push(this.dieta.modificardietasDietas_dietas(element.key,{nombre:this.datos.nombre,
-                                                                                  tipo:this.datos.tipo,
-                                                                                  descorta:this.datos.descorta
+            funciones.push(
+              this.dieta.modificardietasDietas_dietas(
+                element.key,
+                  {nombre:this.datos.nombre,
+                  tipo:this.datos.tipo,
+                  descorta:this.datos.descorta,
+                  imagen:this.datos.imagen
             }))
           });
           

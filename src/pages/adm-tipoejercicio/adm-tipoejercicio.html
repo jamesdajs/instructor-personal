@@ -32,15 +32,13 @@
           <h3>Ejercicios creados </h3>
       </ion-item>
       <ion-item-sliding  *ngFor="let tipo of tipos">
-        <ion-item color="carts" > 
+        <ion-item color="carts" (click)="verejercicios(tipo)"> 
           <p>{{tipo.nombre}} </p>
-          
+          <button ion-button clear item-end icon-only>
+            <ion-icon color="light" name='ios-arrow-forward'></ion-icon>
+        </button>
         </ion-item>
         <ion-item-options >
-            <button ion-button color="tabss" (click)="verejercicios(tipo)" icon-start>
-                <ion-icon name="eye"> </ion-icon>
-                Ejercicios
-              </button>
             <button ion-button color="tabss" (click)="editar(tipo)" icon-start>
               <ion-icon name="paper"> </ion-icon>
               Modificar

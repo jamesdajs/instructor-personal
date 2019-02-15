@@ -29,7 +29,8 @@ export class AdmModejercicioPage {
     imagen:"",
     imagen1:"",
     key:"",
-    linkyoutube:""
+    linkyoutube:"",
+    rol:true
   }
   imagen64=""
   imagen64_2=''
@@ -73,6 +74,7 @@ export class AdmModejercicioPage {
       let key=this.datos.key
       
       delete this.datos.key
+      delete this.datos.rol
 
       this.rutina.modificarEjercicio(key,this.datos)
       .then(res=>{

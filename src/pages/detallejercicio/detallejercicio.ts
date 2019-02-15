@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { RutinaProvider } from '../../providers/rutina/rutina';
+import { AdmModejercicioPage } from '../adm-modejercicio/adm-modejercicio';
 /**
  * Generated class for the DetallejercicioPage page.
  *
@@ -35,6 +36,9 @@ export class DetallejercicioPage {
     this.verdetalle()
     setInterval(() => {this.cambiarImagen()},1000);
     
+  }
+  editar(item){
+    this.navCtrl.push(AdmModejercicioPage,item)
   }
   cambiarImagen(){
     //console.log(this.imagenaux)

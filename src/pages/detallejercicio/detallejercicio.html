@@ -43,6 +43,7 @@
           
           <a *ngIf="item.linkyoutube!=''; " href="{{item.linkyoutube}}">ver video en toytube</a>
         </ion-card-content>
+        <button ion-button  block *ngIf="item.rol" color="normal" (click)="editar(item)"> Modificar </button>
       </ion-card>
       <!--
         video en youtube

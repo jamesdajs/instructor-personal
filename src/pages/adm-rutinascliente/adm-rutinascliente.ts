@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams , LoadingController,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams , LoadingController,AlertController,ToastController } from 'ionic-angular';
 import { DetallejercicioPage } from '../detallejercicio/detallejercicio';
 import { AdmCrearrutinaclientePage } from '../adm-crearrutinacliente/adm-crearrutinacliente';
 
@@ -22,12 +22,14 @@ export class AdmRutinasclientePage {
 key
 items=[]
 ejers={}
+defecto=[]
   constructor(public navCtrl: NavController, 
     public navParams: NavParams ,
     public rutina:RutinaProvider,
     public loadCtr:LoadingController,
     public store:Storage,
-    public alertCtrl:AlertController
+    public alertCtrl:AlertController,
+    public toast:ToastController
     ) {
       this.key=navParams.data
   }
@@ -36,10 +38,19 @@ ejers={}
   ionViewDidLoad() {
     console.log('ionViewDidLoad RutinasPage');
     this.listarutinas()
+    this.listarrutinasdef()
+    console.log(this.ejers)
   }
-  alercontime(){
+  listarrutinasdef(){
+    this.rutina.verRutinasDefecto()
+    .subscribe(data=>{
+      this.defecto=data
+    })
+  }
+  alercontime(item){
     let alert = this.alertCtrl.create({
       title: 'Asignar fechas',
+      message:"tiene q asignar fecha de inicio y fecha fin de la rutina",
       inputs: [
         {
           name: 'fecha',
@@ -47,7 +58,7 @@ ejers={}
           min:"2019"
         },
         {
-          name: 'fecha',
+          name: 'fecha2',
           type:"date",
           min:"2019"
         }
@@ -64,6 +75,24 @@ ejers={}
         {
           text: 'Aceptar',
           handler: data => {
+            console.log(data,item)
+            if(data.fecha!="" &&  data.fecha2!=""){
+              
+              item.fechaini=new Date(data.fecha.replace(/-/g, '\/'))
+              item.fechafin=new Date(data.fecha2.replace(/-/g, '\/'))
+              this.rutina.asignar_rutina_defecto(this.key,item,item.key)
+              .then(()=>{
+                this.toast.create({
+                  message:"se asignno la turina correctamnete",
+                  duration:3000
+                }).present()
+              })
+            }else{
+              this.toast.create({
+                message:"Tiene que llenar las dos fechas",
+                duration:3000
+              }).present()
+            }
             
           }
         }
