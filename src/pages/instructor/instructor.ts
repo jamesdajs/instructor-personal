@@ -8,6 +8,8 @@ import { AdmTipoejercicioPage } from '../adm-tipoejercicio/adm-tipoejercicio';
 import { AdmTipodietaPage } from '../adm-tipodieta/adm-tipodieta';
 import { AdmClientesPage } from '../adm-clientes/adm-clientes';
 import { AdmRutinasdefPage } from '../adm-rutinasdef/adm-rutinasdef';
+
+import { SplashScreen } from '@ionic-native/splash-screen';
 /**
  * Generated class for the InstructorPage tabs.
  *
@@ -41,7 +43,7 @@ export class InstructorPage {
   tab3Root = AdmTipodietaPage;
   tab4Root = DatospersonalesPage
 
-  constructor(public navCtrl: NavController,public event:Events) {
+  constructor(public navCtrl: NavController,public event:Events ,public spalsh:SplashScreen) {
     event.subscribe('cambiar a alumno',(val)=>{
       
       console.log(val)
@@ -50,6 +52,10 @@ export class InstructorPage {
          this.recursivo()
         })
       })
+    }
+    ionViewDidLoad(){
+
+      this.spalsh.hide()
     }
 }
 

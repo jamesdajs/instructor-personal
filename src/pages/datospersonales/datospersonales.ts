@@ -227,7 +227,7 @@ export class DatospersonalesPage {
                   funciones.push(this.user.creardatosInstructor({cursos:"",descorta:"",deslarga:""}))
                   Promise.all(funciones)
                   .then(()=>{
-
+                    this.splash.show()
                     window.location.reload();
         
                     location.reload(true);
@@ -240,6 +240,7 @@ export class DatospersonalesPage {
             ]
           }).present();
         }else{
+          this.splash.show()
           window.location.reload();
         
           location.reload(true);
@@ -256,6 +257,7 @@ export class DatospersonalesPage {
     this.store.get("rol").then(rol=>{
       if(rol!="alumno"){
         this.store.set("rol","alumno")
+        this.splash.show()
         location.reload(true);
         window.location.reload();
       }

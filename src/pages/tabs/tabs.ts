@@ -9,6 +9,9 @@ import { LoginPage } from '../login/login';
 import { InstructorPage } from '../instructor/instructor';
 //import { UsuarioProvider } from '../../providers/usuario/usuario';
 
+import { SplashScreen } from '@ionic-native/splash-screen';
+
+
 @Component({
   templateUrl: 'tabs.html'
 })
@@ -21,7 +24,8 @@ export class TabsPage {
   tab4Root = DatospersonalesPage
 
   constructor( public event:Events,
-    public navCtrl:NavController,app:App
+    public navCtrl:NavController,app:App,
+    public splash:SplashScreen
     ) {
     event
     .subscribe('irAinicio',()=>{
@@ -47,5 +51,9 @@ export class TabsPage {
     })
     
     
+  }
+  ionViewDidLoad(){
+
+    this.splash.hide()
   }
 }

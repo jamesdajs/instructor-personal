@@ -28,7 +28,7 @@ export class LoginPage {
     private auth:AuthFacebookProvider,
     private user:UsuarioProvider,
     private loadctrl:LoadingController,
-    private splashscreen:SplashScreen,
+    private splash:SplashScreen,
     private store:Storage
     ) {
   }
@@ -39,7 +39,7 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
   versiestalog(){
-    this.splashscreen.show()
+    
 console.log("splas abierto")
     this.user.VerSiestaLogeado()
     .then(res=>{
@@ -48,11 +48,13 @@ console.log("splas abierto")
         .then(rol=>{
           if(rol=="alumno")this.navCtrl.setRoot(TabsPage)
           else this.navCtrl.setRoot(InstructorPage)
-          this.splashscreen.hide()
           
+          //this.splash.show()
             console.log("splas cerado")
         })
         
+      }else{
+        this.splash.hide()
       }
       
     })
@@ -97,7 +99,7 @@ console.log("splas abierto")
       cargar.dismiss()
     })
     .catch(err=>{
-      console.log(err)
+      alert(err)
       cargar.dismiss()
     })
   }
@@ -108,39 +110,40 @@ console.log("splas abierto")
   conectarFacebook(){
     return new Promise((resolve,reject)=>{
       this.auth.loginWithFacebook().subscribe(data => {
-        //console.log(data)
+        console.log(data)
         if (!this.estado) {
              this.user.verSitienenDatos()
              .then(datos=>{
                  if(datos===undefined){
-                   this.auth.veriduser().then(idu=>{
-                       let perfilFB=data.additionalUserInfo.profile
-                       if(perfilFB.first_name===undefined)perfilFB.first_name=""
+                   
+                  let perfilFB=data
+                       if(perfilFB.first_name===undefined)perfilFB.displayName=""
                        if(perfilFB.perfilFB.last_name===undefined)perfilFB.perfilFB.last_name=""
                        if(perfilFB.middle_name===undefined)perfilFB.middle_name=""
                        let datos={
                          nombres:perfilFB.first_name +' '+perfilFB.middle_name,
                          apellidos:perfilFB.last_name,
                          email:perfilFB.email,
-                         foto:perfilFB.picture.data.url,
+                         foto:perfilFB.photoURL,
                          instructor:false,
                          descorta:"",
-                         fullname:perfilFB.first_name +' '+perfilFB.middle_name+' '+perfilFB.last_name
+                         fullname:perfilFB.displayName
                        }
-                       this.user.crearusuario(idu,datos)
+                       this.user.crearusuario(perfilFB.uid,datos)
                        .then(()=>{
                          resolve('datos creados correctos')
                        })
-                     })
+                     
                    }else {
                      this.user.modusuario({
-                      foto:data.additionalUserInfo.profile.picture.data.url})
+                      foto:data.photoURL})
                       .then(()=>{
-                        console.log(data.additionalUserInfo.profile.picture.data.url)
                         resolve("ya se crearon datos antes")
                       })
                     }
                    
+                 }).catch(error=>{
+                  reject(error)
                  })
                
              }
