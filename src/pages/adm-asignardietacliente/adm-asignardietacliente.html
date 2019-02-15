@@ -36,8 +36,11 @@
 
 
 <ion-content >
+    <ion-fab  right bottom >
+        <button ion-fab color="normal" (click)="dismiss()">Sig.</button>
+    </ion-fab>
             <ion-list >
-                  <div >
+                  <div class="marginbotton">
                     <div *ngFor="let item of tipodieta" >
                         <ion-item-divider color="carts"  (click)="verejercicios(item)">
                       

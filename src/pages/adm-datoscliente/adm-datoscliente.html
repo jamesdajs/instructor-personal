@@ -17,10 +17,14 @@
     <ion-grid>
         <ion-row class="menu">
           <ion-col  col-6>
-              <button ion-button block color="normal" (click)="Rutinas()">Rutinas</button>
+              <button ion-button block color="normal"  icon-start (click)="Rutinas()">
+                  <ion-icon name="custom-pesas"></ion-icon> 
+                  &nbsp; Rutinas</button>
           </ion-col>
           <ion-col col-6>
-              <button ion-button outline block color="normal" (click)="Dietas()">Dietas</button>
+              <button ion-button outline block color="normal" icon-start (click)="Dietas()">
+                  <ion-icon name="custom-dieta"></ion-icon> 
+                  &nbsp; Dietas</button>
           </ion-col>
         </ion-row>
     </ion-grid>

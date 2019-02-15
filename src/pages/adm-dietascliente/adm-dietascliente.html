@@ -34,7 +34,13 @@
                         </ion-item-divider>
                         <div *ngIf="item.estadohiide">
                             <ion-item color="carts" *ngFor="let ejer of ejers[item.key]" (click)="verDetEjercicio(ejer)">        
-                                <h2>{{ejer.nombre}} </h2>
+                                <ion-avatar item-start>
+                                    <img *ngIf="ejer.imagen!='' || ejer.imagen; else elseBlock" [src]="ejer.imagen" />
+                                      <ng-template #elseBlock>
+                                          <img  src="../../assets/imgs/defecto2.jpeg" />
+                                  </ng-template>
+                                  </ion-avatar>   
+                              <h2>{{ejer.nombre}} </h2>
                                 <p>{{ejer.descorta}}</p>
                                 <button ion-button clear item-end icon-only>
                                     <ion-icon color="light" name='ios-arrow-forward'></ion-icon>
