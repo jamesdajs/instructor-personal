@@ -30,7 +30,7 @@ constructor(private afAuth: AngularFireAuth, private fb: Facebook, private platf
         this.afAuth.auth
           .signInWithPopup(new auth.FacebookAuthProvider())
           .then((res) => {
-            observer.next(res);
+            observer.next(res.user);
           }).catch(error => {
           observer.error(error);
         });
