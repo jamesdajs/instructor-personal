@@ -99,6 +99,7 @@
         <variable name="APP_ID" value="675469602855153" />
         <variable name="APP_NAME" value="entrenador personal" />
         <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.38.1" />
+        <variable name="FACEBOOK_HYBRID_APP_EVENTS" value="true" />
     </plugin>
     <plugin name="cordova-sqlite-storage" spec="2.6.0" />
     <plugin name="cordova-plugin-file" spec="6.0.1" />
