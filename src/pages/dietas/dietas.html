@@ -18,7 +18,8 @@
         <div *ngIf="items.length!=0;else elseBlock">
           <div *ngFor="let item of items" class="delay">
               <ion-item-divider color="listdivisor"  (click)="verejercicios(item)">
-            
+                
+                
                   <h2>{{item.nombre}} </h2>
                   <p>{{item.descripcion}}</p>
                   <p>inicio: {{item.fechaini}} fin: {{item.fechafin}}</p>
@@ -29,7 +30,13 @@
               </ion-item-divider>
               <div *ngIf="item.estadohiide">
                   <ion-item color="carts" *ngFor="let ejer of ejers[item.key]" (click)="verDetEjercicio(ejer)">        
-                      <h2>{{ejer.nombre}} </h2>
+                    <ion-avatar item-start>
+                      <img *ngIf="ejer.imagen!=''; else elseBlock" [src]="ejer.imagen" />
+                        <ng-template #elseBlock>
+                            <img  src="../../assets/imgs/defecto.jpeg" />
+                    </ng-template>  
+                  </ion-avatar> 
+                    <h2>{{ejer.nombre}} </h2>
                       <p>{{ejer.descorta}}</p>
                       <button ion-button clear item-end icon-only>
                           <ion-icon color="light" name='ios-arrow-forward'></ion-icon>

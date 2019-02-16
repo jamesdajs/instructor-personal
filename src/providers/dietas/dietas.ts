@@ -52,6 +52,10 @@ export class DietasProvider {
     let query=res => res.where("estado", "==", false).where("idinstructor","==",this.auth.auth.currentUser.uid)
     return this.getcollArrayconkey("cliente/"+keycli+"/dietas",query)
   }
+  verDietasinstodo(keycli){
+    let query=res => res.where("idinstructor","==",this.auth.auth.currentUser.uid)
+    return this.getcollArrayconkey("cliente/"+keycli+"/dietas",query)
+  }
   /*
   private getSubcollArrayconkey(coll,key,collChild,query?):Observable<any>{
     return this.db.collection(coll).doc(key).collection(collChild,query)

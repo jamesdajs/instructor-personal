@@ -74,7 +74,6 @@ export class AdmCreardietaclientePage {
         this.ejercicios.forEach(item=>{
           delete item.key
           delete item.deslarga
-          delete item.imagen
           delete item.estadoadd
 
           item["iddietacli"]=res.id

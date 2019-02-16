@@ -154,6 +154,9 @@ verSitienenDatos() {
     datos["estado"]=false
     return this.db.collection(`cliente/${keycli}/rutinas`).add(datos)
   }
+  modrutinacliente(keycli,idrut,datos){
+    return this.db.collection(`cliente/${keycli}/rutinas`).doc(idrut).set(datos,{ merge: true })
+  }
   guardarrutinaDefecto(datos){
     datos["estado"]=true
     return this.db.collection(`cliente/${this.authfb.auth.currentUser.uid}/rutinasdefecto`).add(datos)
@@ -164,7 +167,9 @@ verSitienenDatos() {
   guardarRutina_cliente(data){
     return this.db.collection(`instructor_cliente`).add(data)
   }
-  
+  modrDietacliente(keycli,idrut,datos){
+    return this.db.collection(`cliente/${keycli}/dietas`).doc(idrut).set(datos,{ merge: true })
+  }
   guardarDietacliente(keycli,datos){
     datos["idinstructor"]=this.authfb.auth.currentUser.uid
     datos["estado"]=false

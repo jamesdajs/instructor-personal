@@ -4,6 +4,7 @@ import { DetalledietaPage } from '../detalledieta/detalledieta';
 import { AdmCreardietaclientePage } from '../adm-creardietacliente/adm-creardietacliente';
 
 import { DietasProvider } from '../../providers/dietas/dietas';
+import { UsuarioProvider } from '../../providers/usuario/usuario';
 //falta terminar
 @IonicPage()
 @Component({
@@ -17,7 +18,8 @@ export class AdmDietasclientePage {
     constructor(public navCtrl: NavController, 
       public navParams: NavParams ,
       public dieta:DietasProvider,
-      public loadCtr:LoadingController
+      public loadCtr:LoadingController,
+      public user:UsuarioProvider
       ) {
         this.key=navParams.data
     }
@@ -27,13 +29,20 @@ export class AdmDietasclientePage {
       console.log('ionViewDidLoad RutinasPage');
       this.listadietas()
     }
+    habilitarrutina(key,e){
+      console.log("hola" ,e)
+      this.user.modrDietacliente(this.key,key,{estado:!e})
+      .then((res)=>{
+        console.log("se modifico",this.key,key,{estado:!e})
+      })
+    }
   
     crear(){
       this.navCtrl.push(AdmCreardietaclientePage,this.key)
     }
     listadietas(){
     
-        this.dieta.verDietasins(this.key)
+        this.dieta.verDietasinstodo(this.key)
         .subscribe(list=>{
           list.forEach(element => {
             element.fechaini=this.convertirfecha(element.fechaini)

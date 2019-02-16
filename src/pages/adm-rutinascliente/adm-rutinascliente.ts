@@ -4,6 +4,7 @@ import { DetallejercicioPage } from '../detallejercicio/detallejercicio';
 import { AdmCrearrutinaclientePage } from '../adm-crearrutinacliente/adm-crearrutinacliente';
 
 import { RutinaProvider } from '../../providers/rutina/rutina';
+import { UsuarioProvider } from '../../providers/usuario/usuario';
 
 import { Storage } from '@ionic/storage';
 /**
@@ -29,7 +30,8 @@ defecto=[]
     public loadCtr:LoadingController,
     public store:Storage,
     public alertCtrl:AlertController,
-    public toast:ToastController
+    public toast:ToastController,
+    public user : UsuarioProvider
     ) {
       this.key=navParams.data
   }
@@ -45,6 +47,13 @@ defecto=[]
     this.rutina.verRutinasDefecto()
     .subscribe(data=>{
       this.defecto=data
+    })
+  }
+  habilitarrutina(key,e){
+    console.log("hola" ,e)
+    this.user.modrutinacliente(this.key,key,{estado:!e})
+    .then(()=>{
+      console.log("se modifico")
     })
   }
   alercontime(item){
@@ -105,7 +114,7 @@ defecto=[]
   }
   listarutinas(){
   
-      this.rutina.verRutinasins(this.key)
+      this.rutina.verRutinasinstodos(this.key)
       .subscribe(list=>{
         list.forEach(element => {
           element.fechaini=this.convertirfecha(element.fechaini)

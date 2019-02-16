@@ -41,7 +41,7 @@
             <ion-datetime displayFormat="DD MMMM YYYY" min="1940" [(ngModel)]="fechanac" cancelText =Cancelar doneText=Ok></ion-datetime>
           </ion-item>
         </ion-list>
-        <p>Peso</p>
+        <p>Peso {{event.peso}} Kg</p>
         
           <ion-list radio-group no-lines inset>
             <ion-item>
@@ -51,7 +51,7 @@
             </ion-item>
           </ion-list>
         
-        <p>Altura</p>
+        <p>Altura {{event.altura}} cm</p>
           
           <ion-list radio-group no-lines inset>
             <ion-item>

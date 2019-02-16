@@ -92,6 +92,11 @@ export class RutinaProvider {
     
     return this.getcollArrayconkey("cliente/"+keyins+"/rutinas",query)
   }
+  verRutinasinstodos(keyins){
+    let query=res => res.where("idinstructor","==",this.auth.auth.currentUser.uid)
+    
+    return this.getcollArrayconkey("cliente/"+keyins+"/rutinas",query)
+  }
   asignar_rutina_defecto(keycli,datos,keyrut){
     
       datos["idinstructor"]=this.auth.auth.currentUser.uid
