@@ -14,7 +14,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'estadisticas.html',
 })
 export class EstadisticasPage {
-
+  data =[
+    {
+      'name': 'Germany',
+      'value': 31229
+    },
+    {
+      'name': 'United States',
+      'value': 19869
+    },
+    {
+      'name': 'France',
+      'value': 21359
+    },
+    {
+      'name': 'United Kingdom',
+      'value': 20598
+    },
+    {
+      'name': 'Spain',
+      'value': 56009
+    },
+    {
+      'name': 'Italy',
+      'value': 24090
+    }
+  ];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

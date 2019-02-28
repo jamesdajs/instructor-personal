@@ -44,6 +44,7 @@ import { AdmCreartiporutinaPage } from '../pages/adm-creartiporutina/adm-crearti
 import { AdmModtiporutinaPage } from '../pages/adm-modtiporutina/adm-modtiporutina';
 import { AdmRutinasdefPage } from '../pages/adm-rutinasdef/adm-rutinasdef';
 
+import { AdmSetejercicioPage } from '../pages/adm-setejercicio/adm-setejercicio';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -51,6 +52,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MediaCapture } from '@ionic-native/media-capture';
 //configuracion fb
+
+import { GooglePlus } from '@ionic-native/google-plus';
 import { Facebook } from '@ionic-native/facebook';
 //import { AngularFireAuthModule } from 'angularfire2/auth';
 import { firebaseConfig } from "./app.config";
@@ -63,6 +66,9 @@ import { AngularFirestoreModule } from "angularfire2/firestore";
 
 import { AngularFireStorageModule } from 'angularfire2/storage';
 
+//grafica
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //provider
 import { UsuarioProvider } from '../providers/usuario/usuario';
@@ -78,6 +84,10 @@ import { AuthFacebookProvider } from '../providers/authfacebok/authfacebok';
 import { IonicStorageModule } from '@ionic/storage';
 import { DietasProvider } from '../providers/dietas/dietas';
 
+//select individuales
+import { MultiPickerModule } from 'ion-multi-picker';
+import { WheelSelector } from '@ionic-native/wheel-selector';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -118,7 +128,8 @@ import { DietasProvider } from '../providers/dietas/dietas';
     AdmAsignardietaclientePage,
     AdmCreartiporutinaPage,
     AdmModtiporutinaPage,
-    AdmRutinasdefPage
+    AdmRutinasdefPage,
+    AdmSetejercicioPage
   ],
   imports: [
     BrowserModule,
@@ -152,7 +163,11 @@ import { DietasProvider } from '../providers/dietas/dietas';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    BrowserAnimationsModule,
+    NgxChartsModule,
+    HttpClientModule,
+    MultiPickerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -193,7 +208,8 @@ import { DietasProvider } from '../providers/dietas/dietas';
     AdmAsignardietaclientePage,
     AdmCreartiporutinaPage,
     AdmModtiporutinaPage,
-    AdmRutinasdefPage
+    AdmRutinasdefPage,
+    AdmSetejercicioPage
 
   ],
   providers: [
@@ -210,7 +226,9 @@ import { DietasProvider } from '../providers/dietas/dietas';
     AuthFacebookProvider,
     DietasProvider,
     MediaCapture,
-    File
+    File,
+    GooglePlus,
+    WheelSelector
   ]
 })
 export class AppModule {}

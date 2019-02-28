@@ -4,6 +4,12 @@ page-detallejercicio {
         width: 200px;
         height: 200px;
         display:block;
-        margin: 20px auto 0 auto;
+        margin: 0 auto;
+    }
+    .tabla ion-row{
+        border-bottom: solid 1px map-get($colors, light);
+    }
+    ion-checkbox{
+        margin: 0 !important;
     }
 }

@@ -23,9 +23,8 @@
             <ion-scroll scrollX="true" scroll-avatar *ngIf="datosbuscado.length!=0;else elseBlock">
                 <div class="itemsel" *ngFor="let item of datosbuscado" (click)="verCliente(item.idcliente)" >
 
-                    <ion-avatar item-start>
-                            <img [src]="item.fotocli ">
-                    </ion-avatar>
+                    <img class="selecionados" [src]="item.fotocli ">
+                    
                     <div>
                         <p>{{item.fullnamecli}}</p>
                     </div>

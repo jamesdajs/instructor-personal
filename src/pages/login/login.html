@@ -43,17 +43,44 @@
               <button ion-button  block color="normal" (click)="iniciarSesion()">ingresar</button>
           </div>
           <p> <a href="">Registrarse</a> o ingresar con</p>
-          -->
           
+          
+          <ion-item>
+              <ion-label>Rol</ion-label>
+              <ion-select [(ngModel)]="rol" interface="action-sheet" okText="OK" cancelText="Cerrar">
+                <ion-option value="alumno" selected >Alumno</ion-option>
+                <ion-option value="instructor">Instructor</ion-option>
+              </ion-select>
+            </ion-item>
+            -->
+            <ion-grid>
+                <ion-row class="menu">
+                  <ion-col  col-6>
+                      <button *ngIf="rol=='instructor';else botonAlum;" ion-button outline block color="normal" (click)="cambiarRolAlum()">alumno</button>
+                      <ng-template #botonAlum>
+                        <button  ion-button block color="normal" >alumno</button>
+                      </ng-template>
+                  </ion-col>
+                  <ion-col col-6>
+                      <button *ngIf="rol=='instructor'else botonIns;" ion-button block color="normal" >Instructor</button>
+                      <ng-template #botonIns>
+                        <button  ion-button outline block color="normal" (click)="cambiarRolIst()">Instructor</button>
+                      </ng-template>
+                  </ion-col>
+                </ion-row>
+            </ion-grid>
           <div class="login">
               <button ion-button full icon-left color="facebook" (click)="loginWithFacebook()">
                 <ion-icon name="logo-facebook"></ion-icon>
                 Facebook
               </button>
           </div>
-          <div class="login">
-              <button ion-button full  color="google">google</button>
+          <!--
+<div class="login">
+              <button ion-button full  color="google"  (click)="loginWithGoogle()">google</button>
           </div>
+          -->
+          
         </ion-col>
       </ion-row>
     </ion-grid>

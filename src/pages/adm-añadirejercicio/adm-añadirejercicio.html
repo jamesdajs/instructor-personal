@@ -37,11 +37,11 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content >
     <ion-fab  right bottom >
         <button ion-fab color="normal" (click)="dismiss()">Sig.</button>
     </ion-fab>
-    <ion-list>
+    <ion-list class="marginbotton">
         <div *ngFor="let item of tipodefecto" >
                 <ion-item-divider color="carts"  (click)="verejercicios(item)">
                 
@@ -73,7 +73,7 @@
                         </ion-item>
                         </div>
         </div>
-        <div *ngFor="let item of tipoejer" class="marginbotton">
+        <div *ngFor="let item of tipoejer" >
                 <ion-item-divider color="carts"  (click)="verejercicios(item)">
                 
                     <h2>{{item.nombre}} </h2>
@@ -106,4 +106,5 @@
         </div>
         
       </ion-list>
+
 </ion-content>

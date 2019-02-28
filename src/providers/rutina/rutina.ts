@@ -129,5 +129,9 @@ export class RutinaProvider {
                       .where("idejercicio","==",keyejer)
     return this.getcollitemquery("rutina_ejer",query)
   }
+  crearsetsdeEjercicio(data){
+    data["idinstructor"]=this.auth.auth.currentUser.uid
+    return this.db.collection("setejercicios").add(data)
+  }
 
 }

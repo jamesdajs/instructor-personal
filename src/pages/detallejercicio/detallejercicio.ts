@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { RutinaProvider } from '../../providers/rutina/rutina';
+import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { AdmModejercicioPage } from '../adm-modejercicio/adm-modejercicio';
+
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the DetallejercicioPage page.
  *
@@ -16,6 +19,7 @@ import { AdmModejercicioPage } from '../adm-modejercicio/adm-modejercicio';
   templateUrl: 'detallejercicio.html',
 })
 export class DetallejercicioPage {
+  setejercicio=[]
   itemcompleto
   item={
     nombre:"",
@@ -25,14 +29,32 @@ export class DetallejercicioPage {
     imagen:'',
     tipo:""
   }
+  
+  alumno=false
   imagenaux=true
-  constructor(public navCtrl: NavController, public navParams: NavParams,public rutina:RutinaProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public rutina:RutinaProvider,
+    public storage:Storage,public user:UsuarioProvider
+    ) {
     this.itemcompleto=this.navParams.data
+    for(let i in this.navParams.data.peso){
+      
+      this.setejercicio.push({
+        peso:this.navParams.data.peso[i],
+        repeticiones:this.navParams.data.repeticiones[i],
+        tiempo:this.navParams.data.tiempo[i],
+        estado:false
+      })
+    }
+    this.storage.get("rol")
+    .then(rol=>{
+      if(rol=="alumno")
+        this.alumno=true
+    })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetallejercicioPage');
-    console.log('ionViewDidLoad DetallejercicioPage');
+    console.log(this.setejercicio ,this.itemcompleto);
     this.verdetalle()
     setInterval(() => {this.cambiarImagen()},1000);
     
@@ -60,5 +82,31 @@ export class DetallejercicioPage {
       this.item=this.itemcompleto
     }
     
+  }
+  guardarset(){
+    let peso=[],repeticiones=[],tiempo=[]
+    for(let i in this.setejercicio){
+      if(this.setejercicio[i].estado){
+        peso.push(this.setejercicio[i].peso)
+        repeticiones.push(this.setejercicio[i].repeticiones)
+        tiempo.push(this.setejercicio[i].tiempo)
+      }
+    }
+  this.itemcompleto.peso=peso
+  this.itemcompleto.repeticiones=repeticiones
+  this.itemcompleto.tiempo=tiempo
+  this.user.modificarRutina_ejercicio(this.itemcompleto.key,{estado:true})
+  .then(()=>{
+    delete this.itemcompleto.key
+    this.rutina.crearsetsdeEjercicio(this.itemcompleto)
+    .then(res=>{
+      console.log(res)
+    })
+  })
+    
+  }
+  marcarset(e,o){
+    console.log(e)
+    this.setejercicio[o].estado=e.checked
   }
 }

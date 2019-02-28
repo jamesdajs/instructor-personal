@@ -3,15 +3,37 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {Facebook} from '@ionic-native/facebook';
 import {Platform} from 'ionic-angular';
 
-//import firebase from 'firebase/app';
+import { GooglePlus } from '@ionic-native/google-plus';
+import firebase from 'firebase/app';
 
 
 import {auth} from 'firebase';
 import {Observable} from "rxjs/Observable";
 @Injectable()
 export class AuthFacebookProvider {
-constructor(private afAuth: AngularFireAuth, private fb: Facebook, private platform: Platform) {
+constructor(private afAuth: AngularFireAuth, private fb: Facebook, private platform: Platform,
+  private googlePlus: GooglePlus) {
   
+  }
+  googleLogin(): Promise<any> {
+    return new Promise((resolve, reject) => { 
+        this.googlePlus.login({
+          'webClientId': '5351366995-npuh9q89gaoiagoc4jssqck26gorj7hh.apps.googleusercontent.com',
+          'offline': true
+        }).then( res => {
+                const googleCredential = firebase.auth.GoogleAuthProvider
+                    .credential(res.idToken);
+  
+                firebase.auth().signInWithCredential(googleCredential)
+              .then( response => {
+                  console.log("Firebase success: " + JSON.stringify(response));
+                  resolve("Firebase success: " + JSON.stringify(response))
+              });
+        }, err => {
+            console.error("Error: ", err)
+            reject(err);
+        });
+      });
   }
   loginWithFacebook() {
     return Observable.create(observer => {

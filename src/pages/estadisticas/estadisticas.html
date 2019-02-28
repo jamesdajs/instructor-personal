@@ -14,5 +14,22 @@
 
 
 <ion-content padding>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ngx-charts-bar-vertical
+          [view]="view"
+          [results]="data"
+          xAxis="true"
+          yAxis="true"
+          [legend]="showLegend"
+          legendTitle="Countries"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          xAxisLabel="Country"
+          yAxisLabel="GDP Per Capita">
+        </ngx-charts-bar-vertical>
+      </ion-col>
+    </ion-row>
+    </ion-grid>
 </ion-content>

@@ -7,13 +7,13 @@
 <ion-header>
 
   <ion-navbar color="normal">
-    <ion-title>Detalle de Ejercicio</ion-title>
+    <ion-title>{{item.nombre}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
     <ion-card color="listdivisor">
         <div *ngIf="item.imagen!=''; else elseBlock">
 
@@ -26,23 +26,46 @@
             <img  src="../../assets/imgs/defecto.jpeg" />
       </ng-template>
       <ion-card-content>
-          <ion-card-title>
-            {{item.nombre}}
-            </ion-card-title>
           <p>
-                tipo : {{item.tipo}}
+                Tipo : {{item.tipo}}
           </p>
           <p>
             Descripcion : {{item.deslarga}}
           </p>
-          <div *ngIf="itemcompleto.idejercicio">
-              <p *ngIf="itemcompleto.repeticiones!=''; ">Repeticiones: {{itemcompleto.repeticiones}}</p>
-              <p *ngIf="itemcompleto.peso!=''; ">Peso: {{itemcompleto.peso}}</p>
-              <p *ngIf="itemcompleto.duracion!=''; ">Duracion: {{itemcompleto.duracion}}</p>
-          </div >
+
           
-          <a *ngIf="item.linkyoutube!=''; " href="{{item.linkyoutube}}">ver video en toytube</a>
+          <a *ngIf="item.linkyoutube!='' && item.linkyoutube; " href="{{item.linkyoutube}}">ver video en Youtube</a>
+          <ion-list>
+            <ion-grid  class="tabla" *ngIf="itemcompleto.idejercicio" >
+              <ion-row justify-content-center align-items-center>
+                <ion-col col-2>set</ion-col>
+                <ion-col col-3>Peso</ion-col>
+                <ion-col col-2>Rep.</ion-col>
+                <ion-col col-3>Tiempo</ion-col>
+                <ion-col col-2 *ngIf="alumno"></ion-col>
+              </ion-row>
+              <ion-row *ngFor="let dato of setejercicio; let o = index;" justify-content-center align-items-center>
+                  <ion-col col-2 >{{o+1}}</ion-col>
+                  <ion-col col-3><span *ngIf="dato.peso!=''">{{dato.peso}} Kg</span></ion-col>
+                  <ion-col col-2><span *ngIf="dato.repeticiones!=''">{{dato.repeticiones}}</span></ion-col>
+                  <ion-col col-3><span *ngIf="dato.tiempo!=''">{{dato.tiempo}} min</span></ion-col>
+                  <ion-col col-2 *ngIf="alumno">
+                  <ion-item>
+
+                      <ion-checkbox disabled="itemcompleto.estado" item-right [(ngModel)]="dato.estado" (ionChange)="marcarset($event,o)"></ion-checkbox>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+    
+              </ion-grid>
+            </ion-list>
         </ion-card-content>
+        <div *ngIf="itemcompleto.estado==false; else elseBlock">
+          <button ion-button  block *ngIf="alumno" color="normal" (click)="guardarset()"> guardar datos </button>
+        </div>
+        <ng-template #elseBlock>
+          <button ion-button block  color="normal" disabled> ya se guardaron los datos </button>
+        </ng-template>
         <button ion-button  block *ngIf="item.rol" color="normal" (click)="editar(item)"> Modificar </button>
       </ion-card>
       <!--

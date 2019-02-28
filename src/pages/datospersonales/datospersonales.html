@@ -23,8 +23,9 @@
 </ion-header>
 
 
-<ion-content padding>
-    <ion-grid>
+<ion-content >
+  <!--
+<ion-grid>
         <ion-row class="menu">
           <ion-col  col-6>
               <button *ngIf="rol=='instructor';else botonAlum;" ion-button outline block color="normal" (click)="canbiarRolAlum()">alumno</button>
@@ -40,16 +41,20 @@
           </ion-col>
         </ion-row>
     </ion-grid>
+  -->
+    
 
     
     
     
     <ion-card color="listdivisor">
-        <img [src]="datos.foto" />
         <ion-card-content>
-          <ion-card-title>
-            {{datos.nombres}} {{datos.apellidos}}
-          </ion-card-title>
+            <ion-item>
+                <ion-avatar item-start>
+                  <img [src]="datos.foto" />
+                </ion-avatar>
+                <h2>{{datos.nombres}} {{datos.apellidos}}</h2>
+              </ion-item>
             <ion-grid>
             <ion-row>
               <ion-col col-5>fecha de nacimiento</ion-col>

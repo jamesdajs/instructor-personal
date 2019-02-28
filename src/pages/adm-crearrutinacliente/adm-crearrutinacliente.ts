@@ -26,7 +26,9 @@ export class AdmCrearrutinaclientePage {
   ejercicios=[]
   public event = {
     nombre: "",
-    descripcion:""
+    descripcion:"",
+    ejem:{},
+    ejem2:[]
   }
   key
   constructor(public navCtrl: NavController,
@@ -90,6 +92,10 @@ export class AdmCrearrutinaclientePage {
         .then(res=>{
           this.guardarejercicios(res,load,toast)
         })
+        .catch(err=>{
+          load.dismiss()
+          console.log(err)
+        })
       }
       
     }
@@ -103,8 +109,11 @@ export class AdmCrearrutinaclientePage {
         delete item.imagen1
         delete item.estadoadd
         delete item.event
-
+        delete item.opts
+        delete item.component
         item["idrutina"]=res.id
+        item["estado"]=false
+        console.log(item)
         funciones.push(this.user.guardarRutina_ejercicio(item))
       })
       Promise.all(funciones)

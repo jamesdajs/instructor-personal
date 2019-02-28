@@ -164,6 +164,9 @@ verSitienenDatos() {
   guardarRutina_ejercicio(data){
     return this.db.collection(`rutina_ejer`).add(data)
   }
+  modificarRutina_ejercicio(key,data){
+    return this.db.collection(`rutina_ejer`).doc(key).set(data,{ merge: true })
+  }
   guardarRutina_cliente(data){
     return this.db.collection(`instructor_cliente`).add(data)
   }

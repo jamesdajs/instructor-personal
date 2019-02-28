@@ -23,6 +23,7 @@ import { Storage } from '@ionic/storage';
 })
 export class LoginPage {
   estado=false
+  rol="alumno"
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private auth:AuthFacebookProvider,
@@ -62,6 +63,15 @@ console.log("splas abierto")
   iniciarSesion(){
     
   }
+  loginWithGoogle(){
+    this.auth.googleLogin()
+    .then(res => {
+      alert(JSON.stringify(res)+"todo ok")
+      console.log(res)})
+    .catch(err => {
+      alert(JSON.stringify(err)+"errr")
+      console.error(err)})
+  }
   /*cargaDeDatos(cargar):void{
     const toast = this.toastCtr.create({
       message: 'carga de datos correcta',
@@ -93,15 +103,28 @@ console.log("splas abierto")
     cargar.present()
     this.conectarFacebook()
     .then(res=>{
+      if(this.rol=="alumno"){
+        this.store.set("rol",this.rol)
+        this.navCtrl.setRoot(TabsPage)
+      }else{
+        this.store.set("rol",this.rol)
+        this.navCtrl.setRoot(InstructorPage)
+      }
       console.log(res)
-      this.store.set("rol","alumno")
-      this.navCtrl.setRoot(TabsPage)
+      
       cargar.dismiss()
     })
     .catch(err=>{
-      alert(err)
+      alert(JSON.stringify(err))
       cargar.dismiss()
     })
+  }
+  cambiarRolAlum(){
+    this.rol="alumno"
+  }
+  cambiarRolIst(){
+    //console.log(this.rol)
+    this.rol="instructor"
   }
   loginWithFacebook2() {
     console.log(this.estado)
@@ -110,43 +133,19 @@ console.log("splas abierto")
   conectarFacebook(){
     return new Promise((resolve,reject)=>{
       this.auth.loginWithFacebook().subscribe(data => {
+        //alert(JSON.stringify(data))
         console.log(data)
         if (!this.estado) {
-             this.user.verSitienenDatos()
-             .then(datos=>{
-                 if(datos===undefined){
-                   
-                  let perfilFB=data
-                       if(perfilFB.first_name===undefined)perfilFB.displayName=""
-                       if(perfilFB.perfilFB.last_name===undefined)perfilFB.perfilFB.last_name=""
-                       if(perfilFB.middle_name===undefined)perfilFB.middle_name=""
-                       let datos={
-                         nombres:perfilFB.first_name +' '+perfilFB.middle_name,
-                         apellidos:perfilFB.last_name,
-                         email:perfilFB.email,
-                         foto:perfilFB.photoURL,
-                         instructor:false,
-                         descorta:"",
-                         fullname:perfilFB.displayName
-                       }
-                       this.user.crearusuario(perfilFB.uid,datos)
+          let datos={
+            nombre:data.displayName,
+            foto:data.photoURL,
+            email:data.email
+          }
+                      this.user.crearusuario(data.uid,datos)
                        .then(()=>{
                          resolve('datos creados correctos')
                        })
-                     
-                   }else {
-                     this.user.modusuario({
-                      foto:data.photoURL})
-                      .then(()=>{
-                        resolve("ya se crearon datos antes")
-                      })
-                    }
-                   
-                 }).catch(error=>{
-                  reject(error)
-                 })
-               
-             }
+            }
       }, error=>{
         //console.log(error);
         reject(error)

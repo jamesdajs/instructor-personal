@@ -1,0 +1,14 @@
+page-adm-setejercicio {
+    ion-col{
+        text-align: center !important;
+    }
+    .tabla {
+        border-bottom: solid 1px map-get($colors, light);
+    }
+    img{
+        height: 200px;
+        width: auto;
+        margin: 0 auto;
+        background-color: white;
+    }
+}

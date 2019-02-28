@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
     <ion-grid>
         <ion-row class="menu">
           <ion-col  col-6>
@@ -28,11 +28,18 @@
           </ion-col>
         </ion-row>
     </ion-grid>
+    
     <ion-card color="carts">
-        <img [src]="datos.foto" />
+        
         <ion-card-content>
+            <ion-item>
+                <ion-avatar item-start>
+                  <img [src]="datos.foto" />
+                </ion-avatar>
+                <h2>{{datos.nombres}} {{datos.apellidos}}</h2>
+              </ion-item>
           <ion-card-title>
-            {{datos.nombres}} {{datos.apellidos}}
+            Datos personales
           </ion-card-title>
             <ion-grid>
             <ion-row>
