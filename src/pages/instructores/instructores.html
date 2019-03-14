@@ -20,42 +20,42 @@
             <h2>Instructores buscados </h2>
             
           </ion-item>
-          <div *ngIf="datosbuscado.length!=0;else elseBlock">
-              <ion-item color="carts" *ngFor="let item of datosbuscado" (click)="verInstructor(item.key)">
-                  <ion-thumbnail item-start>
-                    <img [src]="item.foto ">
-                  </ion-thumbnail>
-                  <h2>{{item.fullname}}</h2>
-                  <p>{{item.descorta}}</p>
-                  <button ion-button clear item-end icon-only>
-                      <ion-icon color="light" name='ios-arrow-forward'></ion-icon>
-                  </button>
-                </ion-item>
-          </div>
-          <ng-template #elseBlock>
+          <ion-scroll scrollX="true" scroll-avatar *ngIf="datosbuscado.length!=0;else elseBlock4">
+            <div class="itemsel" *ngFor="let item of datosbuscado" (click)="verInstructor(item.key)" >
+
+                <img class="selecionados" [src]="item.foto ">
+                
+                <div>
+                    <p>{{item.nombre}}</p>
+                </div>
+                
+                </div>
+            </ion-scroll>
+          <ng-template #elseBlock4>
               <ion-item color="carts">
-                <h2>No se encontro resultados</h2>
+                <h2>No se entontro resultados</h2>
               </ion-item>
           </ng-template>
+          
           <ion-item  color="listdivisor">
-              <h3>Lista de mis instructres </h3>
+              <h3>Selecione un instructor para ver las rutinas y dietas </h3>
           </ion-item>
-          <div *ngIf="misInstructores.length!=0;else elseBlock2">
-              <ion-item color="carts" *ngFor="let item of misInstructores" (click)="vercurso(item.idinstructor)">
-                  <ion-thumbnail item-start>
-                    <img [src]="item.foto ">
-                  </ion-thumbnail>
-                  <h2>{{item.fullname}}</h2>
-                  <p>{{item.descorta}}</p>
-                  <button ion-button clear item-end icon-only>
-                      <ion-icon color="light" name='ios-arrow-forward'></ion-icon>
-                  </button>
-                </ion-item>
-          </div>
-          <ng-template #elseBlock2>
+          <ion-scroll scrollX="true" scroll-avatar *ngIf="misInstructores.length!=0;else elseBlock3">
+            <div class="itemsel" *ngFor="let item of misInstructores" (click)="vercurso(item.idinstructor)" >
+
+                <img class="selecionados" [src]="item.foto ">
+                
+                <div>
+                    <p>{{item.fullname}}</p>
+                </div>
+                
+                </div>
+            </ion-scroll>
+          <ng-template #elseBlock3>
               <ion-item color="carts">
                 <h2>No tiene ningun instructor</h2>
               </ion-item>
           </ng-template>
+          
         </ion-list>
   </ion-content>

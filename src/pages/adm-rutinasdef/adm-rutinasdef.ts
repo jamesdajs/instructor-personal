@@ -41,6 +41,7 @@ export class AdmRutinasdefPage {
           this.ejers[element.key]=[]
         });
         this.items=list
+        console.log(list)
       },err=>{
         console.log(err)
       })

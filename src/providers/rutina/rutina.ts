@@ -133,5 +133,15 @@ export class RutinaProvider {
     data["idinstructor"]=this.auth.auth.currentUser.uid
     return this.db.collection("setejercicios").add(data)
   }
+  versetdeHoy(idejer,idrutina){
+    let f = new Date();
+    let fecha=(f.getMonth() +1)+ "/" + f.getDate() + "/" + f.getFullYear()
+    console.log(fecha)
+    let query=res => res.where("idejercicio", "==", idejer)
+                        .where("idrutina","==",idrutina)
+                        .where("fecha","==",new Date(fecha))
+    
+    return this.getcollArrayconkey("setejercicios",query)
+  }
 
 }

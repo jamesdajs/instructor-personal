@@ -16,8 +16,7 @@ export const firebaseConfig = {
   };
   export interface Cliente {
     email: string;
-    nombres: string;
-    apellidos: string;
+    nombre: string;
     foto:string;
     peso:number;
     altura:number;

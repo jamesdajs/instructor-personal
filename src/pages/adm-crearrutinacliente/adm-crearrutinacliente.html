@@ -46,6 +46,33 @@
               
                 
             </ion-list>
+            <p>Selecione los dias del ejercicio</p>
+            <ion-item>
+                <ion-label>Dias</ion-label>
+                <ion-select [(ngModel)]="indices" multiple="true">
+                  <ion-option value="0">Domingo</ion-option>
+                  <ion-option value="1">Lunes</ion-option>
+                  <ion-option value="2">Martes</ion-option>
+                  <ion-option value="3">Miercoles</ion-option>
+                  <ion-option value="4">Jueves</ion-option>
+                  <ion-option value="5">Viernes</ion-option>
+                  <ion-option value="6">Sabado</ion-option>
+                </ion-select>
+              </ion-item>
+            <!--
+            <ion-list>
+              <ion-item *ngFor="let item of dias; let o = index;">
+                  <ion-label>
+                      <h2>{{item.nombre}}</h2>
+                  </ion-label>
+                  <ion-checkbox 
+                      color="dark" 
+                      item-right checked="{{item.estado}}" 
+                      (ionChange)="verdia(o,$event)">
+                  </ion-checkbox>
+              </ion-item>
+            </ion-list>
+            -->
             <p>Ejercicios selecionados</p>
           </ion-col>
         </ion-row>

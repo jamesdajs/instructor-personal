@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="normal">
-    <ion-title>Rutinas</ion-title>
+    <ion-title>Rutinas por defecto</ion-title>
     <ion-buttons end>
         <button ion-button icon-only color="royal" (click)="crear()">
           <ion-icon name="md-add"></ion-icon>
@@ -26,6 +26,17 @@
               
                     <h2>{{item.nombre}} </h2>
                     <p>{{item.descripcion}}</p>
+
+                    <span *ngFor="let dia of item.dias">
+                      <span *ngIf="dia==0"> Domingo </span>
+                      <span *ngIf="dia==1"> Lunes </span>
+                      <span *ngIf="dia==2"> Martes </span>
+                      <span *ngIf="dia==3"> Miercoles </span>
+                      <span *ngIf="dia==4"> Jueves </span>
+                      <span *ngIf="dia==5"> Viernes </span>
+                      <span *ngIf="dia==6"> Sabado </span>
+                      
+                    </span >
                     <button ion-button clear item-end icon-only>
                         <ion-icon color="light" name='ios-arrow-down'></ion-icon>
                     </button>

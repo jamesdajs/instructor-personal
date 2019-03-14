@@ -33,10 +33,11 @@
                     <ion-avatar item-start>
                       <img *ngIf="ejer.imagen!=''; else elseBlock" [src]="ejer.imagen" />
                         <ng-template #elseBlock>
-                            <img  src="../../assets/imgs/defecto.jpeg" />
+                            <img  src="../../assets/imgs/defecto2.jpeg" />
                     </ng-template>  
                   </ion-avatar> 
                     <h2>{{ejer.nombre}} </h2>
+                    <p>{{ejer.tipo}}</p>
                       <p>{{ejer.descorta}}</p>
                       <button ion-button clear item-end icon-only>
                           <ion-icon color="light" name='ios-arrow-forward'></ion-icon>

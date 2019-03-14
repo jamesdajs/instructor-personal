@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { AdmRutinasclientePage } from '../adm-rutinascliente/adm-rutinascliente'
 import { AdmDietasclientePage } from '../adm-dietascliente/adm-dietascliente'
+//import { Cliente } from '../../app/app.config'
 /**
  * Generated class for the AdmDatosclientePage page.
  *
@@ -19,8 +20,7 @@ import { AdmDietasclientePage } from '../adm-dietascliente/adm-dietascliente'
 export class AdmDatosclientePage {
   datos={
     email: "",
-    nombres: "",
-    apellidos: "",
+    nombre: "",
     foto:"",
     peso:null,
     altura:0,

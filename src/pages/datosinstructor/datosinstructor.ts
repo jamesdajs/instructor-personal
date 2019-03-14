@@ -17,8 +17,7 @@ import { UsuarioProvider } from  "../../providers/usuario/usuario"
 export class DatosinstructorPage {
   datos={
     email: "",
-    nombres: "",
-    apellidos: "",
+    nombre: "",
     foto:"",
     peso:null,
     altura:0,
@@ -55,7 +54,7 @@ export class DatosinstructorPage {
     })
     load.present()
     let instructor_cliete={
-      fullname:this.datos.nombres+" "+this.datos.apellidos,
+      fullname:this.datos.nombre,
       foto:this.datos.foto,
       descorta:this.datosins.descorta,
       estado:false,
@@ -67,7 +66,7 @@ export class DatosinstructorPage {
       instructor_cliete["idcliente"]=idcli
       this.user.leermisdatosPromesa()
       .then(datos=>{
-        instructor_cliete["fullnamecli"]=datos.nombres+" "+datos.apellidos
+        instructor_cliete["fullnamecli"]=datos.nombre
         instructor_cliete["fotocli"]=datos.foto
         this.user.guardarSolicitud(instructor_cliete)
         .then(()=>{

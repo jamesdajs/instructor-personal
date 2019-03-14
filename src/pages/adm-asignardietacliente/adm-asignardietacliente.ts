@@ -13,11 +13,14 @@ export class AdmAsignardietaclientePage {
   dietas=[]
   dietasselec=[]
   tipodieta=[
-    {key:"desgym",nombre:"Despues del Gym",estadohiide:false},
+    
+    {key:"antes de entrenar",nombre:"Antes de entrenar",estadohiide:false},
+    {key:"despues del gym",nombre:"Despues del Gym",estadohiide:false},
     {key:"desayuno",nombre:"Desayuno",estadohiide:false},
-    {key:"merienda",nombre:"Merienda",estadohiide:false},
+    {key:"merienda mañana",nombre:"Merienda mañana",estadohiide:false},
     {key:"almuerzo",nombre:"Almuerzo",estadohiide:false},
-    {key:"cena",nombre:"Cena"}
+    {key:"merienda tarde",nombre:"Merienda tarde",estadohiide:false},
+    {key:"cena",nombre:"Cena" ,estadohiide:false}
   ]
   items=[]
   ejers={}

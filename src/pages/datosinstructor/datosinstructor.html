@@ -13,13 +13,16 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
     <ion-card color="listdivisor">
-        <img [src]="datos.foto" />
+        
         <ion-card-content>
-          <ion-card-title>
-            {{datos.nombres}} {{datos.apellidos}}
-          </ion-card-title>
+            <ion-item>
+                <ion-avatar item-start>
+                  <img [src]="datos.foto" />
+                </ion-avatar>
+                <h2>{{datos.nombre}} </h2>
+              </ion-item>
             <ion-grid>
             <ion-row>
               <ion-col col-5>fecha de nacimiento</ion-col>

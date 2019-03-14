@@ -24,13 +24,21 @@ export class AdmCrearrutinaclientePage {
   fechaini= ''
   fechafin= ''
   ejercicios=[]
+  indices=[]
   public event = {
     nombre: "",
-    descripcion:"",
-    ejem:{},
-    ejem2:[]
+    descripcion:""
   }
   key
+  dias=[
+    {nombre:"Domingo",estado:false},
+    {nombre:"Lunes",estado:false},
+    {nombre:"Martes",estado:false},
+    {nombre:"Miercoles",estado:false},
+    {nombre:"Jueves",estado:false},
+    {nombre:"Viernes",estado:false},
+    {nombre:"Sabado",estado:false}
+  ]
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private modal:ModalController,
@@ -50,6 +58,9 @@ export class AdmCrearrutinaclientePage {
     this.fechafin=this.fechaini
     this.addEjercicio()
     console.log('ionViewDidLoad AdmCrearrutinaclientePage');
+  }
+  verdia(o,e){
+    this.dias[o].estado=e.checked
   }
   addEjercicio(){
     let profileModal = this.modal.create(AdmAñadirejercicioPage,this.ejercicios,{enableBackdropDismiss:false});
@@ -79,9 +90,16 @@ export class AdmCrearrutinaclientePage {
         const toast = this.toastCtrl.create({
           message: 'Se guardo la rutina correctamente',
           duration: 3000})
+          
+          for(let j in this.dias){
+            if(this.dias[j].estado==true)
+            this.indices.push(parseInt(j))
+          }
+          this.event["dias"]=this.indices
       if(this.key!=true){
         this.event["fechaini"]=new Date(this.fechaini.replace(/-/g, '\/'))
         this.event["fechafin"]=new Date(this.fechafin.replace(/-/g, '\/'))
+        
         this.user.guardarrutinacliente(this.key,this.event)
         .then(res=>{
           //console.log(res.id)

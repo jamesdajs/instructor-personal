@@ -115,7 +115,8 @@ console.log("splas abierto")
       cargar.dismiss()
     })
     .catch(err=>{
-      alert(JSON.stringify(err))
+      alert("Error de la coneccion de internet")
+      console.log(err)
       cargar.dismiss()
     })
   }
@@ -139,6 +140,7 @@ console.log("splas abierto")
           let datos={
             nombre:data.displayName,
             foto:data.photoURL,
+            fullname:data.displayName.toLowerCase(),
             email:data.email
           }
                       this.user.crearusuario(data.uid,datos)

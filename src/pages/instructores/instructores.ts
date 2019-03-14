@@ -22,6 +22,7 @@ export class InstructoresPage {
 buscar=""
 datosbuscado=[]
 misInstructores=[]
+keyslec
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -32,6 +33,10 @@ misInstructores=[]
     //private event:Events,
     private splashscreen:SplashScreen
     ) {
+      this.store.get("key1")
+      .then(key=>{
+        this.keyslec=key
+      })
       //this.misInstructores=this.navParams.data
   }
 
@@ -46,7 +51,7 @@ misInstructores=[]
   getItems(){
     console.log(this.buscar)
     if(this.buscar!=''){
-      this.user.buscarinstuctor(this.buscar)
+      this.user.buscarinstuctor(this.buscar.toLocaleLowerCase())
       .subscribe(res=>{
         console.log(res)
         this.datosbuscado=res

@@ -33,8 +33,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class DatospersonalesPage {
   datos={
     email: "",
-    nombres: "",
-    apellidos: "",
+    nombre: "",
     foto:"",
     peso:null,
     altura:0,
@@ -134,7 +133,7 @@ export class DatospersonalesPage {
               this.splash.show()
               window.location.reload();
               //this.event.publish("irAinicio")
-              this.store.clear()
+              this.store.remove("rol")
               console.log(this.store.keys)
             }
           }
@@ -170,7 +169,7 @@ export class DatospersonalesPage {
   convertirfecha(timestamp){
     if(timestamp){
       let fecha=timestamp.toDate()
-      return fecha.getDate()+"-"+(fecha.getMonth()<9?"0"+(fecha.getMonth()+1):(fecha.getMonth()+1))+"-"+fecha.getFullYear()
+      return fecha.getDate()+"-"+(fecha.getMonth()<10?"0"+(fecha.getMonth()+1):(fecha.getMonth()+1))+"-"+fecha.getFullYear()
     }else{
       return null
     }
@@ -178,7 +177,7 @@ export class DatospersonalesPage {
   convertirfecha2(timestamp){
     if(timestamp){
       let fecha=timestamp.toDate()
-      return fecha.getFullYear()+"-"+(fecha.getMonth()<9?"0"+(fecha.getMonth()+1):(fecha.getMonth()+1))+"-"+(fecha.getDate()<9?"0"+(fecha.getDate()):(fecha.getDate()))
+      return fecha.getFullYear()+"-"+(fecha.getMonth()<10?"0"+(fecha.getMonth()+1):(fecha.getMonth()+1))+"-"+(fecha.getDate()<9?"0"+(fecha.getDate()):(fecha.getDate()))
     }else{
       return null
     }

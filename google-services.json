@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "150980917345",
+    "firebase_url": "https://entrenador-personal-20e1f.firebaseio.com",
+    "project_id": "entrenador-personal-20e1f",
+    "storage_bucket": "entrenador-personal-20e1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150980917345:android:81fab74723f3663b",
+        "android_client_info": {
+          "package_name": "com.hegaro.entrenadorpersonal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "150980917345-dr0chrt7hclso6i7gib3n1buecrjlf3v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNUgok2RtofhpJbozUC_cxP6yRO-NtDN4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -36,8 +36,7 @@ export class AdmDietasPage {
       this.navCtrl.push(AdmCreardietaPage,this.nombre)
     }
     cargardatos(){
-      if(this.nombre=="despues del gym")
-        this.nombre="desgym"
+      
       this.dieta.verMisDietas(this.nombre)
       .subscribe(data=>{
         this.list=data

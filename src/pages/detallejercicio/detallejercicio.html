@@ -52,7 +52,7 @@
                   <ion-col col-2 *ngIf="alumno">
                   <ion-item>
 
-                      <ion-checkbox disabled="itemcompleto.estado" item-right [(ngModel)]="dato.estado" (ionChange)="marcarset($event,o)"></ion-checkbox>
+                      <ion-checkbox [disabled]="setrealizado" item-right [(ngModel)]="dato.estado" (ionChange)="marcarset($event,o)"></ion-checkbox>
                     </ion-item>
                   </ion-col>
                 </ion-row>
@@ -60,12 +60,15 @@
               </ion-grid>
             </ion-list>
         </ion-card-content>
-        <div *ngIf="itemcompleto.estado==false; else elseBlock">
-          <button ion-button  block *ngIf="alumno" color="normal" (click)="guardarset()"> guardar datos </button>
-        </div>
-        <ng-template #elseBlock>
-          <button ion-button block  color="normal" disabled> ya se guardaron los datos </button>
-        </ng-template>
+        
+            <div *ngIf="alumno">
+                <button ion-button *ngIf="!setrealizado; else elseBlock" block  color="normal" (click)="guardarset()"> guardar datos </button>
+              
+              <ng-template #elseBlock>
+                <button ion-button block  color="normal" disabled> ya se guardaron los datos </button>
+              </ng-template>
+            </div>
+        
         <button ion-button  block *ngIf="item.rol" color="normal" (click)="editar(item)"> Modificar </button>
       </ion-card>
       <!--

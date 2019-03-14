@@ -32,6 +32,7 @@ export class DetallejercicioPage {
   
   alumno=false
   imagenaux=true
+  setrealizado=false
   constructor(public navCtrl: NavController, public navParams: NavParams,public rutina:RutinaProvider,
     public storage:Storage,public user:UsuarioProvider
     ) {
@@ -50,10 +51,15 @@ export class DetallejercicioPage {
       if(rol=="alumno")
         this.alumno=true
     })
+    this.rutina.versetdeHoy(this.itemcompleto.idejercicio,this.itemcompleto.idrutina)
+    .subscribe(sethoy=>{
+      if(sethoy.length!=0) this.setrealizado=true
+      console.log(sethoy)
+    })
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DetallejercicioPage');
+    console.log('ionViewDidLoad DetallejercicioPage' ,this.itemcompleto);
     console.log(this.setejercicio ,this.itemcompleto);
     this.verdetalle()
     setInterval(() => {this.cambiarImagen()},1000);
@@ -98,9 +104,14 @@ export class DetallejercicioPage {
   this.user.modificarRutina_ejercicio(this.itemcompleto.key,{estado:true})
   .then(()=>{
     delete this.itemcompleto.key
+    let f = new Date();
+    let fecha=(f.getMonth() +1)+ "/" + f.getDate() + "/" + f.getFullYear()
+    console.log(fecha)
+    this.itemcompleto.fecha=new Date(fecha)
     this.rutina.crearsetsdeEjercicio(this.itemcompleto)
     .then(res=>{
       console.log(res)
+      this.navCtrl.pop()
     })
   })
     
