@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:150980917345:android:81fab74723f3663b",
+        "mobilesdk_app_id": "1:150980917345:android:d2cc182af8246f1d",
         "android_client_info": {
-          "package_name": "com.hegaro.entrenadorpersonal"
+          "package_name": "com.hegaro.goodme"
         }
       },
       "oauth_client": [

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
 
 import { UsuarioProvider } from '../../providers/usuario/usuario'
 import { DatosinstructorPage } from '../../pages/datosinstructor/datosinstructor'
@@ -81,7 +81,6 @@ keyslec
             this.splashscreen.show();
             //window.location.reload();
             location.reload(true);
-            this.splashscreen.hide();
           
           //this.navCtrl.setRoot(TabsPage)
         })

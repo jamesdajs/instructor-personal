@@ -155,6 +155,7 @@ verSitienenDatos() {
     return this.db.collection(`cliente/${keycli}/rutinas`).add(datos)
   }
   modrutinacliente(keycli,idrut,datos){
+    
     return this.db.collection(`cliente/${keycli}/rutinas`).doc(idrut).set(datos,{ merge: true })
   }
   guardarrutinaDefecto(datos){
@@ -164,8 +165,16 @@ verSitienenDatos() {
   guardarRutina_ejercicio(data){
     return this.db.collection(`rutina_ejer`).add(data)
   }
+  eliminarRutina_ejercicio(idrut_ejer){
+    return this.db.collection(`rutina_ejer`).doc(idrut_ejer).delete()
+  }
   modificarRutina_ejercicio(key,data){
     return this.db.collection(`rutina_ejer`).doc(key).set(data,{ merge: true })
+  }
+  listarRutina_ejercicio(keyruttina){
+    let query=res=>res.where("idrutina","==",keyruttina)
+                      
+    return this.getcollArrayconkey(`rutina_ejer`,query)
   }
   guardarRutina_cliente(data){
     return this.db.collection(`instructor_cliente`).add(data)

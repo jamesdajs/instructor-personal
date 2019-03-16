@@ -37,19 +37,31 @@
         </ion-item>
           <div *ngIf="items.length!=0;else elseBlock">
             <div *ngFor="let item of items" >
-                <ion-item-divider color="listdivisor"  (click)="verejercicios(item.key)">
-                  <ion-label>
-                    <h2>{{item.nombre}} </h2>
-                    <p>{{item.descripcion}}</p>
-                    <p>inicio: {{item.fechaini}} fin: {{item.fechafin}}</p>
-                    </ion-label>
-                    <button ion-button clear item-end icon-only>
-                        <ion-icon color="light" name='ios-arrow-down'></ion-icon>
-                    </button>
-                    <ion-toggle [(ngModel)]="!item.estado" (ngModelChange)="habilitarrutina(item.key,$event)"></ion-toggle>
-                    
-                </ion-item-divider>
-                <ion-item color="carts" *ngFor="let ejer of ejers[item.key]" (click)="verDetEjercicio(ejer)"> 
+                <ion-item-sliding (click)="verejercicios(item.key)">
+                  <ion-item color="carts">
+                      <ion-label>
+                          <h2>{{item.nombre}} </h2>
+                          <p>{{item.descripcion}}</p>
+                          <p>inicio: {{item.fechainiS}} fin: {{item.fechafinS}}</p>
+                          </ion-label>
+                          <button ion-button clear item-end icon-only>
+                              <ion-icon color="light" name='ios-arrow-down'></ion-icon>
+                          </button>
+                          <ion-toggle [(ngModel)]="!item.estado" (ngModelChange)="habilitarrutina(item.key,$event)"></ion-toggle>
+                          
+                  </ion-item>
+                   
+                    <ion-item-options >
+                        
+                        <button ion-button color="tabss" (click)="editar(item)" icon-start>
+                          <ion-icon name="paper"> </ion-icon>
+                          Modificar
+                        </button>
+                        
+                    </ion-item-options>
+                  </ion-item-sliding>
+                
+                <ion-item color="listdivisor" *ngFor="let ejer of ejers[item.key]" (click)="verDetEjercicio(ejer)"> 
                     <ion-avatar item-start>
                         <img *ngIf="ejer.imagen!=''; else elseBlock" [src]="ejer.imagen" />
                           <ng-template #elseBlock>
@@ -66,7 +78,7 @@
             </div>                
           </div>
           <ng-template #elseBlock>
-              <ion-item color="carts">
+              <ion-item color="listdivisor">
                 <h2>No tiene rutinas en este curso </h2>
               </ion-item>
           </ng-template>

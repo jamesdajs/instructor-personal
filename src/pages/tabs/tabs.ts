@@ -20,7 +20,7 @@ export class TabsPage {
   tabRoot = InstructoresPage;
   tab1Root = RutinasPage;
   tab2Root = DietasPage;
-  tab3Root = EstadisticasPage;
+  //tab3Root = EstadisticasPage;
   tab4Root = DatospersonalesPage
 
   constructor( public event:Events,

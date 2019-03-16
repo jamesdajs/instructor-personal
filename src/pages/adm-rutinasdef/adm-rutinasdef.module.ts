@@ -4,7 +4,7 @@ import { AdmRutinasdefPage } from './adm-rutinasdef';
 
 @NgModule({
   declarations: [
-    AdmRutinasdefPage,
+    //AdmRutinasdefPage,
   ],
   imports: [
     IonicPageModule.forChild(AdmRutinasdefPage),

@@ -1,0 +1,115 @@
+
+<ion-header>
+
+    <ion-navbar color="normal">
+      <ion-title>Modificar Rutina</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content >
+      <ion-grid>
+          <ion-row align-items-end>
+            <ion-col col-12>
+              
+              <ion-item class="input">
+                <ion-label  floating>Nombre</ion-label>
+                  <ion-input type="text"  [(ngModel)]="event.nombre"></ion-input>
+              </ion-item>
+              <ion-item class="input">
+                <ion-label  floating>Descripcion</ion-label>
+                  <ion-input type="text"  [(ngModel)]="event.descripcion"></ion-input>
+              </ion-item>
+              <ion-list *ngIf="key!=true" no-lines >
+                  <ion-row align-items-end>
+                      <ion-col col-6>
+                        <p>Inicio</p>
+                          <ion-item class="fechapadd">
+                              <ion-datetime displayFormat="DD MMMM YYYY" min="2019" max="2020" [(ngModel)]="fechaini" cancelText =Cancelar doneText=Ok></ion-datetime>
+                            </ion-item>
+                      </ion-col>
+                      <ion-col col-6>
+                        
+                          <p>Fin</p>
+                          <ion-item class="fechapadd">
+                              <ion-datetime displayFormat="DD MMMM YYYY" min="2019"max="2020" [(ngModel)]="fechafin" cancelText =Cancelar doneText=Ok></ion-datetime>
+                            </ion-item>
+                      </ion-col>
+                  </ion-row>
+                
+                
+                  
+              </ion-list>
+              <p>Selecione los dias del ejercicio</p>
+              <ion-item>
+                  <ion-label>Dias</ion-label>
+                  <ion-select [(ngModel)]="indices" multiple="true">
+                    <ion-option *ngFor="let dia of dias " [value]="dia.value"   >{{dia.nombre}} </ion-option>
+                    
+                  </ion-select>
+                </ion-item>
+              <!--
+              <ion-list>
+                <ion-item *ngFor="let item of dias; let o = index;">
+                    <ion-label>
+                        <h2>{{item.nombre}}</h2>
+                    </ion-label>
+                    <ion-checkbox 
+                        color="dark" 
+                        item-right checked="{{item.estado}}" 
+                        (ionChange)="verdia(o,$event)">
+                    </ion-checkbox>
+                </ion-item>
+              </ion-list>
+              -->
+              <p>Ejercicios selecionados</p>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+              
+              <div color="carts">
+                  <ion-scroll scrollX="true" scroll-avatar >
+                      <div class="itemsel" >
+                          <div class="cerrar">
+                              <ion-icon name="ios-add-circle-outline" (click)="addEjercicio()"></ion-icon> 
+                          </div>
+                          <div class="selecionados add"  >
+                              <ion-icon name="custom-pesas" (click)="addEjercicio()"></ion-icon>
+                          </div>
+                          <div>
+                              <p>Agregar ejercicio</p>
+                              
+                          </div>
+                          
+                          
+                      </div>
+                      <div class="itemsel" *ngFor="let item of ejercicios; let o = index;" >
+                          <div class="cerrar">
+                              <ion-icon name="close-circle-outline" (click)="eliminar(o)">
+      
+                              </ion-icon>
+                          </div>
+                          <img class="selecionados" *ngIf="item.imagen!=''; else elseBlock" [src]="item.imagen" />
+                          <ng-template #elseBlock>
+                             <img class="selecionados" src="../../assets/imgs/defecto.jpeg" />
+                          </ng-template>
+                          <div>
+                              <p>{{item.nombre}}</p>
+                              
+                          </div>
+                          
+                      </div>
+                </ion-scroll>
+              </div>
+                  
+                
+                
+                <div class="botong">
+                  <button ion-button  full color="normal" (click)="guardar()">Modificar</button>
+              </div>
+              
+            
+  
+  </ion-content>
+  

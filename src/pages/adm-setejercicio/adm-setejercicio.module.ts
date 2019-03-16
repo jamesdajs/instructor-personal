@@ -4,7 +4,7 @@ import { AdmSetejercicioPage } from './adm-setejercicio';
 
 @NgModule({
   declarations: [
-    AdmSetejercicioPage,
+    //AdmSetejercicioPage,
   ],
   imports: [
     IonicPageModule.forChild(AdmSetejercicioPage),

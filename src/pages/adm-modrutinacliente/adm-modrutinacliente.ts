@@ -9,7 +9,7 @@ import { AdmAñadirejercicioPage } from '../adm-añadirejercicio/adm-añadirejer
 import { UsuarioProvider } from "../../providers/usuario/usuario"
 
 /**
- * Generated class for the AdmCrearrutinaclientePage page.
+ * Generated class for the AdmModrutinaclientePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -17,27 +17,36 @@ import { UsuarioProvider } from "../../providers/usuario/usuario"
 
 @IonicPage()
 @Component({
-  selector: 'page-adm-crearrutinacliente',
-  templateUrl: 'adm-crearrutinacliente.html',
+  selector: 'page-adm-modrutinacliente',
+  templateUrl: 'adm-modrutinacliente.html',
 })
-export class AdmCrearrutinaclientePage {
+export class AdmModrutinaclientePage {
+
   fechaini= ''
   fechafin= ''
   ejercicios=[]
+  ejer_eliminados=[]
   indices=[]
   public event = {
     nombre: "",
-    descripcion:""
+    descripcion:"",
+    fechaini:null,
+    fechafin:null,
+    fechainiS:null,
+    fechafinS:null,
+    key:"",
+    dias:[]
   }
+  
   key
   dias=[
-    {nombre:"Domingo",estado:false},
-    {nombre:"Lunes",estado:false},
-    {nombre:"Martes",estado:false},
-    {nombre:"Miercoles",estado:false},
-    {nombre:"Jueves",estado:false},
-    {nombre:"Viernes",estado:false},
-    {nombre:"Sabado",estado:false}
+    {value:'0',nombre:"Domingo",estado:false},
+    {value:'1',nombre:"Lunes",estado:false},
+    {value:'2',nombre:"Martes",estado:false},
+    {value:'3',nombre:"Miercoles",estado:false},
+    {value:'4',nombre:"Jueves",estado:false},
+    {value:'5',nombre:"Viernes",estado:false},
+    {value:'6',nombre:"Sabado",estado:false}
   ]
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -46,16 +55,32 @@ export class AdmCrearrutinaclientePage {
      private toastCtrl:ToastController,
      private loadCtrl:LoadingController
      ) {
+       console.log(navParams.data)
+       this.event=navParams.data.rut
+       this.indices=navParams.data.rut.dias
+       this.user.listarRutina_ejercicio(this.event.key)
+       .subscribe(ejercicios=>{
+         for(let i in ejercicios){
+           ejercicios[i].idejer_rut=ejercicios[i].key
+           ejercicios[i].key=ejercicios[i].idejercicio
+         }
+        this.ejercicios=ejercicios
+        //console.log(this.ejercicios)
+       })
     if(Object.keys(navParams.data).length==0)
       this.key=true
     else
-      this.key=this.navParams.data
+      this.key=this.navParams.data.key
   }
 
   ionViewDidLoad() {
-    let date=new Date()
+    
+    let date=this.event.fechaini.toDate()
     this.fechaini=date.getFullYear()+"-"+(date.getMonth()<10?"0"+(date.getMonth()+1):(date.getMonth()+1))+"-"+(date.getDate()<9?"0"+(date.getDate()):(date.getDate()))
-    this.fechafin=this.fechaini
+    
+    date=this.event.fechafin.toDate()
+    this.fechafin=date.getFullYear()+"-"+(date.getMonth()<10?"0"+(date.getMonth()+1):(date.getMonth()+1))+"-"+(date.getDate()<9?"0"+(date.getDate()):(date.getDate()))
+    console.log(this.event.key)
     //this.addEjercicio()
     console.log('ionViewDidLoad AdmCrearrutinaclientePage');
   }
@@ -71,16 +96,13 @@ export class AdmCrearrutinaclientePage {
    profileModal.present();
   }
   eliminar(i){
+    if(this.ejercicios[i].idejer_rut) this.ejer_eliminados.push(this.ejercicios[i].idejer_rut)
     this.ejercicios.splice(i,1)
+    
   }
   guardar(){
-    if(this.event.nombre=="" || this.event.descripcion=="" || this.indices.length==0){
-      this.toastCtrl.create({
-        message:"Tiene que llenar todos los campos y seleccionar los dias que se realizaran de los ejercicios",
-        duration:3000
-      }).present()
-    }
-    else if(this.ejercicios.length==0){
+    
+    if(this.ejercicios.length==0){
       this.toastCtrl.create({
         message:"Tiene que agregar al menos un ejercicio",
         duration:3000
@@ -104,11 +126,10 @@ export class AdmCrearrutinaclientePage {
       if(this.key!=true){
         this.event["fechaini"]=new Date(this.fechaini.replace(/-/g, '\/'))
         this.event["fechafin"]=new Date(this.fechafin.replace(/-/g, '\/'))
-        
-        this.user.guardarrutinacliente(this.key,this.event)
+        this.user.modrutinacliente(this.key,this.event.key,this.event)
         .then(res=>{
-          //console.log(res.id)
-          this.guardarejercicios(res,load,toast)
+          console.log(res,this.event.key)
+          this.guardarejercicios(this.event.key,load,toast)
         })
       }else{
         this.user.guardarrutinaDefecto(this.event)
@@ -134,17 +155,27 @@ export class AdmCrearrutinaclientePage {
         delete item.event
         delete item.opts
         delete item.component
-        item["idrutina"]=res.id
+        item["idrutina"]=res
         item["estado"]=false
         console.log(item)
-        funciones.push(this.user.guardarRutina_ejercicio(item))
+        if(!item.idejer_rut)
+          funciones.push(this.user.guardarRutina_ejercicio(item))
+        
+      })
+      this.ejer_eliminados.forEach(item=>{
+        
+        funciones.push(this.user.eliminarRutina_ejercicio(item))
       })
       Promise.all(funciones)
       .then(()=>{
+        
+        //this.event["fechaini"]=Date.parse(this.event.fechaini)/1000
+        //this.event["fechafin"]=new Date(this.fechafin.replace(/-/g, '\/'))
         load.dismiss()
         toast.present()
         this.navCtrl.pop()
       })
     
   }
+
 }

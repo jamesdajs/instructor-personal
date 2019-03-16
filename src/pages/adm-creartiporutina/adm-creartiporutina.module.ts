@@ -4,7 +4,7 @@ import { AdmCreartiporutinaPage } from './adm-creartiporutina';
 
 @NgModule({
   declarations: [
-    AdmCreartiporutinaPage,
+    //AdmCreartiporutinaPage,
   ],
   imports: [
     IonicPageModule.forChild(AdmCreartiporutinaPage),

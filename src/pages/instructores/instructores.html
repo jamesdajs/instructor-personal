@@ -43,8 +43,11 @@
           <ion-scroll scrollX="true" scroll-avatar *ngIf="misInstructores.length!=0;else elseBlock3">
             <div class="itemsel" *ngFor="let item of misInstructores" (click)="vercurso(item.idinstructor)" >
 
-                <img class="selecionados" [src]="item.foto ">
+                <img *ngIf="keyslec!=item.idinstructor;else elseBlockIMG" class="selecionados" [src]="item.foto ">
+                <ng-template #elseBlockIMG>
+                  <img  class="selecionados activo" [src]="item.foto ">
                 
+                </ng-template>
                 <div>
                     <p>{{item.fullname}}</p>
                 </div>

@@ -141,7 +141,8 @@ console.log("splas abierto")
             nombre:data.displayName,
             foto:data.photoURL,
             fullname:data.displayName.toLowerCase(),
-            email:data.email
+            email:data.email,
+            instructor:true
           }
                       this.user.crearusuario(data.uid,datos)
                        .then(()=>{

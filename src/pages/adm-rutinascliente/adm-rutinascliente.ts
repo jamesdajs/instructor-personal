@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , LoadingController,AlertController,ToastController } from 'ionic-angular';
 import { DetallejercicioPage } from '../detallejercicio/detallejercicio';
 import { AdmCrearrutinaclientePage } from '../adm-crearrutinacliente/adm-crearrutinacliente';
+import { AdmModrutinaclientePage } from '../adm-modrutinacliente/adm-modrutinacliente';
 
 import { RutinaProvider } from '../../providers/rutina/rutina';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
@@ -117,8 +118,8 @@ defecto=[]
       this.rutina.verRutinasinstodos(this.key)
       .subscribe(list=>{
         list.forEach(element => {
-          element.fechaini=this.convertirfecha(element.fechaini)
-          element.fechafin=this.convertirfecha(element.fechafin)
+          element.fechainiS=this.convertirfecha(element.fechaini)
+          element.fechafinS=this.convertirfecha(element.fechafin)
           this.ejers[element.key]=[]
         });
         this.items=list
@@ -135,7 +136,7 @@ defecto=[]
       this.rutina.verEjercicios(key)
       .subscribe(list=>{
         this.ejers[key]=list
-        console.log(list)
+        //console.log(list)
       })
     }else{
       this.ejers[key]=[]
@@ -145,6 +146,8 @@ defecto=[]
   verDetEjercicio(item){
       this.navCtrl.push(DetallejercicioPage,item)
   }
-
+  editar(item){
+    this.navCtrl.push(AdmModrutinaclientePage,{rut:item,key:this.key})
+  }
 }
 
