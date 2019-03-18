@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {NavController,App,Events} from 'ionic-angular';
 import { RutinasPage } from '../rutinas/rutinas';
 import { DietasPage } from '../dietas/dietas';
-import { EstadisticasPage } from '../estadisticas/estadisticas';
+//import { EstadisticasPage } from '../estadisticas/estadisticas';
 import { DatospersonalesPage } from '../datospersonales/datospersonales';
 import { InstructoresPage } from '../instructores/instructores';
 import { LoginPage } from '../login/login';

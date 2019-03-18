@@ -23,6 +23,16 @@
                               <h2>{{item.nombre}} </h2>
                               <p>{{item.descripcion}}</p>
                               <p>inicio: {{item.fechaini}} fin: {{item.fechafin}}</p>
+                              <span *ngFor="let dia of item.dias">
+                                <span *ngIf="dia==0"> Domingo </span>
+                                <span *ngIf="dia==1"> Lunes </span>
+                                <span *ngIf="dia==2"> Martes </span>
+                                <span *ngIf="dia==3"> Miercoles </span>
+                                <span *ngIf="dia==4"> Jueves </span>
+                                <span *ngIf="dia==5"> Viernes </span>
+                                <span *ngIf="dia==6"> Sabado </span>
+                                
+                              </span >
                               <button ion-button clear item-end icon-only>
                                   <ion-icon color="light" name='ios-arrow-down'></ion-icon>
                               </button>
@@ -45,7 +55,7 @@
                     </div>
                     <ng-template #elseBlock>
                         <ion-item color="carts">
-                          <h2>No tiene rutinas en este curso o deslice abajo para cargar</h2>
+                          <h2>No tiene rutinas en este curso </h2>
                         </ion-item>
                     </ng-template>
                     

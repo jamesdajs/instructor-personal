@@ -41,7 +41,7 @@ ejers=[]
   listarDietas(){
     this.store.get('key1')
     .then(key=>{
-      this.dieta.verDietasins(key)
+      this.dieta.verDietas(key)
       .subscribe(list=>{
         list.forEach(element => {
           element.fechaini=this.convertirfecha(element.fechaini)

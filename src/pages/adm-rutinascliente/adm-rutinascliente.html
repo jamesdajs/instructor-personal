@@ -43,6 +43,16 @@
                           <h2>{{item.nombre}} </h2>
                           <p>{{item.descripcion}}</p>
                           <p>inicio: {{item.fechainiS}} fin: {{item.fechafinS}}</p>
+                          <span *ngFor="let dia of item.dias">
+                            <span *ngIf="dia==0"> Domingo </span>
+                            <span *ngIf="dia==1"> Lunes </span>
+                            <span *ngIf="dia==2"> Martes </span>
+                            <span *ngIf="dia==3"> Miercoles </span>
+                            <span *ngIf="dia==4"> Jueves </span>
+                            <span *ngIf="dia==5"> Viernes </span>
+                            <span *ngIf="dia==6"> Sabado </span>
+                            
+                          </span >
                           </ion-label>
                           <button ion-button clear item-end icon-only>
                               <ion-icon color="light" name='ios-arrow-down'></ion-icon>
@@ -70,6 +80,7 @@
                       </ion-avatar>       
                     <h2>{{ejer.nombre}} </h2>
                     <p>{{ejer.descorta}}</p>
+                    
                     <button ion-button clear item-end icon-only>
                         <ion-icon color="light" name='ios-arrow-forward'></ion-icon>
                     </button>

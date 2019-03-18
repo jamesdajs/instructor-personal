@@ -48,14 +48,17 @@ export class DetallejercicioPage {
     }
     this.storage.get("rol")
     .then(rol=>{
-      if(rol=="alumno")
+      if(rol=="alumno"){
         this.alumno=true
+        this.rutina.versetdeHoy(this.itemcompleto.idejercicio,this.itemcompleto.idrutina)
+        .subscribe(sethoy=>{
+          if(sethoy.length!=0) this.setrealizado=true
+          console.log(sethoy)
+        })
+      }
+      
     })
-    this.rutina.versetdeHoy(this.itemcompleto.idejercicio,this.itemcompleto.idrutina)
-    .subscribe(sethoy=>{
-      if(sethoy.length!=0) this.setrealizado=true
-      console.log(sethoy)
-    })
+    
   }
 
   ionViewDidLoad() {
