@@ -36,8 +36,9 @@
                 <h2>No se encontro resultados</h2>
               </ion-item>
           </ng-template>
+            <hr>
           <ion-item  color="listdivisor">
-              <h3>Solicitudes </h3>
+              <h2>Solicitudes </h2>
           </ion-item>
           <div *ngIf="solicitudes.length!=0;else elseBlock2">
               <ion-item color="carts" *ngFor="let item of solicitudes" >
@@ -52,7 +53,7 @@
             </div>
             <ng-template #elseBlock2>
                 <ion-item color="carts">
-                    <h2>No tiene ninguna solicitud</h2>
+                    <h3>No tiene ninguna solicitud</h3>
                 </ion-item>
             </ng-template>
         </ion-list>

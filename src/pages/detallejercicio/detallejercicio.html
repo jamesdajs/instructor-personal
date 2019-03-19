@@ -14,7 +14,7 @@
 
 
 <ion-content >
-    <ion-card color="listdivisor">
+    <ion-card color="carts">
         <div *ngIf="item.imagen!=''; else elseBlock">
 
             <img *ngIf="imagenaux==true; else elseBlock2" [src]="item.imagen" />
@@ -27,10 +27,10 @@
       </ng-template>
       <ion-card-content>
           <p>
-                Tipo : {{item.tipo}}
+              <span class="bold">Tipo :</span>   {{item.tipo}}
           </p>
           <p>
-            Descripcion : {{item.deslarga}}
+            <span class="bold">Descripcion :</span>  {{item.deslarga}}
           </p>
 
           
@@ -38,10 +38,10 @@
           <ion-list>
             <ion-grid  class="tabla" *ngIf="itemcompleto.idejercicio" >
               <ion-row justify-content-center align-items-center>
-                <ion-col col-2>set</ion-col>
-                <ion-col col-3>Peso</ion-col>
-                <ion-col col-2>Rep.</ion-col>
-                <ion-col col-3>Tiempo</ion-col>
+                <ion-col col-2> <span class="bold">Set</span> </ion-col>
+                <ion-col col-3><span class="bold">Peso</span>></ion-col>
+                <ion-col col-2><span class="bold">Rep.</span></ion-col>
+                <ion-col col-3><span class="bold">Tiempo</span></ion-col>
                 <ion-col col-2 *ngIf="alumno"></ion-col>
               </ion-row>
               <ion-row *ngFor="let dato of setejercicio; let o = index;" justify-content-center align-items-center>

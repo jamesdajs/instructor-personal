@@ -62,13 +62,9 @@ keyslec
     }
     
   }
-  ionViewWillUnload() {
-    //this.event.unsubscribe("recargarTabs")
-    //this.event.subscribe("recargarTabs")
-  }
   vercurso(key){
     const toast = this.toastctrl.create({
-      message: 'Se cargaron los datos del isntructor de forma correcta',
+      message: 'Se cargaron los datos del instructor de forma correcta',
       duration: 3000})
     this.store.get("key1")
     .then(res=>{
@@ -97,6 +93,7 @@ keyslec
     this.user.verMisinstuctor()
     .subscribe(data=>{
       this.misInstructores=data
+      console.log(data)
       //cargar.dismiss()
     },err=>{
       console.log(err)

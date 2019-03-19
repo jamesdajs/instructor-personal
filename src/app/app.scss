@@ -15,31 +15,38 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 ion-content{
-    background:  url("../assets/imgs/fondo.jpg") no-repeat center top;
+    background-color: #e2f3f5;
+    color: #0e153a;
+    /*background:  url("../assets/imgs/fondo.jpg") no-repeat center top;
     background-attachment: fixed;
     background-size: cover;
     position: relative;
-    color: map-get($colors, light) !important;
+    color: map-get($colors, light) !important;*/
 }
 @media (orientation: landscape) {
     ion-content{
-        background:  url("../assets/imgs/fondo2.jpg") no-repeat center top;
+        background-color: #e2f3f5;
+        color: #0e153a;
+        /*background:  url("../assets/imgs/fondo2.jpg") no-repeat center top;
         background-attachment: fixed;
         background-size: cover;
         position: relative;
-        color: map-get($colors, light) !important;
+        color: map-get($colors, light) !important;*/
     }
+}
+h2{
+    font-weight: bold !important;
 }
 ion-item.input{
     background-color: rgba(255, 255, 255, 0) !important;
-    color: map-get($colors, light) !important;
+    color: map-get($colors, secundary) !important;
 }
 ion-item.input ion-label{
-    color: map-get($colors, light) !important ;
+    color: black !important ;
 }
 ion-datetime{
         border-bottom:solid 1px !important;
-        color: map-get($colors, light) !important;
+        color: map-get($colors, dark) !important;
     }
 ion-icon {
     &[class*="custom-"] {
@@ -92,4 +99,7 @@ img {
 }
 .picker-wrapper{
 background-color: white !important;
+}
+.bold{
+    font-weight: bold;
 }

@@ -46,6 +46,7 @@ export class AdmClientesPage {
     .then(()=>{
       item.estado=true
       item.rol="instructor"
+      delete item.key
       this.user.guardarRutina_cliente(item)
     })
     .catch(err=>{

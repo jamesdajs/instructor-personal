@@ -36,10 +36,10 @@ $text-input-placeholder-color: #cac7c7;
 
 $colors: (
   primary:    #488aff,
-  secondary:  #00F9E1,
+  secondary:  #0e153ac5,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222,
+  dark:       #0e153a,
   sincolor:hsla(0, 0%, 100%, 0),
   facebook: (
     base: #4267B2,
@@ -50,50 +50,52 @@ $colors: (
     contrast: #f4f4f4
   ),
   normal: (
-    base: #00231E,
+    base: #0e153a,
     contrast: #f4f4f4
   ),
   carts: (
-    base: #225F5A,
-    contrast: #f4f4f4
+    base: #f4f4f4,
+    contrast: #0e153a
   ),
   listdivisor: (
-    base:  hsla(189, 90%, 12%, 0.5),
-    contrast: #f4f4f4
+    base:  #ffffff,
+    contrast: #0e153a
   ),
   head: (
-    base: #00231E,
-    contrast: #00F9E1
-  ),
-  refresh: (
-    base: #00231e00,
+    base: #0e153a,
     contrast: #f4f4f4
   ),
-  tabss: #00231E,
-  
+  refresh: (
+    base: #0e153a,
+    contrast: #f4f4f4
+  ),
+  tabss: (
+    base: #f4f4f4,
+    contrast: #0e153a
+  ),
 );
 
-$refresher-icon-color:map-get($colors, light);
-$refresher-text-color:map-get($colors, light);
+$refresher-icon-color:map-get($colors, dark);
+$refresher-text-color:map-get($colors, dark);
 // App iOS Variables
 $list-ios-background-color:map-get($colors,sincolor);
 // --------------------------------------------------
 // iOS only Sass variables can go here
-$range-ios-pin-color:map-get($colors, light);
-$text-input-ios-highlight-color: 	color($colors, light);
+$range-ios-pin-color:map-get($colors, dark);
+$text-input-ios-highlight-color: 	color($colors, dark);
 
 
 
 // App Material Design Variables
 
 $list-md-background-color:map-get($colors,sincolor);
-$text-input-md-highlight-color:map-get($colors, light);
+$text-input-md-highlight-color:map-get($colors, dark);
 $tabs-md-tab-opacity	:.5;
-$tabs-md-tab-text-color	: map-get($colors, light);
-$tabs-md-tab-icon-color	: map-get($colors, light);
+$tabs-md-tab-text-color	: map-get($colors, dark);
+$tabs-md-tab-icon-color	: map-get($colors, dark);
 
-$tabs-md-tab-text-color-active: map-get($colors, secondary);
-$tabs-md-tab-icon-color-active: map-get($colors, secondary);
+$tabs-md-tab-text-color-active: map-get($colors, dark);
+$tabs-md-tab-icon-color-active: map-get($colors, dark);
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
