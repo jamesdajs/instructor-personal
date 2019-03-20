@@ -24,6 +24,8 @@ export class AdmModrutinaclientePage {
 
   fechaini= ''
   fechafin= ''
+  fechainiaux= ''
+  fechafinaux= ''
   ejercicios=[]
   ejer_eliminados=[]
   indices=[]
@@ -74,7 +76,6 @@ export class AdmModrutinaclientePage {
   }
 
   ionViewDidLoad() {
-    
     let date=this.event.fechaini.toDate()
     this.fechaini=date.getFullYear()+"-"+(date.getMonth()<10?"0"+(date.getMonth()+1):(date.getMonth()+1))+"-"+(date.getDate()<9?"0"+(date.getDate()):(date.getDate()))
     
@@ -124,6 +125,8 @@ export class AdmModrutinaclientePage {
           }
           this.event["dias"]=this.indices
       if(this.key!=true){
+        this.fechafinaux=this.event.fechafin
+        this.fechainiaux=this.event.fechaini
         this.event["fechaini"]=new Date(this.fechaini.replace(/-/g, '\/'))
         this.event["fechafin"]=new Date(this.fechafin.replace(/-/g, '\/'))
         this.user.modrutinacliente(this.key,this.event.key,this.event)
@@ -169,8 +172,9 @@ export class AdmModrutinaclientePage {
       Promise.all(funciones)
       .then(()=>{
         
-        //this.event["fechaini"]=Date.parse(this.event.fechaini)/1000
-        //this.event["fechafin"]=new Date(this.fechafin.replace(/-/g, '\/'))
+        this.event["fechaini"]=this.fechainiaux
+        this.event["fechafin"]=this.fechafinaux
+        console.log(this.event)
         load.dismiss()
         toast.present()
         this.navCtrl.pop()

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , LoadingController } from 'ionic-angular';
 import { DetalledietaPage } from '../detalledieta/detalledieta';
 import { AdmCreardietaclientePage } from '../adm-creardietacliente/adm-creardietacliente';
+import { AdmModdietaclientePage } from '../adm-moddietacliente/adm-moddietacliente';
 
 import { DietasProvider } from '../../providers/dietas/dietas';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
@@ -45,8 +46,8 @@ export class AdmDietasclientePage {
         this.dieta.verDietasinstodo(this.key)
         .subscribe(list=>{
           list.forEach(element => {
-            element.fechaini=this.convertirfecha(element.fechaini)
-            element.fechafin=this.convertirfecha(element.fechafin)
+            element.fechainiS=this.convertirfecha(element.fechaini)
+            element.fechafinS=this.convertirfecha(element.fechafin)
             this.ejers[element.key]=[]
             element["estadohiide"]=false
 
@@ -75,6 +76,9 @@ export class AdmDietasclientePage {
     }
     verDetEjercicio(item){
         this.navCtrl.push(DetalledietaPage,item)
+    }
+    editar(item){
+      this.navCtrl.push(AdmModdietaclientePage,{dieta:item,key:this.key})
     }
   
   }

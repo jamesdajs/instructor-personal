@@ -46,6 +46,7 @@ import { AdmRutinasdefPage } from '../pages/adm-rutinasdef/adm-rutinasdef';
 
 import { AdmSetejercicioPage } from '../pages/adm-setejercicio/adm-setejercicio';
 import { AdmModrutinaclientePage } from '../pages/adm-modrutinacliente/adm-modrutinacliente';
+import { AdmModdietaclientePage } from '../pages/adm-moddietacliente/adm-moddietacliente';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -131,7 +132,8 @@ import { HttpClientModule } from '@angular/common/http';
     AdmModtiporutinaPage,
     AdmRutinasdefPage,
     AdmSetejercicioPage,
-    AdmModrutinaclientePage
+    AdmModrutinaclientePage,
+    AdmModdietaclientePage
   ],
   imports: [
     BrowserModule,
@@ -212,7 +214,8 @@ import { HttpClientModule } from '@angular/common/http';
     AdmModtiporutinaPage,
     AdmRutinasdefPage,
     AdmSetejercicioPage,
-    AdmModrutinaclientePage
+    AdmModrutinaclientePage,
+    AdmModdietaclientePage
 
   ],
   providers: [

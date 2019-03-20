@@ -74,7 +74,9 @@ $colors: (
     contrast: #0e153a
   ),
 );
+$text-input-highlight-color-valid:	#0e153a	;
 
+$text-input-highlight-color-invalid:	#f53d3d;
 $refresher-icon-color:map-get($colors, dark);
 $refresher-text-color:map-get($colors, dark);
 // App iOS Variables

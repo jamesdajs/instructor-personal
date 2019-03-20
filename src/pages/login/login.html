@@ -56,15 +56,15 @@
             <ion-grid>
                 <ion-row class="menu">
                   <ion-col  col-6>
-                      <button *ngIf="rol=='instructor';else botonAlum;" ion-button outline block color="normal" (click)="cambiarRolAlum()">alumno</button>
+                      <button *ngIf="rol=='instructor';else botonAlum;" ion-button block color="normal" (click)="cambiarRolAlum()">alumno</button>
                       <ng-template #botonAlum>
-                        <button  ion-button block color="normal" >alumno</button>
+                        <button ion-button outline block color="carts"  >alumno</button>
                       </ng-template>
                   </ion-col>
                   <ion-col col-6>
-                      <button *ngIf="rol=='instructor'else botonIns;" ion-button block color="normal" >Instructor</button>
+                      <button *ngIf="rol=='instructor'else botonIns;" ion-button outline block color="carts" >Instructor</button>
                       <ng-template #botonIns>
-                        <button  ion-button outline block color="normal" (click)="cambiarRolIst()">Instructor</button>
+                        <button ion-button block color="normal"  (click)="cambiarRolIst()">Instructor</button>
                       </ng-template>
                   </ion-col>
                 </ion-row>

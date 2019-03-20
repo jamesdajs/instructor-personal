@@ -17,6 +17,14 @@ page-login {
         text-align: center !important;
         color: white !important
     }
+    ion-content{
+       
+        background:  url("../assets/imgs/fondo1.png") no-repeat center top;
+        background-attachment: fixed;
+        background-size: cover;
+        position: relative;
+        color: map-get($colors, light) !important;
+    }
     p{
         margin: 0 !important;
     }

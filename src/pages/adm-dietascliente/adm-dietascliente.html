@@ -21,21 +21,31 @@
   <ion-content >
             <ion-list >
                   <div *ngIf="items.length!=0;else elseBlock">
-                    <div *ngFor="let item of items" class="delay">
-                        <ion-item-divider color="listdivisor"  >
-                          <ion-label (click)="verejercicios(item)">
+                    <div *ngFor="let item of items" >
+                      <ion-item-sliding >
+                        <ion-item color="listdivisor" (click)="verejercicios(item)">
+                          <ion-label >
                             
                             <h2>{{item.nombre}} </h2>
                             <p>{{item.descripcion}}</p>
-                            <p>inicio: {{item.fechaini}} fin: {{item.fechafin}}</p>
+                            <p>inicio: {{item.fechainiS}} fin: {{item.fechafinS}}</p>
                           </ion-label>
                             <button ion-button clear item-end icon-only (click)="verejercicios(item)">
-                                <ion-icon color="light" name='ios-arrow-down'></ion-icon>
+                                <ion-icon color="dark" name='ios-arrow-down'></ion-icon>
                             </button>
                             <ion-toggle [(ngModel)]="!item.estado" (ngModelChange)="habilitarrutina(item.key,$event)"></ion-toggle>
                     
                             
-                        </ion-item-divider>
+                        </ion-item>
+                        <ion-item-options >
+                        
+                            <button ion-button color="tabss" (click)="editar(item)" icon-start>
+                              <ion-icon name="paper"> </ion-icon>
+                              Modificar
+                            </button>
+                            
+                        </ion-item-options>
+                      </ion-item-sliding>
                         <div *ngIf="item.estadohiide">
                             <ion-item color="carts" *ngFor="let ejer of ejers[item.key]" (click)="verDetEjercicio(ejer)">        
                                 <ion-avatar item-start>
@@ -48,7 +58,7 @@
                               <p>{{ejer.tipo}}</p>
                                 <p>{{ejer.descorta}}</p>
                                 <button ion-button clear item-end icon-only>
-                                    <ion-icon color="light" name='ios-arrow-forward'></ion-icon>
+                                    <ion-icon color="dark" name='ios-arrow-forward'></ion-icon>
                                 </button>
                             </ion-item>
                         </div>

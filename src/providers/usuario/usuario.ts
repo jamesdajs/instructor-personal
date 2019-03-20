@@ -158,6 +158,10 @@ verSitienenDatos() {
     
     return this.db.collection(`cliente/${keycli}/rutinas`).doc(idrut).set(datos,{ merge: true })
   }
+  moddietacliente(keycli,iddieta,datos){
+    
+    return this.db.collection(`cliente/${keycli}/dietas`).doc(iddieta).set(datos,{ merge: true })
+  }
   guardarrutinaDefecto(datos){
     datos["estado"]=true
     return this.db.collection(`cliente/${this.authfb.auth.currentUser.uid}/rutinasdefecto`).add(datos)
@@ -165,7 +169,10 @@ verSitienenDatos() {
   guardarRutina_ejercicio(data){
     return this.db.collection(`rutina_ejer`).add(data)
   }
-  eliminarRutina_ejercicio(idrut_ejer){
+  eliminarRutina_ejercicio(iddie_dietas){
+    return this.db.collection(`dietas_dieta`).doc(iddie_dietas).delete()
+  }
+  eliminarDieta_dietas(idrut_ejer){
     return this.db.collection(`rutina_ejer`).doc(idrut_ejer).delete()
   }
   modificarRutina_ejercicio(key,data){
@@ -175,6 +182,11 @@ verSitienenDatos() {
     let query=res=>res.where("idrutina","==",keyruttina)
                       
     return this.getcollArrayconkey(`rutina_ejer`,query)
+  }
+  listardieta_dietas(keydieta){
+    let query=res=>res.where("iddietacli","==",keydieta)
+                      
+    return this.getcollArrayconkey(`dietas_dieta`,query)
   }
   guardarRutina_cliente(data){
     return this.db.collection(`instructor_cliente`).add(data)

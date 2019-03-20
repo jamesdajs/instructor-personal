@@ -33,12 +33,12 @@
             </ion-scroll>
           <ng-template #elseBlock4>
               <ion-item color="carts">
-                <h2>No se entontro resultados</h2>
+                <p>No se entontro resultados</p>
               </ion-item>
           </ng-template>
           
           <ion-item  color="listdivisor">
-              <h3>Selecione un instructor para ver las rutinas y dietas </h3>
+              <h2>Selecione un instructor para ver las rutinas y dietas </h2>
           </ion-item>
           <ion-scroll scrollX="true" scroll-avatar *ngIf="misInstructores.length!=0;else elseBlock3">
             <div class="itemsel" *ngFor="let item of misInstructores" (click)="vercurso(item.idinstructor)" >
@@ -53,12 +53,13 @@
                 </div>
                 
                 </div>
+
             </ion-scroll>
           <ng-template #elseBlock3>
               <ion-item color="carts">
                 <h2>No tiene ningun instructor</h2>
               </ion-item>
           </ng-template>
-          
+          <hr>
         </ion-list>
   </ion-content>

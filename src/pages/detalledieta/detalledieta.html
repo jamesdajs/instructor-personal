@@ -14,7 +14,7 @@
   
   
   <ion-content padding>
-      <ion-card color="listdivisor">
+      <ion-card color="carts">
           <img *ngIf="list.imagen!=''; else elseBlock" [src]="list.imagen" />
             <ng-template #elseBlock>
                 <img  src="../../assets/imgs/defecto2.jpeg" />
@@ -24,10 +24,10 @@
                 {{list.nombre}}
                 </ion-card-title>
               <p>
-                    tipo : {{list.tipo}}
+                  <span class="bold">Tipo :</span>   {{list.tipo}}
               </p>
               <p>
-                Descripcion : {{list.deslarga}}
+                <span class="bold">Descripcion :</span>  {{list.deslarga}}
               </p>
           </ion-card-content>
         </ion-card>

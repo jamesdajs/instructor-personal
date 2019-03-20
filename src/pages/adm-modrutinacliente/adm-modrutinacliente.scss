@@ -6,16 +6,13 @@ page-adm-modrutinacliente {
     .fechapadd{
         margin-top:15px;
     }
-    ion-label{
-        color: white !important;
-    }
     .selecionados{
         width: 75px;
         height: 75px;
         border-radius: 50%;
     }
     .add{
-        background-color: rgb(139, 139, 139);
+        background-color: #d3d3d3;
         font-size: 2.5em;
         padding: 15px 0 0 2px
     }
@@ -27,7 +24,6 @@ page-adm-modrutinacliente {
         text-align: center;
         max-width: 80px;
         width: 80px;
-        color: white;
     }
     ion-scroll[scroll-avatar] p{
         margin: 0;
@@ -40,7 +36,7 @@ page-adm-modrutinacliente {
         padding: 5px 15px;
     }
     ion-scroll[scroll-avatar]{
-        background-color: hsla(188, 90%, 12%, 0.4);
+        background-color: #f3f3f3;
         white-space: nowrap;
         height: 120px;
       }
@@ -53,8 +49,6 @@ page-adm-modrutinacliente {
         top: 0;
         right: 0;
         position: absolute;
-    }
-    .select-text, .select-icon-inner{
-        color:white;
+        color: white;
     }
 }

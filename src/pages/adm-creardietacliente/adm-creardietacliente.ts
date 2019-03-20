@@ -36,7 +36,7 @@ export class AdmCreardietaclientePage {
     let date=new Date()
     this.fechaini=date.getFullYear()+"-"+(date.getMonth()<9?"0"+(date.getMonth()+1):(date.getMonth()+1))+"-"+(date.getDate()<9?"0"+(date.getDate()):(date.getDate()))
     this.fechafin=this.fechaini
-    this.addEjercicio()
+    //this.addEjercicio()
     console.log('ionViewDidLoad AdmCrearrutinaclientePage');
   }
   addEjercicio(){
