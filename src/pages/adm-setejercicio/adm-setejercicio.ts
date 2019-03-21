@@ -75,7 +75,6 @@ export class AdmSetejercicioPage {
       ],
       positiveButtonText: "Aceptar",
       negativeButtonText: "Cancelar",
-      theme:'dark'	,
 
       wrapWheelText:true,
       defaultItems: [

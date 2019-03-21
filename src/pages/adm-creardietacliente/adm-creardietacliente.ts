@@ -40,9 +40,9 @@ export class AdmCreardietaclientePage {
     console.log('ionViewDidLoad AdmCrearrutinaclientePage');
   }
   addEjercicio(){
-    let profileModal = this.modal.create(AdmAsignardietaclientePage,this.ejercicios,{enableBackdropDismiss:false});
+    let profileModal = this.modal.create(AdmAsignardietaclientePage,{ejer:this.ejercicios},{enableBackdropDismiss:false});
    profileModal.onDidDismiss(data => {
-     this.ejercicios=data
+     this.ejercicios=data.ejer
      console.log(data);
    });
    profileModal.present();
@@ -51,13 +51,19 @@ export class AdmCreardietaclientePage {
     this.ejercicios.splice(i,1)
   }
   guardar(){
-    
-    if(this.ejercicios.length==0)
+    if(this.event.nombre=="" || this.event.descripcion=="" ){
+      this.toastCtrl.create({
+        message:"Tiene que llenar todos los campos ",
+        duration:3000
+      }).present()
+    }else if(this.ejercicios.length==0)
       this.toastCtrl.create({
         message:"Tiene que asignar almenos una dieta",
         duration:3000
       }).present()
     else{
+      
+      this.navCtrl.pop()
       let load=this.loadCtrl.create({
         content: "Guardando datos",
         })
@@ -83,7 +89,6 @@ export class AdmCreardietaclientePage {
         .then(()=>{
           load.dismiss()
           toast.present()
-          this.navCtrl.pop()
         })
       })
       

@@ -5,7 +5,7 @@ import { AdmCrearrutinaclientePage } from '../adm-crearrutinacliente/adm-crearru
 import { AdmModrutinaclientePage } from '../adm-modrutinacliente/adm-modrutinacliente';
 
 import { RutinaProvider } from '../../providers/rutina/rutina';
-import { UsuarioProvider } from '../../providers/usuario/usuario';
+import { UsuarioProvider } from '../../providers/usuario/usuario'
 
 import { Storage } from '@ionic/storage';
 /**
@@ -25,6 +25,7 @@ key
 items=[]
 ejers={}
 defecto=[]
+defestado=false
   constructor(public navCtrl: NavController, 
     public navParams: NavParams ,
     public rutina:RutinaProvider,
@@ -136,10 +137,11 @@ defecto=[]
       this.rutina.verEjercicios(key)
       .subscribe(list=>{
         this.ejers[key]=list
+        this.ejers[key].estado=true
         //console.log(list)
       })
-    }else{
-      this.ejers[key]=[]
+    }else {
+      this.ejers[key].estado=!this.ejers[key].estado
     }
     
   }
@@ -148,6 +150,10 @@ defecto=[]
   }
   editar(item){
     this.navCtrl.push(AdmModrutinaclientePage,{rut:item,key:this.key})
+  }
+  verrutinasdef(){
+    console.log(this.defestado)
+    this.defestado=!this.defestado
   }
 }
 

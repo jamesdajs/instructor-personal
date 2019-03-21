@@ -24,17 +24,20 @@ export class AdmAsignardietaclientePage {
   ]
   items=[]
   ejers={}
+  
+ejer_eliminados=[]
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private view:ViewController,
     private dieta:DietasProvider
     ) {
-      for(let i=0;i<navParams.data.length;i++){
-        this.dietasselec.push(navParams.data[i])
+      for(let i=0;i<navParams.data.ejer.length;i++){
+        this.dietasselec.push(navParams.data.ejer[i])
       }
-
+      if(navParams.data.elim) this.ejer_eliminados=navParams.data.elim
   }
   borrarselecionado(i,key){
+    if(this.dietasselec[i].idejer_rut) this.ejer_eliminados.push(this.dietasselec[i].idejer_rut)
     this.dietasselec.splice(i, 1);
     this.tipodieta.forEach(tipo=>{
       this.ejers[tipo.key].forEach(ejer => {
@@ -52,7 +55,7 @@ export class AdmAsignardietaclientePage {
     this.listarutinas()
   }
   dismiss(){
-    this.view.dismiss(this.dietasselec)
+    this.view.dismiss({ejer:this.dietasselec,elim:this.ejer_eliminados})
   }
   listarutinas(){
     this.tipodieta.forEach(element => {
@@ -92,6 +95,8 @@ solicitud(dieta,i,e?){
         }
     }
     if(encontrado!=null){
+      if(this.dietasselec[encontrado].idejer_rut) this.ejer_eliminados.push(this.dietasselec[encontrado].idejer_rut)
+        
       this.dietasselec.splice(encontrado, 1);
       dieta.estadoadd=true
     }

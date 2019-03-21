@@ -8,12 +8,6 @@ import { IonicPage,
 import { AdmAñadirejercicioPage } from '../adm-añadirejercicio/adm-añadirejercicio'
 import { UsuarioProvider } from "../../providers/usuario/usuario"
 
-/**
- * Generated class for the AdmModrutinaclientePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -59,7 +53,7 @@ export class AdmModrutinaclientePage {
      ) {
        console.log(navParams.data)
        this.event=navParams.data.rut
-       this.indices=navParams.data.rut.dias
+       if(navParams.data.rut.dias!== undefined)this.indices=navParams.data.rut.dias
        this.user.listarRutina_ejercicio(this.event.key)
        .subscribe(ejercicios=>{
          for(let i in ejercicios){
@@ -81,7 +75,7 @@ export class AdmModrutinaclientePage {
     
     date=this.event.fechafin.toDate()
     this.fechafin=date.getFullYear()+"-"+(date.getMonth()<10?"0"+(date.getMonth()+1):(date.getMonth()+1))+"-"+(date.getDate()<9?"0"+(date.getDate()):(date.getDate()))
-    console.log(this.event.key)
+    console.log(this.event.key,this.indices)
     //this.addEjercicio()
     console.log('ionViewDidLoad AdmCrearrutinaclientePage');
   }
@@ -89,9 +83,10 @@ export class AdmModrutinaclientePage {
     this.dias[o].estado=e.checked
   }
   addEjercicio(){
-    let profileModal = this.modal.create(AdmAñadirejercicioPage,this.ejercicios,{enableBackdropDismiss:false});
+    let profileModal = this.modal.create(AdmAñadirejercicioPage,{ejer:this.ejercicios,elim:this.ejer_eliminados},{enableBackdropDismiss:false});
    profileModal.onDidDismiss(data => {
-     this.ejercicios=data
+     this.ejercicios=data.ejer
+     this.ejer_eliminados=this.ejer_eliminados.concat(data.elim)
      console.log(data);
    });
    profileModal.present();
@@ -99,18 +94,31 @@ export class AdmModrutinaclientePage {
   eliminar(i){
     if(this.ejercicios[i].idejer_rut) this.ejer_eliminados.push(this.ejercicios[i].idejer_rut)
     this.ejercicios.splice(i,1)
+    console.log(this.ejer_eliminados)
     
   }
   guardar(){
-    
-    if(this.ejercicios.length==0){
+    if(this.event.nombre=="" || this.event.descripcion=="" ){
+      this.toastCtrl.create({
+        message:"Tiene que llenar todos los campos ",
+        duration:3000
+      }).present()
+    }
+    else if(this.ejercicios.length==0){
       this.toastCtrl.create({
         message:"Tiene que agregar al menos un ejercicio",
+        duration:3000
+      }).present()
+    }else if(this.indices.length==0){
+      this.toastCtrl.create({
+        message:"Tiene que agregar los dias que realizara la rutina",
         duration:3000
       }).present()
     }
       
     else{
+      
+      this.navCtrl.pop()
       let load=this.loadCtrl.create({
         content: "Guardando datos",
         })
@@ -130,8 +138,8 @@ export class AdmModrutinaclientePage {
         this.event["fechaini"]=new Date(this.fechaini.replace(/-/g, '\/'))
         this.event["fechafin"]=new Date(this.fechafin.replace(/-/g, '\/'))
         this.user.modrutinacliente(this.key,this.event.key,this.event)
-        .then(res=>{
-          console.log(res,this.event.key)
+        .then(()=>{
+          console.log(this.event.key)
           this.guardarejercicios(this.event.key,load,toast)
         })
       }else{
@@ -174,10 +182,9 @@ export class AdmModrutinaclientePage {
         
         this.event["fechaini"]=this.fechainiaux
         this.event["fechafin"]=this.fechafinaux
-        console.log(this.event)
+        //console.log(this.event)
         load.dismiss()
         toast.present()
-        this.navCtrl.pop()
       })
     
   }

@@ -20,7 +20,10 @@
 
 <ion-content >
     <ion-card color="listdivisor">
-      <img [src]="ejercicio.imagen">
+      <img *ngIf="ejercicio.imagen!=''; else elseBlock" [src]="ejercicio.imagen">
+      <ng-template #elseBlock>
+          <img  src="../../assets/imgs/defecto.jpeg" />
+      </ng-template>
         <ion-card-content>
         
           <ion-grid  >
@@ -33,9 +36,9 @@
           </ion-row>
           <ion-row *ngFor="let dato of datos; let o = index;">
               <ion-col col-2 (click)="modificarset(o,dato.peso,dato.repeticiones,dato.tiempo)">{{o+1}}</ion-col>
-              <ion-col col-3><span *ngIf="dato.peso!=''">{{dato.peso}} Kg</span></ion-col>
-              <ion-col col-3><span *ngIf="dato.repeticiones!=''">{{dato.repeticiones}}</span></ion-col>
-              <ion-col col-3><span *ngIf="dato.tiempo!=''">{{dato.tiempo}} min</span></ion-col>
+              <ion-col col-3 (click)="modificarset(o,dato.peso,dato.repeticiones,dato.tiempo)"><span *ngIf="dato.peso!=''">{{dato.peso}} Kg</span></ion-col>
+              <ion-col col-3 (click)="modificarset(o,dato.peso,dato.repeticiones,dato.tiempo)"><span *ngIf="dato.repeticiones!=''">{{dato.repeticiones}}</span></ion-col>
+              <ion-col col-3 (click)="modificarset(o,dato.peso,dato.repeticiones,dato.tiempo)"><span *ngIf="dato.tiempo!=''">{{dato.tiempo}} min</span></ion-col>
               <ion-col col-1 (click)="eliminarset(o)"><ion-icon name="remove-circle"></ion-icon></ion-col>
             </ion-row>
 
@@ -43,18 +46,21 @@
         </ion-card-content>
       <ion-grid>
         <ion-row>
-          <ion-col>
+          <ion-col col-3>
 
               <button ion-button full color="normal" (click)="openPicker()">+</button>
           </ion-col>
-          <ion-col>
+          <ion-col col-6>
+              <button ion-button block outline color="normal" (click)="prueva()">click</button>
+          </ion-col>
+          <ion-col col-3>
             
               <button ion-button full color="normal" (click)="quitar()">-</button>
           </ion-col>
         </ion-row>
 
   
-        <button ion-button full color="normal" (click)="prueva()">click</button>
+        
 
       </ion-grid>
     </ion-card>

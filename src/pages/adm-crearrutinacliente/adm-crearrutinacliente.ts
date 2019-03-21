@@ -63,9 +63,9 @@ export class AdmCrearrutinaclientePage {
     this.dias[o].estado=e.checked
   }
   addEjercicio(){
-    let profileModal = this.modal.create(AdmAñadirejercicioPage,this.ejercicios,{enableBackdropDismiss:false});
+    let profileModal = this.modal.create(AdmAñadirejercicioPage,{ejer:this.ejercicios},{enableBackdropDismiss:false});
    profileModal.onDidDismiss(data => {
-     this.ejercicios=data
+     this.ejercicios=data.ejer
      console.log(data);
    });
    profileModal.present();
@@ -74,9 +74,9 @@ export class AdmCrearrutinaclientePage {
     this.ejercicios.splice(i,1)
   }
   guardar(){
-    if(this.event.nombre=="" || this.event.descripcion=="" || this.indices.length==0){
+    if(this.event.nombre=="" || this.event.descripcion=="" ){
       this.toastCtrl.create({
-        message:"Tiene que llenar todos los campos y seleccionar los dias que se realizaran de los ejercicios",
+        message:"Tiene que llenar todos los campos ",
         duration:3000
       }).present()
     }
@@ -86,8 +86,14 @@ export class AdmCrearrutinaclientePage {
         duration:3000
       }).present()
     }
-      
+    else if(this.indices.length==0){
+      this.toastCtrl.create({
+        message:"Tiene que agregar los dias que realizara  la rutina",
+        duration:3000
+      }).present()
+    }  
     else{
+      this.navCtrl.pop()
       let load=this.loadCtrl.create({
         content: "Guardando datos",
         })
@@ -143,7 +149,7 @@ export class AdmCrearrutinaclientePage {
       .then(()=>{
         load.dismiss()
         toast.present()
-        this.navCtrl.pop()
+        
       })
     
   }

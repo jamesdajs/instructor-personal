@@ -54,6 +54,7 @@ export class DietasProvider {
   }
   verDietasinstodo(keycli){
     let query=res => res.where("idinstructor","==",this.auth.auth.currentUser.uid)
+                        .orderBy('fechaini','desc')
     return this.getcollArrayconkey("cliente/"+keycli+"/dietas",query)
   }
   /*

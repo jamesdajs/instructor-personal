@@ -169,11 +169,11 @@ verSitienenDatos() {
   guardarRutina_ejercicio(data){
     return this.db.collection(`rutina_ejer`).add(data)
   }
-  eliminarRutina_ejercicio(iddie_dietas){
-    return this.db.collection(`dietas_dieta`).doc(iddie_dietas).delete()
-  }
-  eliminarDieta_dietas(idrut_ejer){
+  eliminarRutina_ejercicio(idrut_ejer){
     return this.db.collection(`rutina_ejer`).doc(idrut_ejer).delete()
+  }
+  eliminarDieta_dietas(iddie_dietas){
+    return this.db.collection(`dietas_dieta`).doc(iddie_dietas).delete()
   }
   modificarRutina_ejercicio(key,data){
     return this.db.collection(`rutina_ejer`).doc(key).set(data,{ merge: true })

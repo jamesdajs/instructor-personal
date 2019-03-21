@@ -20,17 +20,25 @@
 
   <ion-content >
     <ion-list >
-        <ion-item color="carts" >
+        <ion-item color="carts" (click)="verrutinasdef()" >
             <h2>rutinas por defecto para asignar</h2>
-            
+            <button ion-button clear item-end icon-only>
+                <ion-icon *ngIf="defestado; else Iconodefecto" color="dark" name='ios-arrow-up'></ion-icon>
+                <ng-template #Iconodefecto>
+                    <ion-icon  color="dark" name='ios-arrow-down'></ion-icon>
+                </ng-template>
+            </button> 
         </ion-item>
-        <ion-item color="listdivisor" *ngFor="let ejer of defecto; let o = index;"  (click)="alercontime(ejer)"> 
+        <div *ngIf="defestado">
+            <ion-item color="listdivisor" *ngFor="let ejer of defecto; let o = index;"  (click)="alercontime(ejer)"> 
 
-            <ion-label>
-                    <h2>{{ejer.nombre}}</h2>
-                    <p>{{ejer.descorta}}</p>
-            </ion-label>
-    </ion-item>
+                <ion-label>
+                        <h2>{{ejer.nombre}}</h2>
+                        <p>{{ejer.descorta}}</p>
+                </ion-label>
+          </ion-item>
+        </div>
+        
         <ion-item color="carts">
             <h2>rutinas asignadas al alumno
             </h2>
@@ -43,19 +51,25 @@
                           <h2>{{item.nombre}} </h2>
                           <p>{{item.descripcion}}</p>
                           <p>inicio: {{item.fechainiS}} fin: {{item.fechafinS}}</p>
-                          <span *ngFor="let dia of item.dias">
-                            <span *ngIf="dia==0"> Domingo </span>
-                            <span *ngIf="dia==1"> Lunes </span>
-                            <span *ngIf="dia==2"> Martes </span>
-                            <span *ngIf="dia==3"> Miercoles </span>
-                            <span *ngIf="dia==4"> Jueves </span>
-                            <span *ngIf="dia==5"> Viernes </span>
-                            <span *ngIf="dia==6"> Sabado </span>
-                            
-                          </span >
+                          <p>
+                              <span *ngFor="let dia of item.dias">
+                                  <span *ngIf="dia==0"> Domingo </span>
+                                  <span *ngIf="dia==1"> Lunes </span>
+                                  <span *ngIf="dia==2"> Martes </span>
+                                  <span *ngIf="dia==3"> Miercoles </span>
+                                  <span *ngIf="dia==4"> Jueves </span>
+                                  <span *ngIf="dia==5"> Viernes </span>
+                                  <span *ngIf="dia==6"> Sabado </span>
+                                  
+                                </span >
+                          </p>
+                          
                           </ion-label>
                           <button ion-button clear item-end icon-only>
-                              <ion-icon color="dark" name='ios-arrow-down'></ion-icon>
+                              <ion-icon *ngIf="!ejers[item.key].estado; else t" color="dark" name='ios-arrow-down'></ion-icon>
+                              <ng-template #t>
+                                <ion-icon  color="dark" name='ios-arrow-up'></ion-icon>
+                              </ng-template>
                           </button>
                           <ion-toggle [(ngModel)]="!item.estado" (ngModelChange)="habilitarrutina(item.key,$event)"></ion-toggle>
                           
@@ -70,23 +84,25 @@
                         
                     </ion-item-options>
                   </ion-item-sliding>
+                <div *ngIf="ejers[item.key].estado">
+                    <ion-item color="carts" *ngFor="let ejer of ejers[item.key]" (click)="verDetEjercicio(ejer)"> 
+                        <ion-avatar item-start>
+                            <img *ngIf="ejer.imagen!=''; else elseBlock" [src]="ejer.imagen" />
+                              <ng-template #elseBlock>
+                                  <img  src="../../assets/imgs/defecto.jpeg" />
+                          </ng-template>
+                          </ion-avatar>       
+                        <h2>{{ejer.nombre}} </h2>
+                        <p>{{ejer.tipo}}</p>
+                        <p>{{ejer.descorta}}</p>
+                        
+                        <button ion-button clear item-end icon-only>
+                            <ion-icon color="dark" name='ios-arrow-forward'></ion-icon>
+                        </button>
+                        
+                    </ion-item>
+                </div>
                 
-                <ion-item color="carts" *ngFor="let ejer of ejers[item.key]" (click)="verDetEjercicio(ejer)"> 
-                    <ion-avatar item-start>
-                        <img *ngIf="ejer.imagen!=''; else elseBlock" [src]="ejer.imagen" />
-                          <ng-template #elseBlock>
-                              <img  src="../../assets/imgs/defecto.jpeg" />
-                      </ng-template>
-                      </ion-avatar>       
-                    <h2>{{ejer.nombre}} </h2>
-                    <p>{{ejer.tipo}}</p>
-                    <p>{{ejer.descorta}}</p>
-                    
-                    <button ion-button clear item-end icon-only>
-                        <ion-icon color="dark" name='ios-arrow-forward'></ion-icon>
-                    </button>
-                    
-                </ion-item>
             </div>                
           </div>
           <ng-template #elseBlock>

@@ -4,7 +4,7 @@ import { AdmModdietaclientePage } from './adm-moddietacliente';
 
 @NgModule({
   declarations: [
-    AdmModdietaclientePage,
+    //AdmModdietaclientePage,
   ],
   imports: [
     IonicPageModule.forChild(AdmModdietaclientePage),

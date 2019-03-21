@@ -68,25 +68,37 @@ export class AdmModdietaclientePage {
     console.log('ionViewDidLoad AdmCrearrutinaclientePage' ,this.event.key,this.key);
   }
   addEjercicio(){
-    let profileModal = this.modal.create(AdmAsignardietaclientePage,this.ejercicios,{enableBackdropDismiss:false});
+    let profileModal = this.modal.create(
+      AdmAsignardietaclientePage,
+      {ejer:this.ejercicios,elim:this.ejer_eliminados},
+      {enableBackdropDismiss:false
+      });
    profileModal.onDidDismiss(data => {
-     this.ejercicios=data
+     this.ejercicios=data.ejer
      console.log(data);
    });
    profileModal.present();
   }
   eliminar(i){
     if(this.ejercicios[i].idejer_rut) this.ejer_eliminados.push(this.ejercicios[i].idejer_rut)
+    //console.log(this.ejer_eliminados)
     this.ejercicios.splice(i,1)
   }
   guardar(){
-    
+    if(this.event.nombre=="" || this.event.descripcion=="" ){
+      this.toastCtrl.create({
+        message:"Tiene que llenar todos los campos ",
+        duration:3000
+      }).present()
+    }else
     if(this.ejercicios.length==0)
       this.toastCtrl.create({
         message:"Tiene que asignar almenos una dieta",
         duration:3000
       }).present()
     else{
+      
+      this.navCtrl.pop()
       let load=this.loadCtrl.create({
         content: "Guardando datos",
         })
@@ -115,7 +127,7 @@ export class AdmModdietaclientePage {
         })
         this.ejer_eliminados.forEach(item=>{
         
-          funciones.push(this.user.eliminarRutina_ejercicio(item))
+          funciones.push(this.user.eliminarDieta_dietas(item))
         })
         Promise.all(funciones)
         .then(()=>{
@@ -123,7 +135,6 @@ export class AdmModdietaclientePage {
           this.event["fechafin"]=this.fechafinaux
           load.dismiss()
           toast.present()
-          this.navCtrl.pop()
         })
       })
       
