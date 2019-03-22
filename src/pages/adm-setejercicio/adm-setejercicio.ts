@@ -126,7 +126,7 @@ export class AdmSetejercicioPage {
       }
     }
     this.selector.show({
-      title: "Parametros del ejercicio",
+      title: "Modificar set "+(i+1),
       
       displayKey: 'description',
       items: [
@@ -136,7 +136,6 @@ export class AdmSetejercicioPage {
       ],
       positiveButtonText: "Aceptar",
       negativeButtonText: "Cancelar",
-      theme:'dark'	,
 
       wrapWheelText:true,
       defaultItems: [

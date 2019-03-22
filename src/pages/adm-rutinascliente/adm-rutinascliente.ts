@@ -133,6 +133,10 @@ defestado=false
   }
   verejercicios(key){
     //this.navCtrl.push(EjerciciosPage,key)
+    if(this.ejers[key].estado==false)
+      for(let i in this.ejers){
+        this.ejers[i].estado=false
+      }
     if(this.ejers[key].length==0){
       this.rutina.verEjercicios(key)
       .subscribe(list=>{

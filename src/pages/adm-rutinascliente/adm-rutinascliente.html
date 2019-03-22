@@ -45,8 +45,8 @@
         </ion-item>
           <div *ngIf="items.length!=0;else elseBlock">
             <div *ngFor="let item of items" >
-                <ion-item-sliding (click)="verejercicios(item.key)">
-                  <ion-item color="listdivisor">
+                <ion-item-sliding  (click)="verejercicios(item.key)">
+                  <ion-item  color="listdivisor"  >
                       <ion-label>
                           <h2>{{item.nombre}} </h2>
                           <p>{{item.descripcion}}</p>
@@ -74,7 +74,7 @@
                           <ion-toggle [(ngModel)]="!item.estado" (ngModelChange)="habilitarrutina(item.key,$event)"></ion-toggle>
                           
                   </ion-item>
-                   
+                  
                     <ion-item-options >
                         
                         <button ion-button color="tabss" (click)="editar(item)" icon-start>
