@@ -92,7 +92,7 @@ export class DatospersonalesPage {
         if(!res.peso||!res.altura||!res.telefono||!res.genero||!res.fechanac){
           let alert = this.alert.create({
             title: 'Datos Incompletos',
-            subTitle: 'Porfavor actualize sus datos para mejores ...',
+            subTitle: 'Porfavor actualize sus datos para optener una mejor experiencia en la aplicasion',
             buttons: ['Ok']
           });
           alert.present();
