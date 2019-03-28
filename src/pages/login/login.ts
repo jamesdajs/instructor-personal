@@ -144,10 +144,17 @@ console.log("splas abierto")
             email:data.email,
             instructor:true
           }
-                      this.user.crearusuario(data.uid,datos)
-                       .then(()=>{
-                         resolve('datos creados correctos')
-                       })
+          Promise.all([
+            this.user.creardatosInstructor({
+              descorta:"",
+              deslarga:"",
+              cursos:""
+            }),
+            this.user.crearusuario(data.uid,datos)
+          ])
+            .then(()=>{
+              resolve('datos creados correctos')
+            })
             }
       }, error=>{
         //console.log(error);

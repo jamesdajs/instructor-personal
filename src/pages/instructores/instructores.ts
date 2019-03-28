@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController, Platform } from 'ionic-angular';
 
 import { UsuarioProvider } from '../../providers/usuario/usuario'
 import { DatosinstructorPage } from '../../pages/datosinstructor/datosinstructor'
@@ -28,6 +28,7 @@ keyslec
     public navParams: NavParams,
     public user:UsuarioProvider,
     private store:Storage,
+    private platform:Platform,
    // private loadctrl:LoadingController,
     private toastctrl:ToastController,
     //private event:Events,
@@ -45,6 +46,13 @@ keyslec
     this.vermisinstructores()
     //this.store.clear()
   }
+  unregisterBackButtonAction:any
+  initializeBackButtonCustomHandler(): void {
+    this.unregisterBackButtonAction = this.platform.registerBackButtonAction(function(event){
+        console.log('Prevent Back Button Page Change');
+        alert('Prevent Back Button Page Change');
+    }, 101); // Priority 101 will override back button handling (we set in app.component.ts) as it is bigger then priority 100 configured in app.component.ts file */
+}
   verInstructor(key){
     this.navCtrl.push(DatosinstructorPage,key)
   }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController ,Events} from 'ionic-angular';
+import { IonicPage, NavController ,Events,Platform,AlertController} from 'ionic-angular';
 
 
 import { DatospersonalesPage } from '../datospersonales/datospersonales';
@@ -43,7 +43,9 @@ export class InstructorPage {
   tab3Root = AdmTipodietaPage;
   tab4Root = DatospersonalesPage
 
-  constructor(public navCtrl: NavController,public event:Events ,public spalsh:SplashScreen) {
+  constructor(public navCtrl: NavController,public event:Events ,public spalsh:SplashScreen,
+    public platform:Platform,public alertCtrl:AlertController
+    ) {
     event.subscribe('cambiar a alumno',(val)=>{
       
       console.log(val)
@@ -52,6 +54,29 @@ export class InstructorPage {
          this.recursivo()
         })
       })
+      platform.registerBackButtonAction(() => {
+        let alert = alertCtrl.create({
+          title: 'Salir de la aplicasion',
+          message: 'Seguro que desea salir de la aplicasion?',
+          buttons: [
+            {
+              text: 'Cancelar',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            },
+            {
+              text: 'Ok',
+              handler: () => {
+                
+            platform.exitApp();
+              }
+            }
+          ]
+        });
+        alert.present();
+      },1);
     }
     ionViewDidLoad(){
 

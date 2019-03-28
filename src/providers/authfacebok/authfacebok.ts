@@ -61,6 +61,10 @@ constructor(private afAuth: AngularFireAuth, private fb: Facebook, private platf
   }
   logout() {
     this.afAuth.auth.signOut();
+    this.fb.logout()
+    .then(()=>{
+      console.log("cerrando sesion de ios")
+    })
   }
   veriduser(){
     return Promise.resolve(this.afAuth.auth.currentUser.uid)

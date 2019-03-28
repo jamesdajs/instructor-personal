@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, Platform ,MenuController} from 'ionic-angular';
+import { App, Platform ,MenuController,AlertController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -15,6 +15,7 @@ export class MyApp {
   constructor(platform: Platform,
     public app:App, 
     public menuCtrl:MenuController,
+    public alertCtrl:AlertController,
     statusBar: StatusBar, 
     splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -23,6 +24,6 @@ export class MyApp {
 
       statusBar.styleDefault();
     });
+    
   }
-
 }

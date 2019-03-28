@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavController,App,Events} from 'ionic-angular';
+import {NavController,App,Events,Platform,AlertController} from 'ionic-angular';
 import { RutinasPage } from '../rutinas/rutinas';
 import { DietasPage } from '../dietas/dietas';
 //import { EstadisticasPage } from '../estadisticas/estadisticas';
@@ -25,8 +25,32 @@ export class TabsPage {
 
   constructor( public event:Events,
     public navCtrl:NavController,app:App,
-    public splash:SplashScreen
+    public splash:SplashScreen,public platform:Platform,
+    public alertCtrl:AlertController
     ) {
+      platform.registerBackButtonAction(() => {
+        let alert = alertCtrl.create({
+          title: 'Salir de la aplicasion',
+          message: 'Seguro que desea salir de la aplicasion?',
+          buttons: [
+            {
+              text: 'Cancelar',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            },
+            {
+              text: 'Ok',
+              handler: () => {
+                
+            platform.exitApp();
+              }
+            }
+          ]
+        });
+        alert.present();
+      },1);
     event
     .subscribe('irAinicio',()=>{
       navCtrl.setRoot(LoginPage)
@@ -45,6 +69,7 @@ export class TabsPage {
       
       console.log(val)
       navCtrl.setRoot(InstructorPage)
+      
       //if(val)
        // this.navCtrl.setRoot(this.navCtrl.getActive().component)
         
@@ -52,8 +77,10 @@ export class TabsPage {
     
     
   }
+  unregisterBackButtonAction: any;
   ionViewDidLoad(){
 
     this.splash.hide()
   }
+  
 }
