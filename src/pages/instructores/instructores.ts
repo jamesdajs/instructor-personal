@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
 
 import { UsuarioProvider } from '../../providers/usuario/usuario'
 import { DatosinstructorPage } from '../../pages/datosinstructor/datosinstructor'
@@ -23,12 +23,12 @@ buscar=""
 datosbuscado=[]
 misInstructores=[]
 keyslec
+publicaciones=[]
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public user:UsuarioProvider,
     private store:Storage,
-    private platform:Platform,
    // private loadctrl:LoadingController,
     private toastctrl:ToastController,
     //private event:Events,
@@ -44,15 +44,10 @@ keyslec
   ionViewDidLoad() {
     console.log('ionViewDidLoad InstructoresPage');
     this.vermisinstructores()
+    this.lstarPublicaciones()
     //this.store.clear()
   }
-  unregisterBackButtonAction:any
-  initializeBackButtonCustomHandler(): void {
-    this.unregisterBackButtonAction = this.platform.registerBackButtonAction(function(event){
-        console.log('Prevent Back Button Page Change');
-        alert('Prevent Back Button Page Change');
-    }, 101); // Priority 101 will override back button handling (we set in app.component.ts) as it is bigger then priority 100 configured in app.component.ts file */
-}
+  
   verInstructor(key){
     this.navCtrl.push(DatosinstructorPage,key)
   }
@@ -108,5 +103,30 @@ keyslec
     })
     
     
+  }
+  lstarPublicaciones(){
+    let mes=["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."]
+    let hoy=new Date()
+    this.user.listarPublicasion()
+    .subscribe(res=>{
+      res.forEach(element => {
+        let prefi=""
+        let diap=element.fecha.toDate()
+        if(diap.getDate()==hoy.getDate() && 
+        diap.getMonth()==hoy.getMonth() &&
+        diap.getFullYear()==hoy.getFullYear()
+        )
+          prefi="Hoy "
+        else if(diap.getDate()+1==hoy.getDate() && 
+        diap.getMonth()==hoy.getMonth() &&
+        diap.getFullYear()==hoy.getFullYear())
+          prefi="Ayer "
+        else prefi=diap.getDate()+" de "+mes[diap.getMonth()]
+
+        element["fecha2"]=prefi+" "+ diap.getHours()+":"+(diap.getMinutes()<9?"0"+diap.getMinutes():diap.getMinutes())
+      });
+      this.publicaciones=res
+      console.log(res)
+    })
   }
 }

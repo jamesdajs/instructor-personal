@@ -61,5 +61,34 @@
                     <h3>No tiene ninguna solicitud</h3>
                 </ion-item>
             </ng-template>
+            
+            
         </ion-list>
+        <ion-grid no-padding>
+                <ion-row *ngFor="let p of publicaciones">
+                    <ion-col no-padding>
+                            <ion-card>
+                                    <ion-item>
+                                            <ion-avatar item-start>
+                                              <img [src]="p.foto">
+                                            </ion-avatar>
+                                            
+                                            <p>{{p.nombre}}</p>
+                                            <p>{{p.fecha2}}</p>
+                                    </ion-item>
+                                    <ion-card-content>
+                                      
+                                        <p>{{p.comentario}}
+                                        </p>
+                                    </ion-card-content>
+                                    <img [src]="p.imagen"/>
+                                    <ion-card-content>
+                                      
+                                      <p>
+                                      </p>
+                                    </ion-card-content>
+                                  </ion-card>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
   </ion-content>

@@ -1,10 +1,14 @@
 page-datospersonales {
     img{
-        border-radius: 50%;
-        width: 200px;
-        height: 200px;
+        //border-radius: 50%;
+        //width: 200px;
+        //height: 200px;
         display:block;
-        margin: 20px auto 0 auto;
+        //margin: 20px auto 0 auto;
+    }
+    
+    ion-grid{
+        margin-bottom: 50px ;
     }
     ion-item{
         background-color: rgba(255, 255, 255, 0) !important;
@@ -24,7 +28,7 @@ page-datospersonales {
     .menu ion-col{
         padding: 0 !important;
     }
-    img{
+    img.foto{
         border-radius: 50%;
         width: 75px !important;
         height: 75px !important;

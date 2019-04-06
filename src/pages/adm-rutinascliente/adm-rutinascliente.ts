@@ -66,12 +66,14 @@ defestado=false
         {
           name: 'fecha',
           type:"date",
-          min:"2019"
+          min:"2019",
+          placeholder:"Fecha de inicio"
         },
         {
           name: 'fecha2',
           type:"date",
-          min:"2019"
+          min:"2019",
+          placeholder:"Fecha fin"
         }
       ],
       buttons: [

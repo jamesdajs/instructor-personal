@@ -103,14 +103,22 @@ console.log("splas abierto")
     cargar.present()
     this.conectarFacebook()
     .then(res=>{
-      if(this.rol=="alumno"){
-        this.store.set("rol",this.rol)
-        this.navCtrl.setRoot(TabsPage)
-      }else{
-        this.store.set("rol",this.rol)
-        this.navCtrl.setRoot(InstructorPage)
-      }
-      console.log(res)
+    this.user.leermisdatos()
+      .subscribe(data=>{
+        if(this.rol=="alumno"){
+          this.store.set("rol",this.rol)
+          this.navCtrl.setRoot(TabsPage)
+        }else if(data.instructor){
+          this.store.set("rol",this.rol)
+          this.navCtrl.setRoot(InstructorPage)
+        }else{
+          alert("No tienen permiso para entrar como Instructor, automaticamnete entrara como alumno, Contactenos para entrar como instructor para el modo beta (cel 60485797)")
+          this.store.set("rol","alumno")
+          this.navCtrl.setRoot(TabsPage)
+        }
+
+      })
+      
       
       cargar.dismiss()
     })
@@ -141,8 +149,7 @@ console.log("splas abierto")
             nombre:data.displayName,
             foto:data.photoURL,
             fullname:data.displayName.toLowerCase(),
-            email:data.email,
-            instructor:true
+            email:data.email
           }
           Promise.all([
             this.user.creardatosInstructor({

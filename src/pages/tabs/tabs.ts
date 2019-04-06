@@ -5,12 +5,11 @@ import { DietasPage } from '../dietas/dietas';
 //import { EstadisticasPage } from '../estadisticas/estadisticas';
 import { DatospersonalesPage } from '../datospersonales/datospersonales';
 import { InstructoresPage } from '../instructores/instructores';
-import { LoginPage } from '../login/login';
-import { InstructorPage } from '../instructor/instructor';
 //import { UsuarioProvider } from '../../providers/usuario/usuario';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -26,7 +25,8 @@ export class TabsPage {
   constructor( public event:Events,
     public navCtrl:NavController,app:App,
     public splash:SplashScreen,public platform:Platform,
-    public alertCtrl:AlertController
+    public alertCtrl:AlertController,
+    private store:Storage
     ) {
       platform.registerBackButtonAction(() => {
         let alert = alertCtrl.create({
@@ -51,36 +51,21 @@ export class TabsPage {
         });
         alert.present();
       },1);
-    event
-    .subscribe('irAinicio',()=>{
-      navCtrl.setRoot(LoginPage)
-      //this.cargaDeDatos()
-    })
     
-    event.subscribe('recargarTabs',(val)=>{
-      
-      console.log(val)
-      //navCtrl.setRoot(TabsPage)
-      //if(val)
-       // this.navCtrl.setRoot(this.navCtrl.getActive().component)
-        
-    })
-    event.subscribe('cambiar a instructor',(val)=>{
-      
-      console.log(val)
-      navCtrl.setRoot(InstructorPage)
-      
-      //if(val)
-       // this.navCtrl.setRoot(this.navCtrl.getActive().component)
-        
-    })
     
     
   }
   unregisterBackButtonAction: any;
   ionViewDidLoad(){
-
+    this.versitienenIns()
     this.splash.hide()
   }
-  
+  versitienenIns(){
+    
+    this.store.get("key1")
+      .then(key=>{
+        console.log(key)
+        this.valor=key==null?false:true
+      })
+  }
 }

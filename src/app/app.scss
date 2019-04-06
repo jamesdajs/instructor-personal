@@ -43,13 +43,20 @@ ion-item.input{
     background-color: rgba(255, 255, 255, 0) !important;
     color: map-get($colors, secundary) !important;
 }
-ion-item.input ion-label{
+ion-item.input {
     color: black !important ;
+}
+ion-label{
+    
+    color: #7c7c7c  !important ;
 }
 ion-datetime{
         border-bottom:solid 1px !important;
         color: map-get($colors, dark) !important;
     }
+.msgerr{
+    color: #fd7171 !important;
+}
 ion-icon {
     &[class*="custom-"] {
     mask-size: contain;
@@ -76,6 +83,9 @@ ion-icon {
     }
     &[class*="custom-run"] {
         mask-image: url(../assets/icon/run.svg);
+    }
+    &[class*="custom-whatsapp"] {
+        mask-image: url(../assets/icon/whatsapp.svg);
     }
 }
 img {
@@ -104,4 +114,18 @@ background-color: white !important;
 }
 .bold{
     font-weight: bold;
+}
+//alerta de imagen
+.titulo .palert{
+    margin: 0 !important;
+    padding: 5px 24px;
+}
+.titulo .alert-head {
+    padding: 0px !important;
+}
+.titulo .alert-title{
+    padding: 5px 24px;
+}
+.titulo .alert-message{
+    padding-bottom: 0 !important;
 }

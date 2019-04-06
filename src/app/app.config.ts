@@ -14,6 +14,24 @@ export const firebaseConfig = {
     cliente_endpoint: "cliente",
     instructor_endpoint: "instructor"
   };
+  
+/*  configuracion usuarios 
+    apiKey: "AIzaSyCM_hCpwHHNA82t0GQhnMhAAfmEdsXORRk",
+    authDomain: "good-me-pruevas.firebaseapp.com",
+    databaseURL: "https://good-me-pruevas.firebaseio.com",
+    projectId: "good-me-pruevas",
+    storageBucket: "good-me-pruevas.appspot.com",
+    messagingSenderId: "677999497931"
+////////// Configuracion para pruevas
+    apiKey: "AIzaSyDv9zk84ed6_ckRorvxhVnTfecLs_aSbFw",
+      authDomain: "entrenador-personal-20e1f.firebaseapp.com",
+      databaseURL: "https://entrenador-personal-20e1f.firebaseio.com",
+      projectId: "entrenador-personal-20e1f",
+      storageBucket: "entrenador-personal-20e1f.appspot.com",
+      messagingSenderId: "150980917345"
+
+*/
+
   export interface Cliente {
     email: string;
     nombre: string;

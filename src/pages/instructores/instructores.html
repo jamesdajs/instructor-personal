@@ -62,4 +62,40 @@
           </ng-template>
           <hr>
         </ion-list>
+        <ion-grid no-padding>
+            <ion-row *ngFor="let p of publicaciones">
+                <ion-col no-padding>
+                        <ion-card>
+                                <ion-item color="carts">
+                                        <ion-avatar item-start>
+                                          <img [src]="p.foto">
+                                        </ion-avatar>
+                                        
+                                        <p>{{p.nombre}}</p>
+                                        <p>{{p.fecha2}}</p>
+                                </ion-item>
+                                <ion-card-content>
+                                  
+                                    <p>{{p.comentario}}
+                                    </p>
+                                </ion-card-content>
+                                <img [src]="p.imagen"/>
+                                
+                                  
+                                <ion-item>
+                                    <button ion-button clear item-start (click)="verInstructor(p.idcliente)" >
+
+                                     ver instructor
+                                    </button>
+                                    
+                                    <button ion-button clear item-end  >
+                                        <a href="https://wa.me/591{{p.telefono}}"> {{p.telefono}}   
+                                        </a>
+                                        <ion-icon class="wtapp" name="logo-whatsapp"></ion-icon>
+                                    </button>
+                                  </ion-item>
+                              </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
   </ion-content>

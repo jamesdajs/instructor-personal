@@ -17,6 +17,7 @@ import { ModificarusuarioPage } from '../modificarusuario/modificarusuario';
 import { Storage } from '@ionic/storage';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AdmCrearpublicasionPage } from '../adm-crearpublicasion/adm-crearpublicasion';
 
 /**
  * Generated class for the DatospersonalesPage page.
@@ -44,6 +45,7 @@ export class DatospersonalesPage {
     descorta:""
     
   }
+  verdatos=true
   datosins={
     cursos:"",
     descorta:"",
@@ -53,6 +55,7 @@ export class DatospersonalesPage {
   edad=""
   edad2=""
   activador=false
+  publicaciones=[]
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public toastCtr:ToastController,
@@ -79,6 +82,7 @@ export class DatospersonalesPage {
     console.log('ionViewDidLoad DatospersonalesPage');
     //console.log(this.datos)
     this.cargaDeDatos()
+    this.verMispublicaciones()
   }
   cargaDeDatos(){
     /*const toast = this.toastCtr.create({
@@ -129,12 +133,13 @@ export class DatospersonalesPage {
           {
             text: 'Ok',
             handler: () => {
+              this.store.clear()
               this.auth.logout()
               this.splash.show()
-              window.location.reload();
+              
               //this.event.publish("irAinicio")
-              this.store.remove("rol")
-              console.log(this.store.keys)
+              
+              window.location.reload();
             }
           }
         ]
@@ -278,5 +283,56 @@ export class DatospersonalesPage {
     .catch(err=>{console.log(err)})
     
   }*/
+  mostrardatos(){
+    this.verdatos=!this.verdatos
+  }
+  crearPublicasion(){
+    this.navCtrl.push(AdmCrearpublicasionPage,this.datos)
+  }
+  verMispublicaciones(){
+    this.user.listarMisPublicasion()
+    .subscribe(data=>{
+      this.publicaciones=data
+    })
+  }
+  verimagen(p){
+    let mes=["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."]
+    let hoy=new Date()
+    let prefi=""
+        let diap=p.fecha.toDate()
+        if(diap.getDate()==hoy.getDate() && 
+        diap.getMonth()==hoy.getMonth() &&
+        diap.getFullYear()==hoy.getFullYear()
+        )
+          prefi="Hoy "
+        else if(diap.getDate()+1==hoy.getDate() && 
+        diap.getMonth()==hoy.getMonth() &&
+        diap.getFullYear()==hoy.getFullYear())
+          prefi="Ayer "
+        else prefi=diap.getDate()+" de "+mes[diap.getMonth()]
 
+        prefi=prefi+" "+ diap.getHours()+":"+(diap.getMinutes()<9?"0"+diap.getMinutes():diap.getMinutes())
+    this.alert.create({
+      title: 'Detalle de la imagen', 
+      cssClass:" titulo ",
+      message:prefi ,
+      subTitle:"<img src='"+p.imagen+"'></img> <p class='palert'>"+p.comentario+"</p>",
+      
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ok',
+          handler: () => {
+            
+          }
+        }
+      ]
+    }).present();
+  }
 }

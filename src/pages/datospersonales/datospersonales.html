@@ -7,11 +7,14 @@
 <ion-header>
 
   <ion-toolbar color="normal" >
-    <ion-buttons start>
+    <!--
+<ion-buttons start>
         <button ion-button icon-only color="royal" (click)="modificardatos()">
           <ion-icon name="create"></ion-icon>
         </button>
       </ion-buttons>
+    -->
+    
     <ion-title>Datos personales</ion-title>
     <ion-buttons end>
       <button ion-button icon-only color="royal" (click)="cerrarSesion()">
@@ -24,6 +27,11 @@
 
 
 <ion-content >
+    <ion-fab  right bottom *ngIf="rol=='instructor'" >
+        <button ion-fab color="normal" (click)="crearPublicasion()" >
+                <ion-icon name="md-add"></ion-icon>
+        </button>
+    </ion-fab>
   <!--
 <ion-grid>
         <ion-row class="menu">
@@ -51,11 +59,16 @@
         <ion-card-content>
             <ion-item>
                 <ion-avatar item-start>
-                  <img [src]="datos.foto" />
+                  <img [src]="datos.foto" class="foto" />
                 </ion-avatar>
                 <h2>{{datos.nombre}} </h2>
+                <button  ion-button outline  color="normal" (click)="modificardatos()" >Editar datos</button>
+                <button *ngIf="!verdatos; else ocultar" ion-button outline small color="normal" (click)="mostrardatos()" >ver</button>
+                <ng-template #ocultar>
+                    <button ion-button outline   color="normal" (click)="mostrardatos()" >ocultar</button>
+                </ng-template >
               </ion-item>
-            <ion-grid>
+            <ion-grid *ngIf="verdatos">
             <ion-row>
               <ion-col col-5>fecha de nacimiento</ion-col>
               <ion-col col-7>{{edad}}</ion-col>
@@ -170,4 +183,14 @@
             </ion-grid>
         </ion-card-content>
       </ion-card>
+      <ion-item *ngIf="rol=='instructor'" color="card">
+        <p>Imagenes publicadas</p>
+      </ion-item>
+      <ion-grid no-padding *ngIf="rol=='instructor'">
+        <ion-row>
+          <ion-col  col-4 *ngFor="let p of publicaciones" (click)="verimagen(p)">
+            <img [src]="p.imagen" alt="" >
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 </ion-content>

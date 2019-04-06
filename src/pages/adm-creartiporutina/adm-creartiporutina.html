@@ -8,6 +8,11 @@
 
   <ion-navbar color="normal">
     <ion-title>Crear Tipo de ejercicio</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="guardar()">
+        <ion-icon name="md-checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -23,7 +28,6 @@
         </ion-item>
 
         
-        <button ion-button  block color="normal" (click)="guardar()">Guardar</button>
       </ion-col>
     </ion-row>
   </ion-grid>

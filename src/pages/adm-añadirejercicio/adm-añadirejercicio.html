@@ -10,7 +10,7 @@
     <ion-title>Selecionar ejercicio</ion-title>
     <ion-buttons end>
         <button ion-button icon-only color="royal" (click)="dismiss()">
-          sig.
+                <ion-icon name="md-checkmark"></ion-icon>
         </button>
       </ion-buttons>
   </ion-navbar>
@@ -39,7 +39,9 @@
 
 <ion-content >
     <ion-fab  right bottom >
-        <button ion-fab color="normal" (click)="dismiss()">Sig.</button>
+        <button ion-fab color="normal" (click)="dismiss()">
+                <ion-icon name="md-checkmark"></ion-icon>
+        </button>
     </ion-fab>
     <ion-list class="marginbotton">
         <div *ngFor="let item of tipodefecto" >

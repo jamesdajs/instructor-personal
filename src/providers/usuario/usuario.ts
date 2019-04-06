@@ -5,6 +5,7 @@ import { Cliente,firebaseConfig } from "../../app/app.config";
 import { AngularFirestore,
   AngularFirestoreCollection,
   AngularFirestoreDocument 
+  
 } from "angularfire2/firestore";
 import { Observable } from 'rxjs/Observable';
 
@@ -62,6 +63,13 @@ export class UsuarioProvider {
     .snapshotChanges().pipe(map(change=>{
       return change.map(c=>({key:c.payload.doc.id, ...c.payload.doc.data()}))
     }))
+  }
+  private getcollArrayconkeyPromise(coll,query?):Promise<any>{
+    return new Promise((res,rej)=>{
+        this.getcollArrayconkey(coll,query)
+        .subscribe(data=>res(data))
+    })
+    
   }
   
   buscarinstuctor(buscar){
@@ -283,5 +291,33 @@ verSitienenDatos() {
       })
     })
 }
-
+crearPublicasion(datos){
+  datos["idcliente"]=this.authfb.auth.currentUser.uid
+  return this.db.collection(`publicaciones`).add(datos)
+}
+modPublicasion(key,datos){
+  return this.db.collection(`publicaciones`).doc(key).set(datos,{ merge: true })
+}
+eliminarPublicasion(key){
+  return this.db.collection(`publicaciones`).doc(key).delete()
+}
+listarPublicasion(){
+  let query = res=>res.orderBy('fecha','desc').limit(5)   
+    return this.getcollArrayconkey(`publicaciones`,query)
+}
+listarMisPublicasion(){  
+  let query=res=>res.where("idcliente","==",this.authfb.auth.currentUser.uid)
+                          
+  return this.getcollArrayconkey(`publicaciones`,query)
+}
+cambiarEstadoPublicasion(){  
+  let query=res=>res.where("idcliente","==",this.authfb.auth.currentUser.uid)
+                    .where("estado","==",true)
+                          
+ return this.getcollArrayconkeyPromise(`publicaciones`,query)
+  .then(res=>{
+    
+    if(res.length!=0) return this.modPublicasion(res[0].key,{estado:false})
+  })
+}
 }

@@ -19,10 +19,12 @@ import { AdmDatosclientePage } from "../adm-datoscliente/adm-datoscliente"
 export class AdmClientesPage {
   solicitudes=[]
   datosbuscado=[]
+  publicaciones=[]
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private user:UsuarioProvider
      ) {
+      this.lstarPublicaciones()
   }
 
   ionViewDidLoad() {
@@ -56,5 +58,30 @@ export class AdmClientesPage {
   }
   verCliente(keycli){
     this.navCtrl.push(AdmDatosclientePage,keycli)
+  }
+  lstarPublicaciones(){
+    let mes=["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."]
+    let hoy=new Date()
+    this.user.listarPublicasion()
+    .subscribe(res=>{
+      res.forEach(element => {
+        let prefi=""
+        let diap=element.fecha.toDate()
+        if(diap.getDate()==hoy.getDate() && 
+        diap.getMonth()==hoy.getMonth() &&
+        diap.getFullYear()==hoy.getFullYear()
+        )
+          prefi="Hoy "
+        else if(diap.getDate()+1==hoy.getDate() && 
+        diap.getMonth()==hoy.getMonth() &&
+        diap.getFullYear()==hoy.getFullYear())
+          prefi="Ayer "
+        else prefi=diap.getDate()+" de "+mes[diap.getMonth()]
+
+        element["fecha2"]=prefi+" "+ diap.getHours()+":"+(diap.getMinutes()<9?"0"+diap.getMinutes():diap.getMinutes())
+      });
+      this.publicaciones=res
+      console.log(res)
+    })
   }
 }
