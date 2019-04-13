@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-ang
 
 
 import { DietasProvider } from '../../providers/dietas/dietas'
+import { AdmModdietaPage } from '../adm-moddieta/adm-moddieta';
 /**
  * Generated class for the DetalledietaPage page.
  *
@@ -48,7 +49,11 @@ export class DetalledietaPage {
     console.log(this.item)
     this.list=this.item
   }
+  
     
   }
-
+  modificar(){
+    this.list["key"]=this.item.iddietas
+    this.navCtrl.push(AdmModdietaPage,this.list)
+  }
 }

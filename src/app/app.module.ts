@@ -91,6 +91,7 @@ import { DietasProvider } from '../providers/dietas/dietas';
 import { MultiPickerModule } from 'ion-multi-picker';
 import { WheelSelector } from '@ionic-native/wheel-selector';
 import { HttpClientModule } from '@angular/common/http';
+import { AdmModpublicacionPage } from '../pages/adm-modpublicacion/adm-modpublicacion';
 
 @NgModule({
   declarations: [
@@ -135,7 +136,8 @@ import { HttpClientModule } from '@angular/common/http';
     AdmSetejercicioPage,
     AdmModrutinaclientePage,
     AdmModdietaclientePage,
-    AdmCrearpublicasionPage 
+    AdmCrearpublicasionPage,
+    AdmModpublicacionPage
 
   ],
   imports: [
@@ -219,8 +221,9 @@ import { HttpClientModule } from '@angular/common/http';
     AdmSetejercicioPage,
     AdmModrutinaclientePage,
     AdmModdietaclientePage,
-    AdmCrearpublicasionPage
-
+    AdmCrearpublicasionPage,
+    AdmModpublicacionPage
+    
   ],
   providers: [
     StatusBar,

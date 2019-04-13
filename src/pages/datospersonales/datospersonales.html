@@ -18,7 +18,7 @@
     <ion-title>Datos personales</ion-title>
     <ion-buttons end>
       <button ion-button icon-only color="royal" (click)="cerrarSesion()">
-        <ion-icon name="exit"></ion-icon>
+        <ion-icon name="log-out"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
@@ -188,7 +188,7 @@
       </ion-item>
       <ion-grid no-padding *ngIf="rol=='instructor'">
         <ion-row>
-          <ion-col  col-4 *ngFor="let p of publicaciones" (click)="verimagen(p)">
+          <ion-col  col-4 *ngFor="let p of publicaciones" (click)="opciones(p)">
             <img [src]="p.imagen" alt="" >
           </ion-col>
         </ion-row>

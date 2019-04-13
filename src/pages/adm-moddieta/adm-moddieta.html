@@ -8,6 +8,11 @@
 
   <ion-navbar color="normal">
     <ion-title>Modificar Dieta</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only color="royal" (click)="guardar()">
+          <ion-icon name="md-checkmark"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -73,9 +78,7 @@
                   
                 </ion-col>
         </ion-row>
-        <div class="login">
-            <button ion-button  block color="normal" (click)="guardar()">Modificar</button>
-        </div>
+
         
         
       </ion-col>

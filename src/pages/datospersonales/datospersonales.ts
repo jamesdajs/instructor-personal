@@ -5,7 +5,8 @@ import {
   NavParams,
   ToastController,
   LoadingController,
-  AlertController
+  AlertController,
+  ActionSheetController
 } from 'ionic-angular';
 
 import { UsuarioProvider } from '../../providers/usuario/usuario';
@@ -18,6 +19,8 @@ import { Storage } from '@ionic/storage';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AdmCrearpublicasionPage } from '../adm-crearpublicasion/adm-crearpublicasion';
+import { AdmModpublicacionPage } from '../adm-modpublicacion/adm-modpublicacion';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 /**
  * Generated class for the DatospersonalesPage page.
@@ -65,7 +68,9 @@ export class DatospersonalesPage {
     private alert:AlertController,
     //private event:Events,
     private store:Storage,
-    private splash:SplashScreen
+    private splash:SplashScreen,
+    public storage:AngularFireStorage,
+    public actionSheetCtrl: ActionSheetController
     ) {
     //this.datos=this.navParams.data.res
     //this.edad=this.navParams.data.edad
@@ -312,12 +317,71 @@ export class DatospersonalesPage {
         else prefi=diap.getDate()+" de "+mes[diap.getMonth()]
 
         prefi=prefi+" "+ diap.getHours()+":"+(diap.getMinutes()<9?"0"+diap.getMinutes():diap.getMinutes())
+    let img=`<div class="imgalerta">
+              
+              <img src='${p.imagen}'></img>
+              
+              <div class="texto">
+                 <p class='palert'>${prefi}</p><p class='palert'>${p.comentario}</p>
+              </div>
+            </div>`
+            
+            
     this.alert.create({
-      title: 'Detalle de la imagen', 
       cssClass:" titulo ",
-      message:prefi ,
-      subTitle:"<img src='"+p.imagen+"'></img> <p class='palert'>"+p.comentario+"</p>",
+      //message:prefi ,
+      subTitle:img,
       
+      
+    }).present();
+  }
+  opciones(p){
+    this.actionSheetCtrl.create({
+      buttons:[
+        {
+          text: 'Ver',
+          role: 'destructive',
+
+          handler: () => {
+            console.log('Destructive clicked');
+            this.verimagen(p)
+          }
+        },
+        {
+          text: 'Modificar',
+
+          handler: () => {
+            console.log('Archive clicked');
+            let datos={
+              key:p.key,
+              comentario:p.comentario,
+              imagen:p.imagen
+            }
+            this.navCtrl.push(AdmModpublicacionPage,datos)
+          }
+        },
+        {
+          text: 'Eliminar',
+
+          handler: () => {
+            console.log('Archive clicked');
+            this.eliminarpubli(p)
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    }).present()
+  }
+  eliminarpubli(p){
+    let alert = this.alert.create({
+      title: 'Eliminar publicacion',
+      message: 'Seguro que desea eliminar esta publicacion?',
       buttons: [
         {
           text: 'Cancelar',
@@ -329,10 +393,13 @@ export class DatospersonalesPage {
         {
           text: 'Ok',
           handler: () => {
-            
+           this.storage.ref("publicaciones/"+p.key).delete()
+           this.user.eliminarPublicasion(p.key)
+           
           }
         }
       ]
-    }).present();
+    });
+    alert.present();
   }
 }

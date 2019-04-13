@@ -7,6 +7,7 @@ import { IonicPage,
    LoadingController} from 'ionic-angular';
 import { AdmAsignardietaclientePage } from '../adm-asignardietacliente/adm-asignardietacliente'
 import { UsuarioProvider } from "../../providers/usuario/usuario"
+import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -22,14 +23,20 @@ export class AdmCreardietaclientePage {
     descripcion:""
   }
   key
+  myForm:FormGroup
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private modal:ModalController,
      private user:UsuarioProvider,
      private toastCtrl:ToastController,
-     private loadCtrl:LoadingController
+     private loadCtrl:LoadingController,
+     private formb:FormBuilder
      ) {
     this.key=this.navParams.data
+    this.myForm = this.formb.group({
+      nombre: ['', [Validators.required,Validators.maxLength(50)]],
+      descripcion: ['', [Validators.required,Validators.maxLength(200)]]
+    });
   }
 
   ionViewDidLoad() {
@@ -51,7 +58,7 @@ export class AdmCreardietaclientePage {
     this.ejercicios.splice(i,1)
   }
   guardar(){
-    if(this.event.nombre=="" || this.event.descripcion=="" ){
+    if(this.myForm.invalid ){
       this.toastCtrl.create({
         message:"Tiene que llenar todos los campos ",
         duration:3000

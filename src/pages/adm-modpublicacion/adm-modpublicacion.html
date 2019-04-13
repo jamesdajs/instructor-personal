@@ -24,9 +24,8 @@
       <ion-col >
         <div class="imagen" (click)="seleccionarImagen()">
             <img *ngIf="imagen64!=''" [src]="imagen64" />
-            <ion-icon *ngIf="imagen64==''" name="camera"></ion-icon>
+            <img *ngIf="imagen64==''" [src]="datos.imagen"/>
         </div>
-      
         <ion-item [formGroup]="myForm">
             <ion-textarea [(ngModel)]="datos.comentario" formControlName="comentario" type="text" placeholder="Comentario" ></ion-textarea>
         </ion-item>  

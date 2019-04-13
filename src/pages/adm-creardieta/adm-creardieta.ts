@@ -6,6 +6,7 @@ import { Camera,CameraOptions } from '@ionic-native/camera';
 import { DietasProvider } from "../../providers/dietas/dietas"
 
 import { AngularFireStorage } from '@angular/fire/storage';
+import { FormGroup, FormBuilder ,Validators} from '@angular/forms';
 /**
  * Generated class for the AdmCreardietaPage page.
  *
@@ -29,14 +30,21 @@ export class AdmCreardietaPage {
   imagen64=""
   uploadPercent
   downloadURL
+  myForm:FormGroup
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private camera:Camera,
     private storage:AngularFireStorage,
     private dieta:DietasProvider,
     private loadCtrl:LoadingController,
-    private toastCtrl:ToastController
+    private toastCtrl:ToastController,
+    private formb:FormBuilder
     ) {
       this.datos.tipo=navParams.data
+      this.myForm = this.formb.group({
+        nombre: ['', [Validators.required,Validators.maxLength(50)]],
+        descripcion: ['', [Validators.required,Validators.maxLength(100)]],
+        instrucciones: ['', [Validators.required,Validators.maxLength(300)]]
+      });
   }
 
   ionViewDidLoad() {
@@ -48,9 +56,9 @@ export class AdmCreardietaPage {
   }
   guardar(){
     
-    if(this.datos.nombre==""||this.datos.descorta==""||this.datos.deslarga==""||this.datos.tipo=="")
+    if(this.myForm.invalid)
     {this.toastCtrl.create({
-      message: 'tiene q llenar todos los datos',
+      message: 'Tiene que llenar todos los datos',
       duration: 3000}).present()
     }else{
       let load=this.loadCtrl.create({

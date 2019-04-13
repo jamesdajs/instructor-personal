@@ -8,6 +8,17 @@
 
   <ion-navbar color="normal">
     <ion-title>{{item.nombre}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" *ngIf="item.rol; else botguardar"  (click)="editar(item)">
+           <ion-icon name="paper"></ion-icon> 
+        </button>
+      <ng-template #botguardar>
+          <button ion-button icon-only color="royal" (click)="guardarset()">
+              <ion-icon name="md-checkmark"></ion-icon>
+          </button>
+      </ng-template>
+      
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -15,16 +26,22 @@
 
 <ion-content >
     <ion-card color="carts">
-        <div *ngIf="item.imagen!=''; else elseBlock">
-
-            <img *ngIf="imagenaux==true; else elseBlock2" [src]="item.imagen" />
-            <ng-template #elseBlock2>
+        <ion-slides pager >
+            <ion-slide >
+                <img *ngIf="item.imagen!=''; else elseBlock" [src]="item.imagen" />
+                <ng-template #elseBlock>
+                    <img  src="../../assets/imgs/defecto.jpeg" />
+              </ng-template>
+            </ion-slide>
+            <ion-slide *ngIf="item.imagen1">
                 <img  [src]="item.imagen1" />
-          </ng-template>
-        </div>
-        <ng-template #elseBlock>
-            <img  src="../../assets/imgs/defecto.jpeg" />
-      </ng-template>
+            </ion-slide>
+            <ion-slide *ngIf="item.linkyoutube!='' && item.linkyoutube; ">
+                <iframe width="300px"  [src]="youtubeaux" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </ion-slide>
+          </ion-slides>
+        
+        
       <ion-card-content>
           <p>
               <span class="bold">Tipo :</span>   {{item.tipo}}
@@ -34,7 +51,6 @@
           </p>
 
           
-          <a *ngIf="item.linkyoutube!='' && item.linkyoutube; " href="{{item.linkyoutube}}">ver video en Youtube</a>
           <ion-list>
             <ion-grid  class="tabla" *ngIf="itemcompleto.idejercicio" >
               <ion-row justify-content-center align-items-center>
@@ -61,15 +77,8 @@
             </ion-list>
         </ion-card-content>
         
-            <div *ngIf="alumno">
-                <button ion-button *ngIf="!setrealizado; else elseBlock" block  color="normal" (click)="guardarset()"> guardar datos </button>
-              
-              <ng-template #elseBlock>
-                <button ion-button block  color="normal" disabled> ya se guardaron los datos </button>
-              </ng-template>
-            </div>
+
         
-        <button ion-button  block *ngIf="item.rol" color="normal" (click)="editar(item)"> Modificar </button>
       </ion-card>
       <!--
         video en youtube

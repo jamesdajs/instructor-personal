@@ -8,6 +8,11 @@
 
   <ion-navbar color="normal">
     <ion-title>Crear Rutina</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="guardar()">
+        <ion-icon name="md-checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -16,15 +21,23 @@
 <ion-content >
     <ion-grid>
         <ion-row align-items-end>
-          <ion-col col-12>
+          <ion-col col-12 >
             
-            <ion-item class="input">
+            <ion-item [formGroup]="myForm">
               <ion-label  floating>Nombre</ion-label>
-                <ion-input type="text"  [(ngModel)]="event.nombre"></ion-input>
+                <ion-input type="text" formControlName="nombre" [(ngModel)]="event.nombre"></ion-input>
             </ion-item>
-            <ion-item class="input">
+            <ion-item *ngIf="myForm.get('nombre').errors && myForm.get('nombre').dirty">
+              <p class="msgerr" *ngIf="myForm.get('nombre').hasError('required')">Campo requerido</p> 
+              <p class="msgerr" *ngIf="myForm.get('nombre').hasError('maxlength')">maximo de 50 digitos</p> 
+            </ion-item>
+            <ion-item [formGroup]="myForm">
               <ion-label  floating>Descripcion</ion-label>
-                <ion-input type="text"  [(ngModel)]="event.descripcion"></ion-input>
+                <ion-input type="text" formControlName="descripcion" [(ngModel)]="event.descripcion"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.get('descripcion').errors && myForm.get('descripcion').dirty">
+              <p class="msgerr" *ngIf="myForm.get('descripcion').hasError('required')">Campo requerido</p> 
+              <p class="msgerr" *ngIf="myForm.get('descripcion').hasError('maxlength')">maximo de 200 digitos</p> 
             </ion-item>
             <ion-list *ngIf="key!=true" no-lines >
                 <ion-row align-items-end>
@@ -118,9 +131,7 @@
                 
               
               
-              <div class="botong">
-                <button ion-button  full color="normal" (click)="guardar()">Guardar</button>
-            </div>
+
             
           
 

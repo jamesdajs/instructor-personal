@@ -47,6 +47,7 @@ export class AdmDietasPage {
       this.navCtrl.push(AdmModdietaPage,item)
     }
     verdetalle(item){
+      item.rol=true
       this.navCtrl.push(DetalledietaPage,item)
     }
     eliminar(key){

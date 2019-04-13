@@ -7,7 +7,12 @@
 <ion-header>
 
     <ion-navbar color="normal">
-      <ion-title>Detalle de la  Dieta</ion-title>
+      <ion-title>{{list.nombre}}</ion-title>
+      <ion-buttons end>
+          <button ion-button icon-only color="royal" *ngIf="list.rol" (click)="modificar()">
+            <ion-icon name="paper"></ion-icon>
+          </button>
+        </ion-buttons>
     </ion-navbar>
   
   </ion-header>
@@ -20,14 +25,12 @@
                 <img  src="../../assets/imgs/defecto2.jpeg" />
           </ng-template>
           <ion-card-content>
-              <ion-card-title>
-                {{list.nombre}}
-                </ion-card-title>
+              
               <p>
                   <span class="bold">Tipo :</span>   {{list.tipo}}
               </p>
               <p>
-                <span class="bold">Descripcion :</span>  {{list.deslarga}}
+                <span class="bold">Instruciones :</span>  {{list.deslarga}}
               </p>
           </ion-card-content>
         </ion-card>

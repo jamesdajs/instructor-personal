@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams ,LoadingController,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {UsuarioProvider} from "../../providers/usuario/usuario"
 import { finalize } from 'rxjs/operators';
-import { Camera,CameraOptions } from '@ionic-native/camera';
-
-import { AngularFireStorage } from '@angular/fire/storage';
-import {UsuarioProvider} from '../../providers/usuario/usuario'
-import { FormGroup, FormBuilder ,Validators} from '@angular/forms';
-
 /**
- * Generated class for the AdmCrearpublicasionPage page.
+ * Generated class for the AdmModpublicacionPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -16,35 +14,36 @@ import { FormGroup, FormBuilder ,Validators} from '@angular/forms';
 
 @IonicPage()
 @Component({
-  selector: 'page-adm-crearpublicasion',
-  templateUrl: 'adm-crearpublicasion.html',
+  selector: 'page-adm-modpublicacion',
+  templateUrl: 'adm-modpublicacion.html',
 })
-export class AdmCrearpublicasionPage {
+export class AdmModpublicacionPage {
   imagen64=""
+  myForm:FormGroup
   datos={
     comentario:"",
-    fecha:new Date,
-    estado:true
+    imagen:""
   }
-  myForm:FormGroup
-  constructor(public navCtrl: NavController, public navParams: NavParams ,public camera:Camera,
-  
-    private storage:AngularFireStorage,
-    private loadCtrl:LoadingController,
-    private toastCtrl:ToastController,
-    private user:UsuarioProvider,
-    private formb : FormBuilder
+  key=""
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public storage:AngularFireStorage,
+    public toastCtrl:ToastController,
+    public camera:Camera,
+    public formb:FormBuilder,
+    public user:UsuarioProvider,
+    public loadCtrl:LoadingController
+
     ) {
-      this.datos["nombre"]=navParams.data.nombre
-      this.datos["foto"]=navParams.data.foto
-      this.datos["telefono"]=navParams.data.telefono
+      this.datos.comentario=navParams.data.comentario
+      this.datos.imagen=navParams.data.imagen
+      this.key=navParams.data.key
       this.myForm = this.formb.group({
         comentario: ['', [Validators.required,Validators.maxLength(300)]]
       });
   }
-  
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AdmCrearpublicasionPage');
+    console.log('ionViewDidLoad AdmModpublicacionPage');
   }
   seleccionarImagen(){
     const options: CameraOptions = {
@@ -70,7 +69,7 @@ export class AdmCrearpublicasionPage {
     
   }
   guardar(){
-  if(this.myForm.invalid || this.imagen64=="")
+  if(this.myForm.invalid )
   {this.toastCtrl.create({
     message: 'Tiene que llenar todos los datos',
     duration: 3000}).present()
@@ -84,23 +83,27 @@ export class AdmCrearpublicasionPage {
           })
           load.present()
         const toast = this.toastCtrl.create({
-          message: 'Se creo correctamente  la publicacion',
+          message: 'Se modifico correctamente  la publicacion',
           duration: 3000})
         
-        this.user.crearPublicasion(this.datos)
+        this.user.modPublicasion(this.key,this.datos)
         .then(res=>{
           //console.log(res)
-          this.uploadImgB64("publicaciones/"+res.id,this.imagen64)
+          if(this.imagen64!="")
+          this.uploadImgB64("publicaciones/"+this.key,this.imagen64)
             .then(url=>{
               console.log(url)
-              this.user.modPublicasion(res.id,{imagen:url})
-              .then(()=>{
+  
                 load.dismiss()
                 toast.present()
                 this.navCtrl.pop()
-              })
+              
             })
-            
+          else{
+            load.dismiss()
+                toast.present()
+                this.navCtrl.pop()
+          }
           
         }).catch(err=> {
           load.dismiss()

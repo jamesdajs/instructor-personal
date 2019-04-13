@@ -41,7 +41,7 @@ list=[]
     })
   }
   verDetalleEjercicio(item){
-    console.log(item)
+    //console.log(item)
     item.rol=true
     this.navCtrl.push(DetallejercicioPage,item)
   }

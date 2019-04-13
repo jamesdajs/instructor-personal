@@ -8,6 +8,11 @@
 
     <ion-navbar color="normal">
       <ion-title>Modificar Ejercicio</ion-title>
+      <ion-buttons end>
+          <button ion-button icon-only color="royal" (click)="guardar()">
+            <ion-icon name="md-checkmark"></ion-icon>
+          </button>
+        </ion-buttons>
     </ion-navbar>
   
   </ion-header>
@@ -108,9 +113,7 @@
             <ion-label  floating>Link video de youtube (opcional)</ion-label>
                 <ion-input  type="text" [(ngModel)]="datos.linkyoutube" ></ion-input >
                 </ion-item>
-          <div class="login">
-              <button ion-button  block color="normal" (click)="guardar()">Modificar</button>
-          </div>
+
           
           
         </ion-col>

@@ -3,6 +3,11 @@
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
+  <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="guardar()">
+        <ion-icon name="md-checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
 -->
 <ion-header>
 
@@ -10,7 +15,7 @@
     <ion-title>{{ejercicio.nombre}}</ion-title>
     <ion-buttons end>
         <button ion-button icon-only color="royal" (click)="dismiss()">
-          ok.
+          <ion-icon name="md-checkmark"></ion-icon>
         </button>
       </ion-buttons>
   </ion-navbar>

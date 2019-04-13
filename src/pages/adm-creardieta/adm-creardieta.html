@@ -8,6 +8,11 @@
 
   <ion-navbar color="normal">
     <ion-title>Crear Dieta</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="guardar()">
+        <ion-icon name="md-checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -17,17 +22,29 @@
   <ion-grid>
     <ion-row align-items-end>
       <ion-col col-12>
-        <ion-item class="input">
+        <ion-item class="input" [formGroup]="myForm">
           <ion-label  floating>Nombre</ion-label>
-          <ion-input type="text"  [(ngModel)]="datos.nombre" clearInput></ion-input>
+          <ion-input type="text"  [(ngModel)]="datos.nombre" formControlName="nombre" clearInput></ion-input>
         </ion-item>
-        <ion-item class="input">
+        <ion-item *ngIf="myForm.get('nombre').errors && myForm.get('nombre').dirty">
+          <p class="msgerr" *ngIf="myForm.get('nombre').hasError('required')">Campo requerido</p> 
+          <p class="msgerr" *ngIf="myForm.get('nombre').hasError('maxlength')">maximo de 50 digitos</p> 
+        </ion-item>
+        <ion-item class="input" [formGroup]="myForm">
           <ion-label  floating>Descripcion</ion-label>
-            <ion-input type="text"  [(ngModel)]="datos.descorta" clearInput></ion-input>
+            <ion-input type="text"  [(ngModel)]="datos.descorta" formControlName="descripcion" clearInput></ion-input>
         </ion-item>
-        <ion-item class="input">
+        <ion-item *ngIf="myForm.get('descripcion').errors && myForm.get('descripcion').dirty">
+          <p class="msgerr" *ngIf="myForm.get('descripcion').hasError('required')">Campo requerido</p> 
+          <p class="msgerr" *ngIf="myForm.get('descripcion').hasError('maxlength')">maximo de 100 digitos</p> 
+        </ion-item>
+        <ion-item class="input" [formGroup]="myForm">
           <ion-label  floating>Instrucciones</ion-label>
-            <ion-textarea  type="text"  [(ngModel)]="datos.deslarga" ></ion-textarea >
+            <ion-textarea  type="text"  [(ngModel)]="datos.deslarga"formControlName="instrucciones"  ></ion-textarea >
+        </ion-item>
+        <ion-item *ngIf="myForm.get('instrucciones').errors && myForm.get('instrucciones').dirty">
+          <p class="msgerr" *ngIf="myForm.get('instrucciones').hasError('required')">Campo requerido</p> 
+          <p class="msgerr" *ngIf="myForm.get('instrucciones').hasError('maxlength')">maximo de 200 digitos</p> 
         </ion-item>
         <!--
           <div class="login">
@@ -45,13 +62,13 @@
           </div>
         -->
 
+        <p>Seleccinar imagenes de la dieta(opcional) </p>
          <ion-row justify-content-center>
-            <p>Seleccinar imagenes de la dieta(opcional) </p>
             <ion-col col-6>
               <div class="colbtn">
                   <div  *ngIf="imagen64==''; else imagendefecto;" >
-                        <button ion-button  block color="normal" (click)="seleccionarImagen()">
-                            <ion-icon name="image"></ion-icon>
+                        <button ion-button  block color="carts" (click)="seleccionarImagen()">
+                            <ion-icon name="camera"></ion-icon>
                         </button>
                   </div>
   
@@ -70,9 +87,7 @@
                   <ion-icon name="image"></ion-icon>
               </button>
           </div>-->
-        <div class="login">
-            <button ion-button  block color="normal" (click)="guardar()">Guardar</button>
-        </div>
+
         
         
       </ion-col>

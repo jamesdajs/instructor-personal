@@ -61,7 +61,15 @@ export class AdmSetejercicioPage {
     console.log('ionViewDidLoad AdmSetejercicioPage');
   }
   dismiss(){
+    if(this.datos.length==0){
+      this.toasCtrl.create({
+        message:"Tiene que tener al menos un set",
+        duration:3000
+      }).present()
+    }else{
+      
     this.view.dismiss(this.datos)
+    }
   }
   openPicker() {
     this.selector.show({

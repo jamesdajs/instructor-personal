@@ -7,6 +7,7 @@ import { IonicPage,
    LoadingController} from 'ionic-angular';
 import { AdmAñadirejercicioPage } from '../adm-añadirejercicio/adm-añadirejercicio'
 import { UsuarioProvider } from "../../providers/usuario/usuario"
+import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 
 /**
  * Generated class for the AdmCrearrutinaclientePage page.
@@ -30,6 +31,7 @@ export class AdmCrearrutinaclientePage {
     descripcion:""
   }
   key
+  myForm:FormGroup
   dias=[
     {nombre:"Domingo",estado:false},
     {nombre:"Lunes",estado:false},
@@ -44,12 +46,18 @@ export class AdmCrearrutinaclientePage {
      private modal:ModalController,
      private user:UsuarioProvider,
      private toastCtrl:ToastController,
-     private loadCtrl:LoadingController
+     private loadCtrl:LoadingController,
+     
+    public formb: FormBuilder
      ) {
     if(Object.keys(navParams.data).length==0)
       this.key=true
     else
       this.key=this.navParams.data
+    this.myForm = this.formb.group({
+        nombre: ['', [Validators.required,Validators.maxLength(50)]],
+        descripcion: ['', [Validators.required,Validators.maxLength(200)]]
+      });
   }
 
   ionViewDidLoad() {
@@ -74,7 +82,7 @@ export class AdmCrearrutinaclientePage {
     this.ejercicios.splice(i,1)
   }
   guardar(){
-    if(this.event.nombre=="" || this.event.descripcion=="" ){
+    if(this.myForm.invalid ){
       this.toastCtrl.create({
         message:"Tiene que llenar todos los campos ",
         duration:3000
