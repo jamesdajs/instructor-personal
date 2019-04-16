@@ -38,7 +38,7 @@
           </ng-template>
           
           <ion-item  color="listdivisor">
-              <h2>Selecione un instructor para ver las rutinas y dietas </h2>
+              <h2>Instructores </h2>
           </ion-item>
           <ion-scroll scrollX="true" scroll-avatar *ngIf="misInstructores.length!=0;else elseBlock3">
             <div class="itemsel" *ngFor="let item of misInstructores" (click)="vercurso(item.idinstructor)" >
