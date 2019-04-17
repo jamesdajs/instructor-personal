@@ -28,11 +28,11 @@
         <ion-list   inset>
         <div *ngIf="rol=='instructor'">
             <ion-item >
-              <ion-label  floating>Descripcion corta</ion-label>
+              <ion-label  floating>Descripción corta</ion-label>
               <ion-input type="text"  [(ngModel)]="datosins.descorta"></ion-input>
             </ion-item>
             <ion-item >
-              <ion-label  floating>Descripcion larga</ion-label>
+              <ion-label  floating>Descripción larga</ion-label>
               <ion-textarea type="text"  [(ngModel)]="datosins.deslarga"></ion-textarea>
             </ion-item>
             <ion-item >
@@ -42,14 +42,14 @@
         </div>
           <ion-item [formGroup]="myForm">
             <ion-icon name="call" item-start></ion-icon>
-            <ion-label  floating>Telefono</ion-label>
+            <ion-label  floating>Teléfono</ion-label>
             <ion-input formControlName="telefono" type="tel"  [(ngModel)]="event.telefono"></ion-input>
           </ion-item>
           
           <ion-item *ngIf="myForm.get('telefono').errors && myForm.get('telefono').dirty">
             <p class="msgerr" *ngIf="myForm.get('telefono').hasError('required')">Campo requerido</p> 
-            <p class="msgerr" *ngIf="myForm.get('telefono').hasError('minlength')">Minimo de 7 digitos</p> 
-            <p class="msgerr" *ngIf="myForm.get('telefono').hasError('maxlength')">maximo de 12 digitos</p> 
+            <p class="msgerr" *ngIf="myForm.get('telefono').hasError('minlength')">Mínimo de 7 digitos</p> 
+            <p class="msgerr" *ngIf="myForm.get('telefono').hasError('maxlength')">Máximo de 12 digitos</p> 
           </ion-item>
         
           <ion-item  >
@@ -81,7 +81,7 @@
     </ion-row>
     <ion-row align-items-center>
       <ion-col col-4>
-        <p>Genero</p>
+        <p>Género</p>
       </ion-col>
       <ion-col col-8>
           <ion-list radio-group no-lines inset [(ngModel)]="event.genero" >

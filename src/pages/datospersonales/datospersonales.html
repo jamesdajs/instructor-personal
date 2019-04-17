@@ -63,18 +63,18 @@
                 </ion-avatar>
                 <h2>{{datos.nombre}} </h2>
                 <button  ion-button outline  color="normal" (click)="modificardatos()" >Editar datos</button>
-                <button *ngIf="!verdatos; else ocultar" ion-button outline small color="normal" (click)="mostrardatos()" >ver</button>
+                <button *ngIf="!verdatos; else ocultar" ion-button outline small color="normal" (click)="mostrardatos()" >Ver</button>
                 <ng-template #ocultar>
-                    <button ion-button outline   color="normal" (click)="mostrardatos()" >ocultar</button>
+                    <button ion-button outline   color="normal" (click)="mostrardatos()" >Ocultar</button>
                 </ng-template >
               </ion-item>
             <ion-grid *ngIf="verdatos">
             <ion-row>
-              <ion-col col-5>fecha de nacimiento</ion-col>
+              <ion-col col-5>Fecha de nacimiento</ion-col>
               <ion-col col-7>{{edad}}</ion-col>
             </ion-row>
             <ion-row>
-              <ion-col col-5>Genero</ion-col>
+              <ion-col col-5>Género</ion-col>
               <ion-col col-7>{{datos.genero}}</ion-col>
             </ion-row>
             <ion-row>
@@ -82,7 +82,7 @@
               <ion-col col-7>Altura: {{datos.altura}} centimetros</ion-col>
             </ion-row>
             <ion-row>
-              <ion-col col-5>Telefono</ion-col>
+              <ion-col col-5>Teléfono</ion-col>
               <ion-col col-7>{{datos.telefono}}</ion-col>
             </ion-row>
             <ion-row>
@@ -99,7 +99,7 @@
                     <ion-col col-12>
                       
                       
-                      <p>Telefono</p>
+                      <p>Teléfono</p>
                         <div >
                           <ion-input type="text" placeholder="telefono" [(ngModel)]="datos.telefono"></ion-input>
                         </div>
@@ -134,7 +134,7 @@
                   
                   <ion-row align-items-center>
                     <ion-col>
-                      <p>Genero</p>
+                      <p>Género</p>
                     </ion-col>
                     <ion-col>
                         <ion-list radio-group no-lines inset [(ngModel)]="datos.genero" >
@@ -160,11 +160,11 @@
                         
                         <div *ngIf="rol=='instructor'">
                             <p>Datos de instructor</p>
-                            <p>Descripcion corta</p>
+                            <p>Descripción corta</p>
                             <div >
                               <ion-input type="text" placeholder="Descripcion para mostrar" [(ngModel)]="datosins.descorta"></ion-input>
                             </div>
-                          <p>Descripcion larga</p>
+                          <p>Descripción larga</p>
                             <div >
                               <ion-input type="text" placeholder="Descripcion completa del instructor" [(ngModel)]="datosins.deslarga"></ion-input>
                             </div>
@@ -174,7 +174,7 @@
                           </div>
                         </div>
                         <div class="login">
-                            <button ion-button  block color="normal" (click)="GurdarDatos()">Gurdar Datos</button>
+                            <button ion-button  block color="normal" (click)="GurdarDatos()">Guardar Datos</button>
                         </div>
                     </ion-col>
                   </ion-row>
@@ -184,7 +184,7 @@
         </ion-card-content>
       </ion-card>
       <ion-item *ngIf="rol=='instructor'" color="card">
-        <p>Imagenes publicadas</p>
+        <p>Imágenes publicadas</p>
       </ion-item>
       <ion-grid no-padding *ngIf="rol=='instructor'">
         <ion-row>

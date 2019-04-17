@@ -31,7 +31,7 @@
     <ion-grid>
       <ion-row align-items-end>
         <ion-col col-12>
-          <h3>Iniciar Sesion</h3>
+          <h3>Iniciar Sesión</h3>
           <!--
 <div class="login">
             <ion-input type="text" placeholder="Username"></ion-input>
@@ -56,9 +56,9 @@
             <ion-grid>
                 <ion-row class="menu">
                   <ion-col  col-6>
-                      <button *ngIf="rol=='instructor';else botonAlum;" ion-button block color="normal" (click)="cambiarRolAlum()">alumno</button>
+                      <button *ngIf="rol=='instructor';else botonAlum;" ion-button block color="normal" (click)="cambiarRolAlum()">Alumno</button>
                       <ng-template #botonAlum>
-                        <button ion-button outline block color="carts"  >alumno</button>
+                        <button ion-button outline block color="carts"  >Alumno</button>
                       </ng-template>
                   </ion-col>
                   <ion-col col-6>

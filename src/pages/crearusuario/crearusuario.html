@@ -21,7 +21,7 @@
             <div class="login">
               <ion-input type="text" placeholder="Username"></ion-input>
             </div>
-            <p>Apelldios</p>
+            <p>Apellidos</p>
             <div class="login">
                 <ion-input type="text" placeholder="Apellidos"></ion-input>
             </div>
@@ -32,17 +32,17 @@
                 <ion-datetime displayFormat="DD MMMM YYYY" min="1940" [(ngModel)]="event.month" cancelText =Cancelar doneText=Ok></ion-datetime>
               </ion-item>
             </ion-list>
-            <p>foto</p>
+            <p>Foto</p>
             <div class="login" >
               <ion-grid>
                 <ion-row>
                   <ion-col col-md-4 offset-md-4>
-                    <button ion-button (click)="seleccionarImagen()">Select Photo</button>
+                    <button ion-button (click)="seleccionarImagen()">Seleccionar foto</button>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col col-md-4 offset-md-4>
-                    <button ion-button (click)="openImagePickerCrop()">Select Photo (Crop)</button>
+                    <button ion-button (click)="openImagePickerCrop()">Seleccionar foto (Crop)</button>
                     <button ion-button color="primary" (click)="guardar__datos()" >Agregar</button>
                   </ion-col>
                 </ion-row>

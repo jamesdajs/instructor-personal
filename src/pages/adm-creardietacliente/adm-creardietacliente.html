@@ -14,10 +14,7 @@
         </button>
       </ion-buttons>
     </ion-navbar>
-  
   </ion-header>
-  
-  
   <ion-content >
       <ion-grid>
           <ion-row align-items-end>
@@ -29,15 +26,15 @@
               </ion-item>
               <ion-item *ngIf="myForm.get('nombre').errors && myForm.get('nombre').dirty">
                 <p class="msgerr" *ngIf="myForm.get('nombre').hasError('required')">Campo requerido</p> 
-                <p class="msgerr" *ngIf="myForm.get('nombre').hasError('maxlength')">maximo de 50 digitos</p> 
+                <p class="msgerr" *ngIf="myForm.get('nombre').hasError('maxlength')">máximo de 50 digitos</p> 
               </ion-item>
                 <ion-item class="input" [formGroup]="myForm">
-                  <ion-label  floating>Descripcion</ion-label>
+                  <ion-label  floating>Descripción</ion-label>
                   <ion-input type="text" formControlName="descripcion" [(ngModel)]="event.descripcion"></ion-input>
                 </ion-item>
                 <ion-item *ngIf="myForm.get('descripcion').errors && myForm.get('descripcion').dirty">
                   <p class="msgerr" *ngIf="myForm.get('descripcion').hasError('required')">Campo requerido</p> 
-                  <p class="msgerr" *ngIf="myForm.get('descripcion').hasError('maxlength')">maximo de 200 digitos</p> 
+                  <p class="msgerr" *ngIf="myForm.get('descripcion').hasError('maxlength')">máximo de 200 digitos</p> 
                 </ion-item>
               <ion-list  no-lines >
                   <ion-row align-items-end>
@@ -54,7 +51,6 @@
                             </ion-item>
                       </ion-col>
                       <ion-col col-6>
-                        
                           <p>Fin</p>
                           <ion-item class="fechapadd">
                               <ion-datetime 

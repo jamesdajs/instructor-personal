@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar color="normal">
-        <ion-title>Crear publicasion</ion-title>
+        <ion-title>Crear publicación</ion-title>
         <ion-buttons end>
             <button ion-button icon-only color="royal" (click)="guardar()">
                     <ion-icon name="md-checkmark"></ion-icon>
@@ -31,7 +31,7 @@
         </ion-item>  
         <ion-item *ngIf="myForm.get('comentario').errors && myForm.get('comentario').dirty">
           <p class="msgerr" *ngIf="myForm.get('comentario').hasError('required')">Campo requerido</p> 
-          <p class="msgerr" *ngIf="myForm.get('comentario').hasError('maxlength')">maximo de 300 caracteres</p> 
+          <p class="msgerr" *ngIf="myForm.get('comentario').hasError('maxlength')">máximo de 300 caracteres</p> 
         </ion-item>
       </ion-col>
     </ion-row>
