@@ -130,7 +130,7 @@ export class RutinaProvider {
     return this.getcollitemquery("rutina_ejer",query)
   }
   crearsetsdeEjercicio(data){
-    data["idinstructor"]=this.auth.auth.currentUser.uid
+    data["idcliente"]=this.auth.auth.currentUser.uid
     return this.db.collection("setejercicios").add(data)
   }
   versetdeHoy(idejer,idrutina){
@@ -145,6 +145,7 @@ export class RutinaProvider {
   }
   verHistorial(idejer){
     let query=res => res.where("idejercicio", "==", idejer)
+                      .where("idcliente","==",this.auth.auth.currentUser.uid)
                         .orderBy("fecha","desc")
     
     return this.getcollArrayconkey("setejercicios",query)
