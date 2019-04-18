@@ -6,26 +6,18 @@
 -->
 <ion-header>
 
-  <ion-navbar color="normal">
+  <ion-navbar color="tabss">
     
   <ion-title>Modificar usuario</ion-title>
   <ion-buttons end>
     <button ion-button icon-only color="royal" (click)="GurdarDatos()">
       <ion-icon name="md-checkmark"></ion-icon>
     </button>
-    <button ion-button clear item-end icon-only (click)=alerta()>
-      <ion-icon color="dark" name='information-circle'></ion-icon>
-  </button>
   </ion-buttons>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content>
-    
   <ion-grid>
-    
     <ion-row align-items-end>
       <ion-col col-12>
         <ion-list   inset>
@@ -44,7 +36,6 @@
             </ion-item>
         </div>
           <ion-item [formGroup]="myForm">
-            <ion-icon name="call" item-start></ion-icon>
             <ion-label  floating>Teléfono</ion-label>
             <ion-input formControlName="telefono" type="tel"  [(ngModel)]="event.telefono"></ion-input>
           </ion-item>
@@ -55,13 +46,13 @@
             <p class="msgerr" *ngIf="myForm.get('telefono').hasError('maxlength')">Máximo de 12 digitos</p> 
           </ion-item>
         
-          <ion-item  >
+          <ion-item>
             <ion-label stacked>Fecha de nacimiento:</ion-label>
             <ion-datetime displayFormat="DD MMMM YYYY" min="1940" [(ngModel)]="fechanac" cancelText =Cancelar doneText=Ok></ion-datetime>
           </ion-item>
         </ion-list>
-        <p>Peso {{event.peso}} Kg</p>
         
+        <p class="txtmodfecha">Peso {{event.peso}} Kg</p>
           <ion-list radio-group no-lines inset>
             <ion-item>
               <ion-range [(ngModel)]="event.peso" min="40" max="120" pin="true"  color="secondary">
@@ -75,10 +66,8 @@
           <ion-list radio-group no-lines inset>
             <ion-item>
             <ion-range [(ngModel)]="event.altura" min="120" max="220" pin="true"  color="secondary">
-
               </ion-range>
             </ion-item>
-            
           </ion-list>
       </ion-col>
     </ion-row>

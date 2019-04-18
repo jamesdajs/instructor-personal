@@ -7,6 +7,7 @@ import { AdmModejercicioPage } from '../adm-modejercicio/adm-modejercicio';
 
 import { Storage } from '@ionic/storage';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { WheelSelector } from '@ionic-native/wheel-selector';
 /**
  * Generated class for the DetallejercicioPage page.
  *
@@ -34,10 +35,26 @@ export class DetallejercicioPage {
   alumno=false
   imagenaux=true
   setrealizado=false
+  dummyJson = {
+    
+    peso:[
+        { description: 'Peso', value: '' }
+      ],
+      rep:[
+        { description: 'Repeticiones', value: '' }
+      ],
+      tiempo:[
+        { description: 'Tiempo', value: '' }
+      ]
+    
+
+  }
   constructor(public navCtrl: NavController, public navParams: NavParams,public rutina:RutinaProvider,
     public storage:Storage,public user:UsuarioProvider,
     private toastCtrl:ToastController,
-    public sanitizer:DomSanitizer
+    public sanitizer:DomSanitizer,
+    private toasCtrl:ToastController,
+    private selector:WheelSelector
     ) {
     this.itemcompleto=this.navParams.data
     if(this.itemcompleto.linkyoutube!="" && this.itemcompleto.linkyoutube)
@@ -63,7 +80,12 @@ export class DetallejercicioPage {
       }
       
     })
-    
+    for(let i=2.5;i<=120;i=i+2.5)
+      this.dummyJson.peso.push({ description: i+' Kg', value: ''+i })
+    for(let i=1;i<=50;i++)
+      this.dummyJson.rep.push({ description: i+'', value: ''+i })
+    for(let i=5;i<=60;i=i+5)
+      this.dummyJson.tiempo.push({ description: i+' min', value: ''+i })
   }
 
   ionViewDidLoad() {
@@ -138,5 +160,65 @@ export class DetallejercicioPage {
   marcarset(e,o){
     console.log(e)
     this.setejercicio[o].estado=e.checked
+  }
+  modificarset(i,peso,rep,tiempo){
+    console.log( !this.setrealizado, " y " ,this.alumno)
+    if(!this.setrealizado && this.alumno){
+      //alert("hola")
+      let i_peso,i_rep,i_tiempo
+      for (let indice in this.dummyJson.peso){
+        if(peso == this.dummyJson.peso[indice].value){
+          i_peso = indice;
+        }
+      }
+      for (let indice in this.dummyJson.rep){
+        if(rep == this.dummyJson.rep[indice].value){
+          i_rep = indice;
+        }
+      }
+      for (let indice in this.dummyJson.tiempo){
+        if(tiempo == this.dummyJson.tiempo[indice].value){
+          i_tiempo = indice;
+        }
+      }
+      this.selector.show({
+        title: "Modificar set "+(i+1),
+        
+        displayKey: 'description',
+        items: [
+          this.dummyJson.peso,
+          this.dummyJson.rep,
+          this.dummyJson.tiempo
+        ],
+        positiveButtonText: "Aceptar",
+        negativeButtonText: "Cancelar",
+
+        wrapWheelText:true,
+        defaultItems: [
+          {index:0, value: this.dummyJson.peso[parseInt(i_peso)].description},
+          {index:1, value: this.dummyJson.rep[parseInt(i_rep)].description},
+          {index:2, value: this.dummyJson.tiempo[parseInt(i_tiempo)].description}
+        ]
+      }).then(
+        result => {
+          if(this.dummyJson.peso[result[0].index].value!='' || 
+            this.dummyJson.rep[result[1].index].value!='' ||
+            this.dummyJson.tiempo[result[2].index].value!=''){
+              this.setejercicio[i].peso=this.dummyJson.peso[result[0].index].value
+              this.setejercicio[i].repeticiones=this.dummyJson.rep[result[1].index].value
+              this.setejercicio[i].tiempo=this.dummyJson.tiempo[result[2].index].value
+            }else{
+              this.toasCtrl.create({
+                message:"El set tiene que tener al menos un valor",
+                duration:3000
+              }).present()
+            }
+          //alert( `${result[0].description} (value=${this.dummyJson.peso[result[0].index].value} `);
+          
+        },
+        err => console.log('Error: ' + JSON.stringify(err))
+        )
+    }
+    
   }
 }
