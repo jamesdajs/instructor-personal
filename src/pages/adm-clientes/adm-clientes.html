@@ -14,17 +14,15 @@
    
         --> 
     </ion-navbar>
-  
   </ion-header>
-  
-  
   <ion-content >
       <ion-list >
           <ion-item color="listdivisor" >
-            
-            <h2>Alumnos 
-                buscados </h2>
-            
+            <h2>Alumnos buscados </h2>
+            <button ion-button clear item-end icon-only (click)=alerta()>
+                <ion-icon color="dark" name='information-circle'></ion-icon>
+            </button>
+
           </ion-item>
             <ion-scroll scrollX="true" scroll-avatar *ngIf="datosbuscado.length!=0;else elseBlock">
                 <div class="itemsel" *ngFor="let item of datosbuscado" (click)="verCliente(item.idcliente)" >
@@ -34,7 +32,6 @@
                     <div>
                         <p>{{item.fullnamecli}}</p>
                     </div>
-                    
                 </div>
             </ion-scroll>
           <ng-template #elseBlock>

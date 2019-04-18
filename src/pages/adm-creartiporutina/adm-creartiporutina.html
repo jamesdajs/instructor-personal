@@ -29,7 +29,7 @@
         </ion-item>
         <ion-item *ngIf="myForm.get('nombre').errors && myForm.get('nombre').dirty">
           <p class="msgerr" *ngIf="myForm.get('nombre').hasError('required')">Campo requerido</p> 
-          <p class="msgerr" *ngIf="myForm.get('nombre').hasError('maxlength')">maximo de 50 digitos</p> 
+          <p class="msgerr" *ngIf="myForm.get('nombre').hasError('maxlength')">máximo de 50 digitos</p> 
         </ion-item>
         
       </ion-col>

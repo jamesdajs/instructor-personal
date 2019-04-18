@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-    <ion-navbar color="tabss">
-      <ion-title>Dietas del alumno</ion-title>
+    <ion-navbar color="normal">
+      <ion-title>Dietas del alumno </ion-title>
       <ion-buttons end>
         <button ion-button icon-only color="royal" (click)="crear()">
           <ion-icon name="md-add"></ion-icon>
@@ -16,8 +16,6 @@
     </ion-navbar>
     
   </ion-header>
-
-
   <ion-content >
             <ion-list >
                   <div *ngIf="items.length!=0;else elseBlock">
@@ -25,7 +23,6 @@
                       <ion-item-sliding >
                         <ion-item color="listdivisor" (click)="verejercicios(item)">
                           <ion-label >
-                            
                             <h2>{{item.nombre}} </h2>
                             <p>{{item.descripcion}}</p>
                             <p>inicio: {{item.fechainiS}} fin: {{item.fechafinS}}</p>

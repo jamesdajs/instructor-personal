@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
 
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { AdmRutinasclientePage } from '../adm-rutinascliente/adm-rutinascliente'
@@ -34,7 +34,8 @@ export class AdmDatosclientePage {
   key
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    public user:UsuarioProvider
+    public user:UsuarioProvider,
+    public toastCtrl: ToastController
     ) {
       this.key=navParams.data
   }
@@ -80,5 +81,12 @@ export class AdmDatosclientePage {
   Dietas(){
     this.navCtrl.push(AdmDietasclientePage,this.key)
   }
-
+  alerta(){
+    const toast = this.toastCtrl.create({
+      message: 'Para asignar rutinas y dietas para '+this.datos.nombre +" primeramente debes crearlos en tu menu Rutinas y Hábitos alimenticios",
+      showCloseButton: true,
+      closeButtonText: 'Ok'
+    });
+    toast.present();
+  }
 }

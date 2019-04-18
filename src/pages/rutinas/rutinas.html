@@ -8,13 +8,15 @@
 
   <ion-navbar color="tabss">
     <ion-title>Rutinas</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)=alerta()>
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content >
-
               <ion-list >
                     <div *ngIf="items.length!=0;else elseBlock">
                       <div *ngFor="let item of items" class="delay">
@@ -55,7 +57,7 @@
                     </div>
                     <ng-template #elseBlock>
                         <ion-item color="carts">
-                          <h2>No tiene rutinas en este curso </h2>
+                          <h2>No tiene rutinas en este curso</h2>
                         </ion-item>
                     </ng-template>
                     

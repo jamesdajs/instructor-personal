@@ -93,6 +93,5 @@ export class ModificarusuarioPage {
     }else{
       toast.setMessage("Tiene datos no validos").present()
     }
-    
   }
 }

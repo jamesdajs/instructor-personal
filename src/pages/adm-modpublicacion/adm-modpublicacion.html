@@ -31,7 +31,7 @@
         </ion-item>  
         <ion-item *ngIf="myForm.get('comentario').errors && myForm.get('comentario').dirty">
           <p class="msgerr" *ngIf="myForm.get('comentario').hasError('required')">Campo requerido</p> 
-          <p class="msgerr" *ngIf="myForm.get('comentario').hasError('maxlength')">maximo de 300 caracteres</p> 
+          <p class="msgerr" *ngIf="myForm.get('comentario').hasError('maxlength')">máximo de 300 caracteres</p> 
         </ion-item>
       </ion-col>
     </ion-row>

@@ -29,7 +29,7 @@
             </ion-item>
             <ion-item *ngIf="myForm.get('nombre').errors && myForm.get('nombre').dirty">
               <p class="msgerr" *ngIf="myForm.get('nombre').hasError('required')">Campo requerido</p> 
-              <p class="msgerr" *ngIf="myForm.get('nombre').hasError('maxlength')">maximo de 50 digitos</p> 
+              <p class="msgerr" *ngIf="myForm.get('nombre').hasError('maxlength')">máximo de 50 digitos</p> 
             </ion-item>
             <ion-item [formGroup]="myForm">
               <ion-label  floating>Descripcion</ion-label>
@@ -37,7 +37,7 @@
             </ion-item>
             <ion-item *ngIf="myForm.get('descripcion').errors && myForm.get('descripcion').dirty">
               <p class="msgerr" *ngIf="myForm.get('descripcion').hasError('required')">Campo requerido</p> 
-              <p class="msgerr" *ngIf="myForm.get('descripcion').hasError('maxlength')">maximo de 200 digitos</p> 
+              <p class="msgerr" *ngIf="myForm.get('descripcion').hasError('maxlength')">máximo de 200 digitos</p> 
             </ion-item>
             <ion-list *ngIf="key!=true" no-lines >
                 <ion-row align-items-end>
@@ -48,7 +48,6 @@
                           </ion-item>
                     </ion-col>
                     <ion-col col-6>
-                      
                         <h5>Fin</h5>
                         <ion-item class="fechapadd">
                             <ion-datetime displayFormat="DD MMMM YYYY" min="2019"max="2020" [(ngModel)]="fechafin" cancelText =Cancelar doneText=Ok></ion-datetime>
@@ -68,7 +67,7 @@
                   <ion-option value="3">Miercoles</ion-option>
                   <ion-option value="4">Jueves</ion-option>
                   <ion-option value="5">Viernes</ion-option>
-                  <ion-option value="6">Sabado</ion-option>
+                  <ion-option value="6">Sábado</ion-option>
                 </ion-select>
               </ion-item>
             <!--
