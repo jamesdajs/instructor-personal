@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams , LoadingController ,Events} from 'ionic-angular';
+import { IonicPage, NavController, NavParams , LoadingController ,Events,ToastController } from 'ionic-angular';
 import { EjerciciosPage } from '../ejercicios/ejercicios';
 import { DetallejercicioPage } from '../detallejercicio/detallejercicio';
 
@@ -26,7 +26,8 @@ export class RutinasPage {
     public rutina:RutinaProvider,
     public loadCtr:LoadingController,
     public store:Storage,
-    public event:Events
+    public event:Events,
+    public toastCtrl: ToastController
     ) {
   }
 
@@ -111,6 +112,15 @@ export class RutinasPage {
   }
   verDetEjercicio(key){
       this.navCtrl.push(DetallejercicioPage,key)
+  }
+
+  alerta(){
+    const toast = this.toastCtrl.create({
+      message: 'En esta sección encontrarás tus rutinas asignadas por tu instructor seleccionado',
+      showCloseButton: true,
+      closeButtonText: 'Ok'
+    });
+    toast.present();
   }
 
 }

@@ -33,12 +33,16 @@
             </ion-scroll>
           <ng-template #elseBlock4>
               <ion-item color="carts">
-                <p>No se entontro resultados</p>
+                <p>No se entontró resultados</p>
               </ion-item>
           </ng-template>
           
           <ion-item  color="listdivisor">
-              <h2>Instructores </h2>
+              <h2>Mis Instructores </h2>
+              <button ion-button clear item-end icon-only (click)=alerta()>
+                <ion-icon color="dark" name='information-circle'></ion-icon>
+            </button>
+
           </ion-item>
           <ion-scroll scrollX="true" scroll-avatar *ngIf="misInstructores.length!=0;else elseBlock3">
             <div class="itemsel" *ngFor="let item of misInstructores" (click)="vercurso(item.idinstructor)" >

@@ -28,7 +28,7 @@
         </ion-item>
         <ion-item *ngIf="myForm.get('nombre').errors && myForm.get('nombre').dirty">
           <p class="msgerr" *ngIf="myForm.get('nombre').hasError('required')">Campo requerido</p> 
-          <p class="msgerr" *ngIf="myForm.get('nombre').hasError('maxlength')">maximo de 50 digitos</p> 
+          <p class="msgerr" *ngIf="myForm.get('nombre').hasError('maxlength')">máximo de 50 digitos</p> 
         </ion-item>
         <ion-item class="input" [formGroup]="myForm">
           <ion-label  floating>Descripcion</ion-label>
@@ -36,7 +36,7 @@
         </ion-item>
         <ion-item *ngIf="myForm.get('descripcion').errors && myForm.get('descripcion').dirty">
           <p class="msgerr" *ngIf="myForm.get('descripcion').hasError('required')">Campo requerido</p> 
-          <p class="msgerr" *ngIf="myForm.get('descripcion').hasError('maxlength')">maximo de 100 digitos</p> 
+          <p class="msgerr" *ngIf="myForm.get('descripcion').hasError('maxlength')">máximo de 100 digitos</p> 
         </ion-item>
         <ion-item class="input" [formGroup]="myForm">
           <ion-label  floating>Instrucciones</ion-label>
@@ -44,7 +44,7 @@
         </ion-item>
         <ion-item *ngIf="myForm.get('instrucciones').errors && myForm.get('instrucciones').dirty">
           <p class="msgerr" *ngIf="myForm.get('instrucciones').hasError('required')">Campo requerido</p> 
-          <p class="msgerr" *ngIf="myForm.get('instrucciones').hasError('maxlength')">maximo de 200 digitos</p> 
+          <p class="msgerr" *ngIf="myForm.get('instrucciones').hasError('maxlength')">máximo de 200 digitos</p> 
         </ion-item>
         <!--
           <div class="login">

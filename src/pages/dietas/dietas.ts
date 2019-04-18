@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams ,Events ,LoadingController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,Events ,LoadingController,ToastController} from 'ionic-angular';
 
 import { DietasProvider } from '../../providers/dietas/dietas'
 import { DetalledietaPage } from '../detalledieta/detalledieta'
@@ -27,7 +27,8 @@ ejers=[]
     public event:Events,
     public dieta:DietasProvider,
     public loadctrl:LoadingController,
-    public store:Storage
+    public store:Storage,
+    public toastCtrl: ToastController
     ) {
   }
 
@@ -76,5 +77,14 @@ item["estadohiide"]=!item["estadohiide"]
 }
 verDetEjercicio(item){
     this.navCtrl.push(DetalledietaPage,item)
+}
+
+alerta(){
+  const toast = this.toastCtrl.create({
+    message: 'En esta sección encontrarás las dietas asignadas por el instructor seleccionado.',
+    showCloseButton: true,
+    closeButtonText: 'Ok'
+  });
+  toast.present();
 }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
 
 import { UsuarioProvider } from "../../providers/usuario/usuario"
 
@@ -22,7 +22,8 @@ export class AdmClientesPage {
   publicaciones=[]
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
-     private user:UsuarioProvider
+     private user:UsuarioProvider,
+     public toastCtrl: ToastController
      ) {
       this.lstarPublicaciones()
   }
@@ -83,5 +84,14 @@ export class AdmClientesPage {
       this.publicaciones=res
       console.log(res)
     })
+  }
+
+  alerta(){
+    const toast = this.toastCtrl.create({
+      message: 'En esta sección encontrarás a todos tus alumnos. Selecciona un alumno para poder adicionar rutinas y dietas',
+      showCloseButton: true,
+      closeButtonText: 'Ok'
+    });
+    toast.present();
   }
 }
