@@ -143,5 +143,11 @@ export class RutinaProvider {
     
     return this.getcollArrayconkey("setejercicios",query)
   }
+  verHistorial(idejer){
+    let query=res => res.where("idejercicio", "==", idejer)
+                        .orderBy("fecha","desc")
+    
+    return this.getcollArrayconkey("setejercicios",query)
+  }
 
 }

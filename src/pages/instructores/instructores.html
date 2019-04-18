@@ -74,13 +74,13 @@
                                         <p>{{p.nombre}}</p>
                                         <p>{{p.fecha2}}</p>
                                 </ion-item>
+                                
+                                <img [src]="p.imagen"/>
                                 <ion-card-content>
                                   
-                                    <p>{{p.comentario}}
-                                    </p>
-                                </ion-card-content>
-                                <img [src]="p.imagen"/>
-                                
+                                  <p>{{p.comentario}}
+                                  </p>
+                              </ion-card-content>
                                   
                                 <ion-item>
                                     <button ion-button clear item-start (click)="verInstructor(p.idcliente)" >

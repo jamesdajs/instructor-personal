@@ -92,6 +92,10 @@ import { MultiPickerModule } from 'ion-multi-picker';
 import { WheelSelector } from '@ionic-native/wheel-selector';
 import { HttpClientModule } from '@angular/common/http';
 import { AdmModpublicacionPage } from '../pages/adm-modpublicacion/adm-modpublicacion';
+import { HistorialejerciciosPage } from '../pages/historialejercicios/historialejercicios';
+
+import { Network } from '@ionic-native/network';
+import { NetworkProvider } from '../providers/network/network';
 
 @NgModule({
   declarations: [
@@ -113,6 +117,7 @@ import { AdmModpublicacionPage } from '../pages/adm-modpublicacion/adm-modpublic
     DetalledietaPage,
     DatosinstructorPage,
     InstructorPage,
+    HistorialejerciciosPage,
 
     AdmEjerciciosPage,
     AdmCrearejercicioPage,
@@ -198,6 +203,7 @@ import { AdmModpublicacionPage } from '../pages/adm-modpublicacion/adm-modpublic
     DetalledietaPage,
     DatosinstructorPage,
     InstructorPage,
+    HistorialejerciciosPage,
 
     AdmEjerciciosPage,
     AdmCrearejercicioPage,
@@ -241,7 +247,9 @@ import { AdmModpublicacionPage } from '../pages/adm-modpublicacion/adm-modpublic
     MediaCapture,
     File,
     GooglePlus,
-    WheelSelector
+    WheelSelector,
+    Network,
+    NetworkProvider
   ]
 })
 export class AppModule {}
