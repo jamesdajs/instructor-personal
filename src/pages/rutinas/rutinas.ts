@@ -114,13 +114,19 @@ export class RutinasPage {
       this.navCtrl.push(DetallejercicioPage,key)
   }
 
+  estadoToast=true
   alerta(){
     const toast = this.toastCtrl.create({
       message: 'En esta sección encontrarás tus rutinas asignadas por tu instructor seleccionado',
       showCloseButton: true,
-      closeButtonText: 'Ok'
+      closeButtonText: 'Ok',
+      dismissOnPageChange: true
     });
-    toast.present();
+    if(this.estadoToast){
+      this.estadoToast=false
+      toast.present()
+    }else{
+        this.estadoToast = true;
+    }
   }
-
 }

@@ -12,19 +12,23 @@ page-instructores {
     ion-scroll[scroll-avatar] p{
         margin: 0;
         white-space: normal;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 12px
     }
     ion-scroll[scroll-avatar]{
         
         white-space: nowrap;
-        height: 145px;
+        height: 95px;
     }
     ion-scroll[scroll-avatar] img{
         
         border-radius: 50%;
     }
     .selecionados{
-        width: 75px;
-        height: 75px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
     }
     .activo{

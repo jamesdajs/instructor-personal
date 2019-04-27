@@ -128,13 +128,20 @@ publicaciones=[]
       console.log(res)
     })
   }
-
+  estadoToast=true;
   alerta(){
     const toast = this.toastCtrl.create({
       message: 'Esta sección listará a todos tus instructores personales, selecciona un instructor para ver sus rutinas y dietas que te asignó',
       showCloseButton: true,
-      closeButtonText: 'Ok'
+      closeButtonText: 'Ok',
+      dismissOnPageChange: true
     });
-    toast.present();
+
+    if(this.estadoToast){
+      this.estadoToast=false
+      toast.present()
+    }else{
+        this.estadoToast = true;
+    }
   }
 }
