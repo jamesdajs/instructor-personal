@@ -126,7 +126,7 @@ export class DatospersonalesPage {
   
       let alert = this.alert.create({
         title: 'Cerrar Sesion',
-        message: 'Seguro que desea salir de la aplicacion?',
+        message: 'Seguro que desea salir de la aplicación?',
         buttons: [
           {
             text: 'Cancelar',
