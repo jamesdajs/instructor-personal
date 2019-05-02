@@ -19,7 +19,7 @@
 
 
 <ion-content >
-  <ion-grid>
+  <ion-grid no-padding>
     <ion-row align-items-end>
       <ion-col col-12>
         <ion-item class="input" [formGroup]="myForm">
@@ -70,41 +70,22 @@
         -->
         
         <p>Seleccinar imagenes de las posiciones del ejercicio(opcional) </p>
+        
         <ion-row>
-          <ion-col col-6>
-            <div class="colbtn">
-                <div  *ngIf="imagen64==''; else imagendefecto;" >
-                      <p>Posicion 1 </p>
-                      <button ion-button  block color="carts" (click)="seleccionarImagen()">
-                          <ion-icon name="camera"></ion-icon>
-                      </button>
-                </div>
-
-                <ng-template #imagendefecto>
-                  
-                  <div class="fondobtn" ><ion-icon name="close-circle-outline" (click)="borrarimg()"></ion-icon></div>
-                  <img  [src]="imagen64" />
-                </ng-template>
-            </div>
-            
-          </ion-col>
-          <ion-col col-6>
-              <div class="colbtn">
-                  <div  *ngIf="imagen64_2==''; else imagendefecto2;" >
-                        <p>Posición 2 </p>
-                        <button ion-button  block color="carts" (click)="seleccionarImagen2()">
-                            <ion-icon name="camera"></ion-icon>
-                        </button>
+          <ion-col >
+              <ion-scroll scrollX="true" scroll-avatar color="normal">
+                  <div class="itemsel" >
+                      
+                      <div class="selecionados add"  >
+                          <ion-icon name="camera" (click)="openImagePickerCrop()"></ion-icon>
+                      </div>
                   </div>
-  
-                  <ng-template #imagendefecto2>
-                    
-                    <div class="fondobtn" ><ion-icon name="close-circle-outline" (click)="borrarimg2()"></ion-icon></div>
-                    <img  [src]="imagen64_2" />
-                  </ng-template>
-              </div>
-              
-            </ion-col>
+                  <div class="itemsel" *ngFor="let item of imgCropUrl; let o = index;" >
+                      <img class="selecionados"  [src]="item.base64" />
+                  </div>
+            </ion-scroll>
+
+          </ion-col>
         </ion-row>
         <ion-item class="input">
           <ion-label  floating>Link de video youtube (opcional)</ion-label>

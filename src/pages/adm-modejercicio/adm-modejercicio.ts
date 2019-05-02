@@ -8,6 +8,9 @@ import { Camera,CameraOptions } from '@ionic-native/camera';
 import { RutinaProvider } from "../../providers/rutina/rutina"
 import { AdmTipoejercicioPage } from "../adm-tipoejercicio/adm-tipoejercicio"
 import { AngularFireStorage } from 'angularfire2/storage';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { File } from '@ionic-native/file';
+import { Crop } from '@ionic-native/crop';
 /**
  * Generated class for the AdmModejercicioPage page.
  *
@@ -30,16 +33,21 @@ export class AdmModejercicioPage {
     imagen1:"",
     key:"",
     linkyoutube:"",
-    rol:true
+    rol:true,
+    imagenes:[]
   }
   imagen64=""
   imagen64_2=''
+  imgCropUrl=[]
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private toastCtrl:ToastController,
     private loadCtrl:LoadingController,
     private rutina:RutinaProvider,
     private camera:Camera,
-    private storage:AngularFireStorage
+    private storage:AngularFireStorage,
+    private imagePicker:ImagePicker,
+    private file:File,
+    private cropService:Crop
     ) {
     this.datos=navParams.data
   }
@@ -183,4 +191,79 @@ export class AdmModejercicioPage {
     .subscribe()
       });
   }
+  openImagePickerCrop(){
+    this.imagePicker.hasReadPermission()
+    .then((result) => {
+      if(result == false){
+        // no callbacks required as this opens a popup which returns async    
+        this.imagePicker.requestReadPermission();
+      }
+      else if(result == true){
+        this.imagePicker.getPictures({
+          
+          maximumImagesCount: 5,
+          quality:25
+        })
+        .then(async (results) => {
+          this.imgCropUrl=[]
+          for (var i = 0; i < results.length; i++) {
+            
+            let imageData= await this.cropService.crop(results[i])
+            let objres = await this.procesandoCrop(imageData)
+            this.imgCropUrl.push(objres)
+          }
+        })
+            
+      }
+    })
+    .catch(err=>{
+      alert(JSON.stringify(err))
+    })
+    
+  }
+  procesandoCrop(imageData){
+    return new Promise((res,rej)=>{
+       this.file.resolveLocalFilesystemUrl(imageData)
+       .then(newurlImage=>{
+        let dirpath=newurlImage.nativeURL
+            let dirpathseg=dirpath.split("/")
+            dirpathseg.pop()
+            dirpath=dirpathseg.join('/')
+            //alert(dirpath)
+            this.file.readAsArrayBuffer(dirpath,newurlImage.name)
+            .then(buffer=>{
+              //alert(buffer.byteLength)
+              let blob=new Blob([buffer],{type:"image/jpg"})
+
+              var reader  = new FileReader();
+              reader.readAsDataURL(blob);
+                reader.onloadend = function () {
+                  res({
+                    base64:reader.result,
+                    url:newurlImage.nativeURL,
+                    nombre:newurlImage.name,
+                    blob:blob
+                  })
+              }
+           })
+          })
+      })
+  }
+  uploadImageToFirebase(path,objres){
+    return new Promise((resolve, reject)=>{
+          //alert(newUrl)
+            let ref=this.storage.ref(path+objres.nombre)
+            let task= ref.put(objres.blob)
+            task.snapshotChanges().pipe(
+              finalize(() => {
+                ref.getDownloadURL().subscribe(data=>{
+                  //alert(data);
+                  resolve(data)
+                })
+                
+              } )
+          )
+          .subscribe()
+      })
+}
 }

@@ -26,10 +26,13 @@ export class AdmClientesPage {
      public toastCtrl: ToastController
      ) {
       this.lstarPublicaciones()
-  }
+      
 
+  }
+  altodelIMG
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AdmClientesPage');
+   //alert("La resolución de tu pantalla es: " + screen.width + " x " + screen.height)
+    this.altodelIMG=screen.width
     this.cargardatos()
   }
   cargardatos(){

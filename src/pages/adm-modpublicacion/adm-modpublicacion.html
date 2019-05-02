@@ -22,10 +22,12 @@
   <ion-grid>
     <ion-row align-items-center>
       <ion-col >
-        <div class="imagen" (click)="seleccionarImagen()">
-            <img *ngIf="imagen64!=''" [src]="imagen64" />
-            <img *ngIf="imagen64==''" [src]="datos.imagen"/>
-        </div>
+        <ion-slides pager >
+              <ion-slide *ngFor="let imagen of datos.imagenes">
+                  <img [src]="imagen.url" />
+              </ion-slide>
+              
+        </ion-slides>
         <ion-item [formGroup]="myForm">
             <ion-textarea [(ngModel)]="datos.comentario" formControlName="comentario" type="text" placeholder="Comentario" ></ion-textarea>
         </ion-item>  

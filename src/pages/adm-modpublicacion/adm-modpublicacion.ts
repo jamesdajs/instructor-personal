@@ -22,7 +22,7 @@ export class AdmModpublicacionPage {
   myForm:FormGroup
   datos={
     comentario:"",
-    imagen:""
+    imagenes:[]
   }
   key=""
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -35,7 +35,7 @@ export class AdmModpublicacionPage {
 
     ) {
       this.datos.comentario=navParams.data.comentario
-      this.datos.imagen=navParams.data.imagen
+      this.datos.imagenes=navParams.data.imagenes
       this.key=navParams.data.key
       this.myForm = this.formb.group({
         comentario: ['', [Validators.required,Validators.maxLength(300)]]

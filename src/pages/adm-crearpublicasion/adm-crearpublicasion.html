@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar color="tabss">
-        <ion-title>Crear publicasion</ion-title>
+        <ion-title>Crear publicación</ion-title>
         <ion-buttons end>
             <button ion-button icon-only color="royal" (click)="guardar()">
                     <ion-icon name="md-checkmark"></ion-icon>
@@ -22,10 +22,16 @@
   <ion-grid>
     <ion-row align-items-center>
       <ion-col >
-        <div class="imagen" (click)="seleccionarImagen()">
-            <img *ngIf="imagen64!=''" [src]="imagen64" />
-            <ion-icon *ngIf="imagen64==''" name="camera"></ion-icon>
-        </div>
+          <div class="imagen"(click)="openImagePickerCrop()" *ngIf="imgCropUrl.length==0">
+              <ion-icon  name="camera"></ion-icon>
+            </div>
+          <ion-slides pager *ngIf="imgCropUrl.length!=0">
+              <ion-slide *ngFor="let imagen of imgCropUrl">
+                  <img [src]="imagen.base64" (click)="verimage(imagen.url)"/>
+              </ion-slide>
+              
+        </ion-slides>
+        
       
         <ion-item [formGroup]="myForm">
             <ion-textarea [(ngModel)]="datos.comentario" formControlName="comentario" type="text" placeholder="Comentario" ></ion-textarea>

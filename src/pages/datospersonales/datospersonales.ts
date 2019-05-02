@@ -300,7 +300,7 @@ export class DatospersonalesPage {
       this.publicaciones=data
     })
   }
-  verimagen(p){
+  verimagen(p,imgact){
     let mes=["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."]
     let hoy=new Date()
     let prefi=""
@@ -319,7 +319,7 @@ export class DatospersonalesPage {
         prefi=prefi+" "+ diap.getHours()+":"+(diap.getMinutes()<9?"0"+diap.getMinutes():diap.getMinutes())
     let img=`<div class="imgalerta">
               
-              <img src='${p.imagen}'></img>
+              <img src='${imgact}'></img>
               
               <div class="texto">
                  <p class='palert'>${prefi}</p><p class='palert'>${p.comentario}</p>
@@ -335,7 +335,7 @@ export class DatospersonalesPage {
       
     }).present();
   }
-  opciones(p){
+  opciones(p,img){
     this.actionSheetCtrl.create({
       buttons:[
         {
@@ -344,7 +344,7 @@ export class DatospersonalesPage {
 
           handler: () => {
             console.log('Destructive clicked');
-            this.verimagen(p)
+            this.verimagen(p,img)
           }
         },
         {
@@ -355,7 +355,7 @@ export class DatospersonalesPage {
             let datos={
               key:p.key,
               comentario:p.comentario,
-              imagen:p.imagen
+              imagenes:p.imagenes
             }
             this.navCtrl.push(AdmModpublicacionPage,datos)
           }
@@ -393,8 +393,9 @@ export class DatospersonalesPage {
         {
           text: 'Ok',
           handler: () => {
-           this.storage.ref("publicaciones/"+p.key).delete()
-           this.user.eliminarPublicasion(p.key)
+            for(let i in p.imagenes)
+              this.storage.ref("publicaciones/"+p.key+'/'+p.imagenes[i].nombre).delete()
+            this.user.eliminarPublicasion(p.key)
            
           }
         }

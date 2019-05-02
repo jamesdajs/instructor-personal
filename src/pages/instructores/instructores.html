@@ -78,8 +78,13 @@
                                         <p>{{p.nombre}}</p>
                                         <p>{{p.fecha2}}</p>
                                 </ion-item>
-                                
-                                <img [src]="p.imagen"/>
+                                <ion-slides pager >
+                                        
+                                    <ion-slide *ngFor="let imagen of p.imagenes">
+                                        <img [src]="imagen.url"  alt="">
+                                    </ion-slide>
+                                    
+                                </ion-slides>
                                 <ion-card-content>
                                   
                                   <p>{{p.comentario}}

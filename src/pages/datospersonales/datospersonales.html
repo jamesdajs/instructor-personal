@@ -188,8 +188,14 @@
       </ion-item>
       <ion-grid no-padding *ngIf="rol=='instructor'">
         <ion-row>
-          <ion-col  col-4 *ngFor="let p of publicaciones" (click)="opciones(p)">
-            <img [src]="p.imagen" alt="" >
+
+          <ion-col  col-4 *ngFor="let p of publicaciones" >
+            <ion-slides pager >
+                <ion-slide *ngFor="let imagen of p.imagenes">
+                    <img [src]="imagen.url" (click)="opciones(p,imagen.url)">
+                </ion-slide>
+            </ion-slides>
+            
           </ion-col>
         </ion-row>
       </ion-grid>
