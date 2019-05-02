@@ -66,11 +66,13 @@ ion-icon {
     width: 1em;
     height: 1em;
     }
+
+    
     &[class*="custom-pesas"] {
     mask-image: url(../assets/icon/dumbbell.svg);
     }
     &[class*="custom-dieta"] {
-    mask-image: url(../assets/icon/fork.svg);
+    mask-image: url(../assets/icon/breakfast.png);
     }
     &[class*="custom-estadisticas"] {
     mask-image: url(../assets/icon/line-chart.svg);
@@ -88,16 +90,23 @@ ion-icon {
         mask-image: url(../assets/icon/whatsapp.svg);
     }
 }
+[aria-selected=true] {
+    background-color: rgb(225, 242, 252);
+    color: #000;
+}
+
 img {
     background:transparent url(../assets/loading/ajax-loader.gif) center no-repeat !important;
-    }
-    ion-content.has-refresher > .scroll-content {
-         background-color: #ffffff00 !important; 
-    }
+}
+ion-content.has-refresher > .scroll-content {
+    background-color: #ffffff00 !important; 
+}
+
 //selecion de imagenes
 .colbtn{
     position: relative;
 }
+
 .fondobtn{
     font-size: 2em;
     position: absolute;

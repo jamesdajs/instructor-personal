@@ -28,11 +28,18 @@
         </div>
       
         <ion-item [formGroup]="myForm">
-            <ion-textarea [(ngModel)]="datos.comentario" formControlName="comentario" type="text" placeholder="Comentario" ></ion-textarea>
+            <ion-textarea [(ngModel)]="datos.comentario" formControlName="Comentario" type="text" placeholder="Comentario" ></ion-textarea>
         </ion-item>  
         <ion-item *ngIf="myForm.get('comentario').errors && myForm.get('comentario').dirty">
           <p class="msgerr" *ngIf="myForm.get('comentario').hasError('required')">Campo requerido</p> 
           <p class="msgerr" *ngIf="myForm.get('comentario').hasError('maxlength')">máximo de 300 caracteres</p> 
+        </ion-item>
+
+        <ion-item [formGroup]="myForm">
+          <ion-textarea [(ngModel)]="datos.precio" formControlName="Precio" type="text" placeholder="Comentario" ></ion-textarea>
+      </ion-item>  
+       <ion-item *ngIf="myForm.get('comentario').errors && myForm.get('comentario').dirty">
+          <p class="msgerr" *ngIf="myForm.get('comentario').hasError('required')">Campo requerido</p> 
         </ion-item>
       </ion-col>
     </ion-row>

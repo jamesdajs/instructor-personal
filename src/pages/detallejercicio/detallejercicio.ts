@@ -8,6 +8,7 @@ import { AdmModejercicioPage } from '../adm-modejercicio/adm-modejercicio';
 import { Storage } from '@ionic/storage';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { WheelSelector } from '@ionic-native/wheel-selector';
+import { HistorialejerciciosPage } from '../historialejercicios/historialejercicios';
 /**
  * Generated class for the DetallejercicioPage page.
  *
@@ -57,8 +58,7 @@ export class DetallejercicioPage {
     private selector:WheelSelector
     ) {
     this.itemcompleto=this.navParams.data
-    if(this.itemcompleto.linkyoutube!="" && this.itemcompleto.linkyoutube)
-    this.youtubeaux=sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+/[^/]+$/.exec(this.itemcompleto.linkyoutube)[0])
+    
     for(let i in this.navParams.data.peso){
       
       this.setejercicio.push({
@@ -106,6 +106,8 @@ export class DetallejercicioPage {
         //this.youtubeaux=/[^/]+$/.exec(data.linkyoutube)[0]
         //console.log(this.youtubeaux,data.linkyoutube)
         this.item=data
+        if(this.item.linkyoutube!="" && this.item.linkyoutube)
+          this.youtubeaux=this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+/[^/]+$/.exec(this.item.linkyoutube)[0])
       })
     }else{
 
@@ -220,5 +222,8 @@ export class DetallejercicioPage {
         )
     }
     
+  }
+  IrAhistorial(){
+    this.navCtrl.push(HistorialejerciciosPage,{item:this.item,ejercicio:this.itemcompleto})
   }
 }
