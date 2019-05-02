@@ -58,7 +58,6 @@ export class AdmClientesPage {
     .catch(err=>{
       console.log(err)
     })
-    
   }
   verCliente(keycli){
     this.navCtrl.push(AdmDatosclientePage,keycli)
@@ -88,13 +87,20 @@ export class AdmClientesPage {
       console.log(res)
     })
   }
-
+  estadoToast=true;
   alerta(){
     const toast = this.toastCtrl.create({
       message: 'En esta sección encontrarás a todos tus alumnos. Selecciona un alumno para poder adicionar rutinas y dietas',
       showCloseButton: true,
-      closeButtonText: 'Ok'
+      closeButtonText: 'Ok',
+      dismissOnPageChange: true
     });
-    toast.present();
+    
+    if(this.estadoToast){
+      this.estadoToast=false
+      toast.present()
+    }else{
+        this.estadoToast = true;
+    }
   }
 }

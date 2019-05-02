@@ -78,13 +78,19 @@ item["estadohiide"]=!item["estadohiide"]
 verDetEjercicio(item){
     this.navCtrl.push(DetalledietaPage,item)
 }
-
+estadoToast=true
 alerta(){
   const toast = this.toastCtrl.create({
     message: 'En esta sección encontrarás las dietas asignadas por el instructor seleccionado.',
     showCloseButton: true,
-    closeButtonText: 'Ok'
+    closeButtonText: 'Ok',
+    dismissOnPageChange: true
   });
-  toast.present();
+  if(this.estadoToast){
+    this.estadoToast=false
+    toast.present()
+  }else{
+      this.estadoToast = true
+  }
 }
 }
