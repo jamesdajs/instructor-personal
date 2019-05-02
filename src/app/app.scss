@@ -18,7 +18,7 @@
 ion-content{
     background-color: #e2f3f5;
     color: #0e153a;
-    
+    //color: #0e153a;
     /*background:  url("../assets/imgs/fondo.jpg") no-repeat center top;
     background-attachment: fixed;
     background-size: cover;
@@ -70,7 +70,7 @@ ion-icon {
     mask-image: url(../assets/icon/dumbbell.svg);
     }
     &[class*="custom-dieta"] {
-    mask-image: url(../assets/icon/covered-food-tray-on-a-hand-of-hotel-room-service.svg);
+    mask-image: url(../assets/icon/fork.svg);
     }
     &[class*="custom-estadisticas"] {
     mask-image: url(../assets/icon/line-chart.svg);

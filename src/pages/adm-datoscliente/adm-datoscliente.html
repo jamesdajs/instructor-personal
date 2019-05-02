@@ -18,24 +18,8 @@
 </ion-header>
 
 
-<ion-content >
-    <ion-grid>
-        <ion-row class="menu">
-          <ion-col  col-6>
-              <button ion-button block color="normal"  icon-start (click)="Rutinas()">
-                  <ion-icon name="custom-pesas"></ion-icon> 
-                  &nbsp; Rutinas</button>
-          </ion-col>
-          <ion-col col-6>
-              <button ion-button outline block color="normal" icon-start (click)="Dietas()">
-                  <ion-icon name="custom-dieta"></ion-icon> 
-                  &nbsp; Dietas</button>
-          </ion-col>
-        </ion-row>
-    </ion-grid>
-    
-    <ion-card color="carts">
-        
+<ion-content >    
+    <ion-card >
         <ion-card-content>
             <ion-item>
                 <ion-avatar item-start>
@@ -70,4 +54,25 @@
             </ion-grid>
         </ion-card-content>
       </ion-card>
+  <ion-card >
+      <ion-card-content>
+       <ion-grid>
+          <ion-row class="menu">
+              <p>Selecciona que deseas asignarle a tu alumno</p> 
+            <ion-col  col-6>
+                <button ion-button outline block color="normal"  icon-start (click)="Rutinas()">
+                    <ion-icon name="custom-pesas"></ion-icon> 
+                    &nbsp; Rutinas</button>
+            </ion-col>
+            <ion-col col-6>
+               
+                <button ion-button outline block color="normal" icon-start (click)="Dietas()">
+                    <ion-icon name="custom-dieta"></ion-icon>
+                    &nbsp; Dietas
+                  </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
 </ion-content>
