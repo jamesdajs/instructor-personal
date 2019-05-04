@@ -43,4 +43,19 @@ page-instructores {
     .wtapp{
         color:#64B161;
     }
+    .descripcion-post{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        color: darkgray
+    }
+    .title-post{
+        color: #000 !important;
+        margin-top: 0%
+    }
+    .pricing-post{
+        padding: 0%;
+    }
 }
