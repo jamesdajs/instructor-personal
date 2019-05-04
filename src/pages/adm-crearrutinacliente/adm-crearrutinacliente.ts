@@ -143,13 +143,15 @@ export class AdmCrearrutinaclientePage {
       this.ejercicios.forEach(item=>{
         delete item.key
         delete item.deslarga
-        delete item.imagen1
         delete item.estadoadd
         delete item.event
         delete item.opts
         delete item.component
         item["idrutina"]=res.id
+        item["imagen"]=item.imagenes[0]==undefined?'':item.imagenes[0]
         item["estado"]=false
+        delete item.imagenes
+        delete item.linkyoutube
         console.log(item)
         funciones.push(this.user.guardarRutina_ejercicio(item))
       })

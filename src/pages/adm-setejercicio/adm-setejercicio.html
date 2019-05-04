@@ -25,10 +25,22 @@
 
 <ion-content >
     <ion-card color="listdivisor">
-      <img *ngIf="ejercicio.imagen!=''; else elseBlock" [src]="ejercicio.imagen">
-      <ng-template #elseBlock>
-          <img  src="../../assets/imgs/defecto.jpeg" />
-      </ng-template>
+        <ion-slides pager>
+            <ng-container *ngIf="ejercicio.imagenes.length!=0; else elseBlock">
+              <ion-slide *ngFor="let imagen of ejercicio.imagenes">
+        
+                <img [src]="imagen.url" />
+        
+              </ion-slide>
+        
+            </ng-container>
+            <ng-template #elseBlock>
+              <ion-slide>
+                <img src="../../assets/imgs/defecto.jpeg" />
+              </ion-slide>
+            </ng-template>
+
+          </ion-slides>
         <ion-card-content>
         
           <ion-grid  >

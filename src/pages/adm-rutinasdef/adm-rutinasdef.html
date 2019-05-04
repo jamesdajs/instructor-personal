@@ -44,7 +44,7 @@
                 </ion-item-divider>
                 <ion-item color="carts" *ngFor="let ejer of ejers[item.key]" (click)="verDetEjercicio(ejer)"> 
                     <ion-avatar item-start>
-                        <img *ngIf="ejer.imagen!=''; else elseBlock" [src]="ejer.imagen" />
+                        <img *ngIf="ejer.imagen!=''; else elseBlock" [src]="ejer.imagen.url" />
                           <ng-template #elseBlock>
                               <img  src="../../assets/imgs/defecto.jpeg" />
                       </ng-template>

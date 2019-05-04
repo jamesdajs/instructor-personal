@@ -115,7 +115,7 @@
     
                             </ion-icon>
                         </div>
-                        <img class="selecionados" *ngIf="item.imagen!=''; else elseBlock" [src]="item.imagen" />
+                        <img class="selecionados" *ngIf="item.imagenes.length!=0; else elseBlock" [src]="item.imagenes[0].url" />
                         <ng-template #elseBlock>
                            <img class="selecionados" src="../../assets/imgs/defecto.jpeg" />
                         </ng-template>

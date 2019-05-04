@@ -22,7 +22,7 @@
 
                         </ion-icon>
                     </div>
-                    <img class="selecionados" *ngIf="item.imagen!=''; else elseBlock" [src]="item.imagen" />
+                    <img class="selecionados" *ngIf="item.imagenes.length!=0; else elseBlock" [src]="item.imagenes[0].url" />
                     <ng-template #elseBlock>
                        <img class="selecionados" src="../../assets/imgs/defecto.jpeg" />
                     </ng-template>
@@ -57,7 +57,7 @@
                         <ion-item color="listdivisor" *ngFor="let ejer of ejers[item.nombre]; let o = index;" > 
                           
                               <ion-avatar item-start>
-                                  <img *ngIf="ejer.imagen!=''; else elseBlock" [src]="ejer.imagen" />
+                                  <img *ngIf="ejer.imagenes.length!=0; else elseBlock" [src]="ejer.imagenes[0].url" />
                                     <ng-template #elseBlock>
                                         <img  src="../../assets/imgs/defecto.jpeg" />
                                 </ng-template>
@@ -88,7 +88,7 @@
                         <ion-item color="listdivisor" *ngFor="let ejer of ejers[item.nombre]; let o = index;" > 
                           
                               <ion-avatar item-start>
-                                  <img *ngIf="ejer.imagen!=''; else elseBlock" [src]="ejer.imagen" />
+                                  <img *ngIf="ejer.imagenes.length!=0; else elseBlock" [src]="ejer.imagenes[0].url" />
                                     <ng-template #elseBlock>
                                         <img  src="../../assets/imgs/defecto.jpeg" />
                                 </ng-template>
