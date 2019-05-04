@@ -12,6 +12,7 @@ import {File} from "@ionic-native/file"
 //import { DomSanitizer } from '@angular/platform-browser';
 
 import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { WheelSelector } from '@ionic-native/wheel-selector';
 //import { IonicImageLoader } from 'ionic-image-loader';
 /**
  * Generated class for the AdmCrearpublicasionPage page.
@@ -29,9 +30,15 @@ export class AdmCrearpublicasionPage {
   imagen64=""
   datos={
     comentario:"",
+    titulo:"",
+    costo:0,
+    semanas:"",
+    meses:"",
     fecha:new Date,
     estado:true
   }
+
+
   myForm:FormGroup
   imgCropUrl=[]
   imgurlsaf
@@ -46,12 +53,16 @@ export class AdmCrearpublicasionPage {
     private cropService:Crop,
     private file:File,
     private photoViewer: PhotoViewer,
+    private selector:WheelSelector,
+    private toasCtrl:ToastController
     //private domSanitizer: DomSanitizer
     ) {
       this.datos["nombre"]=navParams.data.nombre
       this.datos["foto"]=navParams.data.foto
       this.datos["telefono"]=navParams.data.telefono
       this.myForm = this.formb.group({
+        titulo:['', [Validators.required,Validators.maxLength(100)]],
+        costo:['', [Validators.required,Validators.maxLength(4)]],
         comentario: ['', [Validators.required,Validators.maxLength(300)]]
       });
   }
@@ -228,6 +239,51 @@ verimage(path){
 }
 imagenload(e){
   console.log(e)
+}
+
+//funciones pa que no la cague
+
+dummyJson = {
+    
+  semanas:[
+      { description: 'Peso', value: '' }
+    ],
+    meses:[
+      { description: 'Repeticiones', value: '' }
+    ]
+  
+
+}
+modificarset(){
+  let i_semanas,i_meses
+  
+  this.selector.show({
+    title: "Duración del curso",
+    
+    displayKey: 'description',
+    items: [
+      this.dummyJson.semanas,
+      this.dummyJson.meses
+    ],
+    positiveButtonText: "Aceptar",
+    negativeButtonText: "Cancelar",
+
+    wrapWheelText:true,
+  }).then(
+    result => {
+      if(this.dummyJson.semanas[result[0].index].value!='' || 
+        this.dummyJson.meses[result[1].index].value!=''){
+          this.datos.semanas=this.dummyJson.semanas[result[0].index].value
+          this.datos.meses=this.dummyJson.meses[result[1].index].value
+        }else{
+          this.toasCtrl.create({
+            message:"Debe colocar un tiempo de duración",
+            duration:3000
+          }).present()
+        }
+       },
+    err => console.log('Error: ' + JSON.stringify(err))
+    )
 }
 
 }

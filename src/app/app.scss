@@ -66,11 +66,13 @@ ion-icon {
     width: 1em;
     height: 1em;
     }
+
+    
     &[class*="custom-pesas"] {
     mask-image: url(../assets/icon/dumbbell.svg);
     }
     &[class*="custom-dieta"] {
-    mask-image: url(../assets/icon/fork.svg);
+    mask-image: url(../assets/icon/breakfast.png);
     }
     &[class*="custom-estadisticas"] {
     mask-image: url(../assets/icon/line-chart.svg);
@@ -98,6 +100,7 @@ ion-content.has-refresher > .scroll-content {
 .colbtn{
     position: relative;
 }
+
 .fondobtn{
     font-size: 2em;
     position: absolute;
