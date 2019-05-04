@@ -104,10 +104,6 @@
       "com-sarriaroman-photoviewer": {},
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-      },
-      "cordova-plugin-googleplus": {
-        "REVERSED_CLIENT_ID": "1:150980917345:ios:81fab74723f3663b",
-        "PLAY_SERVICES_VERSION": "11.8.0"
       }
     },
     "platforms": [
