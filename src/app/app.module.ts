@@ -83,6 +83,8 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { Crop } from '@ionic-native/crop';
 import { Camera } from '@ionic-native/camera';
 import { AuthFacebookProvider } from '../providers/authfacebok/authfacebok';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { IonicImageLoader } from 'ionic-image-loader';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { DietasProvider } from '../providers/dietas/dietas';
@@ -173,7 +175,7 @@ import { NetworkProvider } from '../providers/network/network';
         }
     }),
     AngularFireModule.initializeApp(firebaseConfig.firebase),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
@@ -181,7 +183,8 @@ import { NetworkProvider } from '../providers/network/network';
     BrowserAnimationsModule,
     NgxChartsModule,
     HttpClientModule,
-    MultiPickerModule
+    MultiPickerModule,
+    IonicImageLoader.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -249,7 +252,8 @@ import { NetworkProvider } from '../providers/network/network';
     GooglePlus,
     WheelSelector,
     Network,
-    NetworkProvider
+    NetworkProvider,
+    PhotoViewer
   ]
 })
 export class AppModule {}

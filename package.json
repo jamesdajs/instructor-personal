@@ -26,13 +26,14 @@
     "@ionic-native/base64": "^4.19.0",
     "@ionic-native/camera": "^4.18.0",
     "@ionic-native/core": "~4.17.0",
-    "@ionic-native/crop": "^4.18.0",
+    "@ionic-native/crop": "^4.20.0",
     "@ionic-native/facebook": "^4.18.0",
     "@ionic-native/file": "^4.19.0",
     "@ionic-native/google-plus": "^4.20.0",
-    "@ionic-native/image-picker": "^4.18.0",
+    "@ionic-native/image-picker": "^4.20.0",
     "@ionic-native/media-capture": "^4.19.0",
     "@ionic-native/network": "^4.20.0",
+    "@ionic-native/photo-viewer": "^4.20.0",
     "@ionic-native/splash-screen": "~4.17.0",
     "@ionic-native/status-bar": "~4.17.0",
     "@ionic-native/wheel-selector": "^4.20.0",
@@ -40,6 +41,7 @@
     "@swimlane/ngx-charts": "^10.1.0",
     "angularfire2": "^5.1.1",
     "com-badrit-base64": "0.2.0",
+    "com-sarriaroman-photoviewer": "1.2.1",
     "cordova-android": "7.1.4",
     "cordova-plugin-camera": "4.0.3",
     "cordova-plugin-crop": "0.4.0",
@@ -48,7 +50,7 @@
     "cordova-plugin-file": "6.0.1",
     "cordova-plugin-googleplus": "7.0.0",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
-    "cordova-plugin-ionic-webview": "^2.3.1",
+    "cordova-plugin-ionic-webview": "4.0.1",
     "cordova-plugin-media-capture": "3.0.2",
     "cordova-plugin-network-information": "2.0.1",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -61,6 +63,7 @@
     "firebase": "^5.7.0",
     "ion-multi-picker": "^2.1.2",
     "ionic-angular": "3.9.2",
+    "ionic-image-loader": "^6.3.3",
     "ionicons": "3.0.0",
     "promise-polyfill": "^8.1.0",
     "rxjs": "^6.3.3",
@@ -80,9 +83,6 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-      },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-telerik-imagepicker": {
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": "your usage message"
@@ -92,14 +92,23 @@
       "cordova-plugin-facebook4": {
         "APP_ID": "675469602855153",
         "APP_NAME": "entrenador personal",
-        "FACEBOOK_ANDROID_SDK_VERSION": "4.38.1"
+        "FACEBOOK_ANDROID_SDK_VERSION": "4.38.1",
+        "FACEBOOK_HYBRID_APP_EVENTS": "true"
       },
       "cordova-sqlite-storage": {},
       "cordova-plugin-file": {},
       "cordova-plugin-media-capture": {},
       "com-badrit-base64": {},
       "cordova-wheel-selector-plugin": {},
-      "cordova-plugin-network-information": {}
+      "cordova-plugin-network-information": {},
+      "com-sarriaroman-photoviewer": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "1:150980917345:ios:81fab74723f3663b",
+        "PLAY_SERVICES_VERSION": "11.8.0"
+      }
     },
     "platforms": [
       "android"

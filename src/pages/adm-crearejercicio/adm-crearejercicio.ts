@@ -7,7 +7,9 @@ import { RutinaProvider } from "../../providers/rutina/rutina"
 
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormGroup, FormBuilder ,Validators} from '@angular/forms';
-//import {File} from "@ionic-native/file"
+import { ImagePicker } from '@ionic-native/image-picker';
+import { Crop } from '@ionic-native/crop';
+import {File} from "@ionic-native/file"
 //import { AngularFireStorage } from 'angularfire2/storage';
 //import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions,CaptureVideoOptions } from '@ionic-native/media-capture';
 
@@ -36,15 +38,17 @@ export class AdmCrearejercicioPage {
   uploadPercent
   downloadURL
   myForm:FormGroup
+  imgCropUrl=[]
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private camera:Camera,
     private storage:AngularFireStorage,
     private rutina:RutinaProvider,
     private loadCtrl:LoadingController,
     private toastCtrl:ToastController,
-    private formb:FormBuilder
-    //,
-    //private file: File
+    private formb:FormBuilder,
+    private imagePicker:ImagePicker,
+    private file: File,
+    private cropService:Crop
     
     ) {
       this.datos.tipo=navParams.data
@@ -129,40 +133,27 @@ export class AdmCrearejercicioPage {
       
       this.rutina.crearEjercicio(this.datos)
       .then(res=>{
-        //console.log(res)
-        if(this.imagen64=='' && this.imagen64_2==''){
-          load.dismiss()
-          toast.present()
-          this.navCtrl.pop()
-          
-        }else{
-          let func=[]
-          if(this.imagen64!='')
-            func.push(this.uploadImgB64("ejercicios/"+res.id,this.imagen64))
-          if(this.imagen64_2!='')
-            func.push(this.uploadImgB64("ejercicios/"+res.id+'1',this.imagen64_2))
-          Promise.all(func)
-          .then(url=>{
-            console.log(url)
-            let funcimg=[]
-            for(let i=0;i<url.length;i++){
-              let imagen={}
-              if(i==0)
-              
-                imagen["imagen"]=url[i]
-              else
-                imagen["imagen"+i]=url[i]
-              funcimg.push(this.rutina.añadirfotoEjercicio(res.id,imagen))
+        let funcImg=[]
+          for(let i in this.imgCropUrl){
+            funcImg.push(this.uploadImageToFirebase("ejercicios/"+res.id+"/",this.imgCropUrl[i]))
+          }
+          Promise.all(funcImg)
+          .then(arrayurl=>{
+            //alert(arrayurl[0] +" "+arrayurl.length)
+            let imagenes=[]
+            for(let i in arrayurl){
+              imagenes.push({url:arrayurl[i],nombre:this.imgCropUrl[i].nombre})
             }
-            Promise.all(funcimg)
+            
+            this.rutina.modificarEjercicio(res.id,{imagenes:imagenes})
             .then(()=>{
               load.dismiss()
               toast.present()
               this.navCtrl.pop()
+
             })
           })
-          
-        }
+        
       })
     }
   }
@@ -226,4 +217,80 @@ seleccionarImagen2(){
     .subscribe()
       });
   }
+
+  openImagePickerCrop(){
+    this.imagePicker.hasReadPermission()
+    .then((result) => {
+      if(result == false){
+        // no callbacks required as this opens a popup which returns async    
+        this.imagePicker.requestReadPermission();
+      }
+      else if(result == true){
+        this.imagePicker.getPictures({
+          
+          maximumImagesCount: 5,
+          quality:25
+        })
+        .then(async (results) => {
+          this.imgCropUrl=[]
+          for (var i = 0; i < results.length; i++) {
+            
+            let imageData= await this.cropService.crop(results[i])
+            let objres = await this.procesandoCrop(imageData)
+            this.imgCropUrl.push(objres)
+          }
+        })
+            
+      }
+    })
+    .catch(err=>{
+      alert(JSON.stringify(err))
+    })
+    
+  }
+  procesandoCrop(imageData){
+    return new Promise((res,rej)=>{
+       this.file.resolveLocalFilesystemUrl(imageData)
+       .then(newurlImage=>{
+        let dirpath=newurlImage.nativeURL
+            let dirpathseg=dirpath.split("/")
+            dirpathseg.pop()
+            dirpath=dirpathseg.join('/')
+            //alert(dirpath)
+            this.file.readAsArrayBuffer(dirpath,newurlImage.name)
+            .then(buffer=>{
+              //alert(buffer.byteLength)
+              let blob=new Blob([buffer],{type:"image/jpg"})
+
+              var reader  = new FileReader();
+              reader.readAsDataURL(blob);
+                reader.onloadend = function () {
+                  res({
+                    base64:reader.result,
+                    url:newurlImage.nativeURL,
+                    nombre:newurlImage.name,
+                    blob:blob
+                  })
+              }
+           })
+          })
+      })
+  }
+  uploadImageToFirebase(path,objres){
+    return new Promise((resolve, reject)=>{
+          //alert(newUrl)
+            let ref=this.storage.ref(path+objres.nombre)
+            let task= ref.put(objres.blob)
+            task.snapshotChanges().pipe(
+              finalize(() => {
+                ref.getDownloadURL().subscribe(data=>{
+                  //alert(data);
+                  resolve(data)
+                })
+                
+              } )
+          )
+          .subscribe()
+      })
+}
 }

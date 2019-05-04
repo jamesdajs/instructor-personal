@@ -90,18 +90,12 @@ ion-icon {
         mask-image: url(../assets/icon/whatsapp.svg);
     }
 }
-[aria-selected=true] {
-    background-color: rgb(225, 242, 252);
-    color: #000;
-}
-
 img {
-    background:transparent url(../assets/loading/ajax-loader.gif) center no-repeat !important;
-}
+    background-color: #f8f8f8 !important;
+    }
 ion-content.has-refresher > .scroll-content {
-    background-color: #ffffff00 !important; 
-}
-
+         background-color: #ffffff00 !important; 
+    }
 //selecion de imagenes
 .colbtn{
     position: relative;

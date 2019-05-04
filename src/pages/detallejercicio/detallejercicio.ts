@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
 import { RutinaProvider } from '../../providers/rutina/rutina';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
@@ -55,7 +55,8 @@ export class DetallejercicioPage {
     private toastCtrl:ToastController,
     public sanitizer:DomSanitizer,
     private toasCtrl:ToastController,
-    private selector:WheelSelector
+    private selector:WheelSelector,
+    private loadCtrl:LoadingController
     ) {
     this.itemcompleto=this.navParams.data
     
@@ -116,11 +117,16 @@ export class DetallejercicioPage {
     
   }
   guardarset(){
+    const load=this.loadCtrl.create({
+      content:'Guardando sets del ejercicio...'
+    })
+    
     let encontrado = this.setejercicio.find(function(element) {
       return element.estado == true;
     });
     console.log(encontrado)
     if(encontrado){
+        load.present()
           let peso=[],repeticiones=[],tiempo=[]
           for(let i in this.setejercicio){
             if(this.setejercicio[i].estado){
@@ -129,18 +135,20 @@ export class DetallejercicioPage {
               tiempo.push(this.setejercicio[i].tiempo)
             }
           }
-        this.itemcompleto.peso=peso
-        this.itemcompleto.repeticiones=repeticiones
-        this.itemcompleto.tiempo=tiempo
+        let copy = Object.assign({}, this.itemcompleto);
+        copy.peso=peso
+        copy.repeticiones=repeticiones
+        copy.tiempo=tiempo
         this.user.modificarRutina_ejercicio(this.itemcompleto.key,{estado:true})
         .then(()=>{
-          delete this.itemcompleto.key
+          delete copy.key
           let f = new Date();
           let fecha=(f.getMonth() +1)+ "/" + f.getDate() + "/" + f.getFullYear()
           console.log(fecha)
-          this.itemcompleto.fecha=new Date(fecha)
-          this.rutina.crearsetsdeEjercicio(this.itemcompleto)
+          copy.fecha=new Date(fecha)
+          this.rutina.crearsetsdeEjercicio(copy)
           .then(res=>{
+            load.dismiss()
             console.log(res)
             this.navCtrl.pop()
           })

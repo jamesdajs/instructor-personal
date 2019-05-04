@@ -77,20 +77,36 @@
                                         <p>{{p.nombre}}</p>
                                         <p>{{p.fecha2}}</p>
                                 </ion-item>
-                                
-                                <img [src]="p.imagen"/>
+                                <ion-slides pager >
+                                        
+                                    <ion-slide *ngFor="let imagen of p.imagenes">
+                                        <img [src]="imagen.url"  alt="">
+                                    </ion-slide>
+                                    
+                                </ion-slides>
                                 <ion-card-content>
-                                  
-                                  <p>{{p.comentario}}
+                                    <ion-label class="title-post">Musculos de acero</ion-label>
+                                  <p class="descripcion-post">{{p.comentario}}
                                   </p>
+                                  <ion-grid class="pricing-post">
+                                      <ion-row >
+                                        <ion-col>
+                                          Duración 2 meses
+                                        </ion-col>
+                                        <ion-col align-self-end>
+                                            <p float-right>Precio 50$
+                                              </p>
+                                        </ion-col>
+                                      </ion-row>
+                                    </ion-grid>
+                                  
+                                  
                               </ion-card-content>
                                   
                                 <ion-item>
                                     <button ion-button clear item-start (click)="verInstructor(p.idcliente)" >
-
                                      ver instructor
                                     </button>
-                                    
                                     <button ion-button clear item-end  >
                                         <a href="https://wa.me/591{{p.telefono}}"> {{p.telefono}}   
                                         </a>

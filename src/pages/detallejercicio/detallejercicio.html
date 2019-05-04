@@ -21,15 +21,24 @@
 </ion-header>
 <ion-content >
         <ion-slides pager >
-            <ion-slide >
-                <img *ngIf="item.imagen!=''; else elseBlock" [src]="item.imagen" />
-                <ng-template #elseBlock>
+          <div class="iconhistory"> 
+              <button ion-button icon-only outline  color="normal" (click)="IrAhistorial()">
+                  <ion-icon name="calendar"></ion-icon>
+                </button>
+          </div>
+            <ng-container *ngIf="item.imagenes; else elseBlock">
+              <ion-slide *ngFor="let imagen of item.imagenes">
+                
+                <img  [src]="imagen.url" />
+                
+            </ion-slide>
+            
+            </ng-container>
+            <ng-template #elseBlock>
+                <ion-slide>
                     <img  src="../../assets/imgs/defecto.jpeg" />
-              </ng-template>
-            </ion-slide>
-            <ion-slide *ngIf="item.imagen1">
-                <img  [src]="item.imagen1" />
-            </ion-slide>
+                </ion-slide>
+            </ng-template>
             <ion-slide *ngIf="item.linkyoutube!='' && item.linkyoutube; " class="video">
                 <iframe width="100%" height="250px"  [src]="youtubeaux" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </ion-slide>
@@ -68,5 +77,5 @@
 <iframe width="100%"  src="https://www.youtube.com/embed/6njvCvfzMi8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
       -->
-      <button ion-button outline (click)="IrAhistorial()">Historial</button>
+  
 </ion-content>
