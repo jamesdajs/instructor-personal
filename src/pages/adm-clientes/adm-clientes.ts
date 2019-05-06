@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
 
 import { UsuarioProvider } from "../../providers/usuario/usuario"
+import { DatosinstructorPage } from '../../pages/datosinstructor/datosinstructor'
 
 import { AdmDatosclientePage } from "../adm-datoscliente/adm-datoscliente"
 /**
@@ -97,10 +98,17 @@ export class AdmClientesPage {
     });
     
     if(this.estadoToast){
-      this.estadoToast=false
       toast.present()
-    }else{
-        this.estadoToast = true;
-    }
+      this.estadoToast=false
+    } 
+    toast.onDidDismiss(() => {
+      this.estadoToast=true
+    });
+  }
+
+
+
+  verInstructor(key){
+    this.navCtrl.push(DatosinstructorPage,key)
   }
 }
