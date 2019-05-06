@@ -69,13 +69,15 @@
             <ion-row *ngFor="let p of publicaciones">
                 <ion-col no-padding>
                         <ion-card>
-                                <ion-item color="carts">
+                                <ion-item color="carts" (click)="verInstructor(p.idcliente)">
+          
                                         <ion-avatar item-start>
                                           <img [src]="p.foto">
                                         </ion-avatar>
                                         
                                         <p>{{p.nombre}}</p>
                                         <p>{{p.fecha2}}</p>
+                                   
                                 </ion-item>
                                 <ion-slides pager >
                                         

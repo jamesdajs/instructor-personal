@@ -123,10 +123,11 @@ export class RutinasPage {
       dismissOnPageChange: true
     });
     if(this.estadoToast){
-      this.estadoToast=false
       toast.present()
-    }else{
-        this.estadoToast = true;
-    }
+      this.estadoToast=false
+    } 
+    toast.onDidDismiss(() => {
+      this.estadoToast=true
+    });
   }
 }
