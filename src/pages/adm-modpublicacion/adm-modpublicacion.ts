@@ -22,7 +22,11 @@ export class AdmModpublicacionPage {
   myForm:FormGroup
   datos={
     comentario:"",
-    imagenes:[]
+    imagenes:[],
+    titulo:"",
+    costo:0,
+    semanas:"",
+    meses:"",
   }
   key=""
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -36,9 +40,14 @@ export class AdmModpublicacionPage {
     ) {
       this.datos.comentario=navParams.data.comentario
       this.datos.imagenes=navParams.data.imagenes
+      this.datos.titulo=navParams.data.titulo
+      this.datos.costo=navParams.data.costo
+      this.datos.semanas=navParams.data.semanas
+      this.datos.meses=navParams.data.meses
       this.key=navParams.data.key
       this.myForm = this.formb.group({
-        comentario: ['', [Validators.required,Validators.maxLength(300)]]
+        comentario: ['', [Validators.required,Validators.maxLength(300)]],
+        titulo:['', [Validators.required,Validators.maxLength(300)]]
       });
   }
 
