@@ -5,11 +5,11 @@ export const firebaseConfig = {
   production: false,
   firebase: {
     apiKey: "AIzaSyDv9zk84ed6_ckRorvxhVnTfecLs_aSbFw",
-    authDomain: "entrenador-personal-20e1f.firebaseapp.com",
-    databaseURL: "https://entrenador-personal-20e1f.firebaseio.com",
-    projectId: "entrenador-personal-20e1f",
-    storageBucket: "entrenador-personal-20e1f.appspot.com",
-    messagingSenderId: "150980917345"
+      authDomain: "entrenador-personal-20e1f.firebaseapp.com",
+      databaseURL: "https://entrenador-personal-20e1f.firebaseio.com",
+      projectId: "entrenador-personal-20e1f",
+      storageBucket: "entrenador-personal-20e1f.appspot.com",
+      messagingSenderId: "150980917345"
   },
   cliente_endpoint: "cliente",
   instructor_endpoint: "instructor"

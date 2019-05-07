@@ -6,79 +6,134 @@
 -->
 <ion-header>
 
-  <ion-navbar color="tabss">
-    <ion-title>Instructor</ion-title>
-  </ion-navbar>
+    <ion-navbar color="tabss">
+        <ion-title>Instructor</ion-title>
+    </ion-navbar>
 
 </ion-header>
-<ion-content >
+<ion-content>
     <ion-card color="listdivisor">
-        
+
         <ion-card-content>
             <ion-item>
                 <ion-avatar item-start>
-                  <img [src]="datos.foto" />
+                    <img class="imgfoto" [src]="datos.foto" />
                 </ion-avatar>
                 <h2>{{datos.nombre}} </h2>
-              </ion-item>
+            </ion-item>
             <ion-grid>
-            <ion-row>
-              <ion-col col-5>Fecha de nacimiento</ion-col>
-              <ion-col col-7>{{edad}}</ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col col-5>Teléfono</ion-col>
-                <ion-col col-7>
-                  <a href="https://wa.me/591{{datos.telefono}}">{{datos.telefono}} 
-                  </a>
-                  <ion-icon name="logo-whatsapp"></ion-icon>
-                </ion-col>
-              </ion-row> 
-              <ion-row>
-                <ion-col col-5>Email</ion-col>
-                <ion-col col-7>{{datos.email}}</ion-col>
-              </ion-row>
-            <ion-row>
-              <ion-col col-5>Género</ion-col>
-              <ion-col col-7>{{datos.genero}}</ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col >
-                  <h4>Constitución</h4>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-5>Peso {{datos.peso}}kg</ion-col>
-              <ion-col col-7>Altura: {{datos.altura}} centimetros</ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col >
-                  <h4>Formación</h4>
-                  <div>{{datosins.deslarga}}</div>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col >
-                  <h4>Datos del curso</h4>
-                  <div>{{datosins.cursos}}</div>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col *ngIf="estadobut;else elseBlock">
-                <button ion-button  block color="normal" (click)="solicitud()">Enviar solicitud del curso</button>
-              </ion-col>
-              <ng-template #elseBlock>
-                  <ion-col *ngIf="estado;else elseBlock2">
-                      <button ion-button  block color="normal" (click)="solicitud()"disabled>Solicitud en curso</button>
+                <ion-row>
+                    <ion-col col-5>Fecha de nacimiento</ion-col>
+                    <ion-col col-7>{{edad}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-5>Teléfono</ion-col>
+                    <ion-col col-7>
+                        <a href="https://wa.me/591{{datos.telefono}}">{{datos.telefono}}
+                        </a>
+                        <ion-icon name="logo-whatsapp"></ion-icon>
                     </ion-col>
-                    <ng-template #elseBlock2>
-                        <ion-col >
-                            <button ion-button  block color="normal" (click)="solicitud()"disabled>Curso Activo</button>
-                          </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-5>Email</ion-col>
+                    <ion-col col-7>{{datos.email}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-5>Género</ion-col>
+                    <ion-col col-7>{{datos.genero}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <h4>Constitución</h4>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-5>Peso {{datos.peso}}kg</ion-col>
+                    <ion-col col-7>Altura: {{datos.altura}} centimetros</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <h4>Formación</h4>
+                        <div>{{datosins.deslarga}}</div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <h4>Datos del curso</h4>
+                        <div>{{datosins.cursos}}</div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col *ngIf="estadobut;else elseBlock">
+                        <button ion-button block color="normal" (click)="solicitud()">Enviar solicitud del
+                            curso</button>
+                    </ion-col>
+                    <ng-template #elseBlock>
+                        <ion-col *ngIf="estado;else elseBlock2">
+                            <button ion-button block color="normal" (click)="solicitud()" disabled>Solicitud en
+                                curso</button>
+                        </ion-col>
+                        <ng-template #elseBlock2>
+                            <ion-col>
+                                <button ion-button block color="normal" (click)="solicitud()" disabled>Curso
+                                    Activo</button>
+                            </ion-col>
+                        </ng-template>
                     </ng-template>
-            </ng-template>
-          </ion-row>
+                </ion-row>
             </ion-grid>
         </ion-card-content>
-      </ion-card>
+    </ion-card>
+    <ion-grid no-padding>
+            <ion-row *ngFor="let p of publicaciones">
+                <ion-col no-padding>
+                        <ion-card>
+                                <ion-item color="carts" >
+          
+                                        <ion-avatar item-start>
+                                          <img [src]="p.foto">
+                                        </ion-avatar>
+                                        
+                                        <p>{{p.nombre}}</p>
+                                        <p>{{p.fecha2}}</p>
+                                   
+                                </ion-item>
+                                <ion-slides pager >
+                                        
+                                    <ion-slide *ngFor="let imagen of p.imagenes">
+                                        <img [src]="imagen.url"  alt="">
+                                    </ion-slide>
+                                    
+                                </ion-slides>
+                                <ion-card-content>
+                                  <p class="descripcion-post">{{p.comentario}}
+                                  </p>
+                                  <ion-grid class="pricing-post">
+                                      <ion-row >
+                                        <ion-col>
+                                          Duración
+                                          <span *ngIf="p.semanas!=''"> {{p.semanas}} semanas</span>
+                                          <span *ngIf="p.meses!=''"> {{p.meses}} meses</span> 
+                                        </ion-col>
+                                        <ion-col align-self-end>
+                                            <p float-right>Precio {{p.costo}} {{p.moneda}}
+                                              </p>
+                                        </ion-col>
+                                      </ion-row>
+                                    </ion-grid>
+                                  
+                                  
+                              </ion-card-content>
+                                  
+                                
+                              </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+                <ion-infinite-scroll-content
+                  loadingSpinner="bubbles"
+                  loadingText="Cargando mas datos...">
+                </ion-infinite-scroll-content>
+              </ion-infinite-scroll>
 </ion-content>

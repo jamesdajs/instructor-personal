@@ -64,7 +64,14 @@
             </ion-row>
           </ion-grid>
           <ion-item no-lines>
-            <button ion-button outline block clear (click)="modificarset()">Duración</button>
+            <button ion-button outline block clear (click)="modificarset()"> Duracion  &nbsp;  
+              <span *ngIf="datos.meses!=''">
+                   {{datos.meses}} mes(es)&nbsp;
+              </span>
+              <span *ngIf="datos.semanas!=''">
+                  {{datos.semanas}} semana(s)&nbsp;
+              </span>
+            </button>
           </ion-item>
       </ion-col>
     </ion-row>

@@ -21,6 +21,7 @@ export class AdmClientesPage {
   solicitudes=[]
   datosbuscado=[]
   publicaciones=[]
+  num=3
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private user:UsuarioProvider,
@@ -63,10 +64,10 @@ export class AdmClientesPage {
   verCliente(keycli){
     this.navCtrl.push(AdmDatosclientePage,keycli)
   }
-  lstarPublicaciones(){
+  lstarPublicaciones(infiniteScroll?){
     let mes=["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."]
     let hoy=new Date()
-    this.user.listarPublicasion()
+    this.user.listarPublicasion(this.num)
     .subscribe(res=>{
       res.forEach(element => {
         let prefi=""
@@ -86,6 +87,7 @@ export class AdmClientesPage {
       });
       this.publicaciones=res
       console.log(res)
+      if(infiniteScroll)infiniteScroll.complete()
     })
   }
   estadoToast=true;
@@ -110,5 +112,13 @@ export class AdmClientesPage {
 
   verInstructor(key){
     this.navCtrl.push(DatosinstructorPage,key)
+  }
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      this.num=this.num+3
+      this.lstarPublicaciones(infiniteScroll)
+    }, 500);
   }
 }

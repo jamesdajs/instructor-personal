@@ -112,7 +112,7 @@ console.log("splas abierto")
           this.store.set("rol",this.rol)
           this.navCtrl.setRoot(InstructorPage)
         }else{
-          alert("No tienen permiso para entrar como Instructor, automaticamnete entrara como alumno, Contactenos para entrar como instructor para el modo beta (cel 60485797)")
+          alert("No tienen permiso para entrar como Instructor, automaticamnete entrara como alumno, Contactenos para entrar como instructor para el modo beta ")
           this.store.set("rol","alumno")
           this.navCtrl.setRoot(TabsPage)
         }
