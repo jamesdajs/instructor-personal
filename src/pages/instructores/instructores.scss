@@ -53,12 +53,22 @@ page-instructores {
     }
     .title-post{
         color: #000 !important;
-        margin-top: 0%
+        margin-top: 0%;
+        margin-bottom: 0%
     }
     .pricing-post{
+        margin-top: 3%;
         padding: 0%;
     }
     .disable-hover{
         color: rgb(216, 216, 216) !important;
     }
+}
+.link-whatsapp{
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+.card-content-md {
+    padding-bottom: 0% !important;
 }

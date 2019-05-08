@@ -60,7 +60,9 @@ export class AdmModpublicacionPage {
       this.key=navParams.data.key
       this.myForm = this.formb.group({
         comentario: ['', [Validators.required,Validators.maxLength(300)]],
+
         costo:['', [Validators.required,Validators.maxLength(4)]],
+
         titulo:['', [Validators.required,Validators.maxLength(300)]]
       });
       for(let i=1;i<13;i++){
