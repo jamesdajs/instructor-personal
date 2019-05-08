@@ -159,3 +159,17 @@ background-color: white !important;
 .titulo .alert-button-group{
     padding: 0 !important;
 }
+
+.tabs-md .tab-button {
+    color: #9b9999 !important
+}
+.tabs-md-tabss .tab-button-icon{
+    color: #9b9999 !important
+}
+.tabs-md-tabss .tab-button[aria-selected=true] .tab-button-icon {
+    color: #ff6f00 !important
+}
+
+.tabs-md .tab-button[aria-selected=true]{
+    color: #ff6f00 !important
+}
