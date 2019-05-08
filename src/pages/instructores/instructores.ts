@@ -125,7 +125,8 @@ num=3
 
         element["fecha2"]=prefi+" "+ diap.getHours()+":"+(diap.getMinutes()<9?"0"+diap.getMinutes():diap.getMinutes())
       });
-      let aNuevo = res.slice(res.length-3)
+      //console.log((res.length-this.publicaciones.length)==3,res.length-3,res.length-(res.length-this.publicaciones.length))
+      let aNuevo =res.length - this.publicaciones.length==3? res.slice(res.length-3):res.slice(res.length-(res.length-this.publicaciones.length))
       this.publicaciones=this.publicaciones.concat(aNuevo)
 
       console.log(res)

@@ -130,8 +130,8 @@ export class DatosinstructorPage {
 		
 				element["fecha2"]=prefi+" "+ diap.getHours()+":"+(diap.getMinutes()<9?"0"+diap.getMinutes():diap.getMinutes())
 			  });
-			  let aNuevo = data.slice(data.length-3)
-      		this.publicaciones=this.publicaciones.concat(aNuevo)
+			  let aNuevo =data.length - this.publicaciones.length==3? data.slice(data.length-3):data.slice(data.length-(data.length-this.publicaciones.length))
+			  this.publicaciones=this.publicaciones.concat(aNuevo)
 			if(infiniteScroll)infiniteScroll.complete()
 		})
 	}
