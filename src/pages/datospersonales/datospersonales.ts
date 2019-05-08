@@ -355,7 +355,11 @@ export class DatospersonalesPage {
             let datos={
               key:p.key,
               comentario:p.comentario,
-              imagenes:p.imagenes
+              imagenes:p.imagenes,
+              titulo:p.titulo,
+              costo:p.costo,
+              semanas:p.semanas,
+              meses:p.meses
             }
             this.navCtrl.push(AdmModpublicacionPage,datos)
           }

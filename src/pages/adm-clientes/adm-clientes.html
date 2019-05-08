@@ -86,12 +86,31 @@
                                   </ion-slides>
                                     <ion-card-content>
                                       
-                                        <p class="descripcion-post">{{p.comentario}}
-                                        </p>
+                                            <p class="descripcion-post">{{p.comentario}}
+                                                </p>
+                                                <ion-grid class="pricing-post">
+                                                    <ion-row >
+                                                      <ion-col>
+                                                        Duración
+                                                        <span *ngIf="p.semanas!=''"> {{p.semanas}} semanas</span>
+                                                        <span *ngIf="p.meses!=''"> {{p.meses}} meses</span> 
+                                                      </ion-col>
+                                                      <ion-col align-self-end>
+                                                          <p float-right>Precio {{p.costo}} {{p.moneda}}
+                                                            </p>
+                                                      </ion-col>
+                                                    </ion-row>
+                                                  </ion-grid>
                                     </ion-card-content>
                                     
                                   </ion-card>
                     </ion-col>
                 </ion-row>
             </ion-grid>
+            <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+                <ion-infinite-scroll-content
+                  loadingSpinner="bubbles"
+                  loadingText="Cargando mas datos...">
+                </ion-infinite-scroll-content>
+                </ion-infinite-scroll>
   </ion-content>

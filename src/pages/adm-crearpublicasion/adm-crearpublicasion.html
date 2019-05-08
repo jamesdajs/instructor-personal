@@ -55,16 +55,23 @@
               <ion-col>
                   <ion-item>
                       <ion-label>Moneda</ion-label>
-                      <ion-select [(ngModel)]="moneda" interface="popover" text-wrap>
-                        <ion-option value="dolares" [selected]="true">$</ion-option>
-                        <ion-option value="bolivianos">Bs.</ion-option>
+                      <ion-select [(ngModel)]="datos.moneda" interface="popover" text-wrap>
+                        <ion-option value="Sus" [selected]="true">$</ion-option>
+                        <ion-option value="Bs">Bs.</ion-option>
                       </ion-select>
                   </ion-item>
               </ion-col>
             </ion-row>
           </ion-grid>
           <ion-item no-lines>
-            <button ion-button outline block clear (click)="modificarset()">Duración</button>
+            <button ion-button outline block clear (click)="modificarset()"> Duracion  &nbsp;  
+              <span *ngIf="datos.meses!=''">
+                   {{datos.meses}} mes(es)&nbsp;
+              </span>
+              <span *ngIf="datos.semanas!=''">
+                  {{datos.semanas}} semana(s)&nbsp;
+              </span>
+            </button>
           </ion-item>
       </ion-col>
     </ion-row>

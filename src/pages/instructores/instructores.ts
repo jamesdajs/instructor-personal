@@ -24,6 +24,7 @@ datosbuscado=[]
 misInstructores=[]
 keyslec
 publicaciones=[]
+num=3
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -45,7 +46,7 @@ publicaciones=[]
   ionViewDidLoad() {
     console.log('ionViewDidLoad InstructoresPage');
     this.vermisinstructores()
-    this.lstarPublicaciones()
+    this.lstarPublicaciones(this.num)
     //this.store.clear()
   }
   
@@ -103,10 +104,10 @@ publicaciones=[]
       console.log(err)
     })
   }
-  lstarPublicaciones(){
+  lstarPublicaciones(num,ref?){
     let mes=["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."]
     let hoy=new Date()
-    this.user.listarPublicasion()
+    this.user.listarPublicasion(num)
     .subscribe(res=>{
       res.forEach(element => {
         let prefi=""
@@ -124,8 +125,12 @@ publicaciones=[]
 
         element["fecha2"]=prefi+" "+ diap.getHours()+":"+(diap.getMinutes()<9?"0"+diap.getMinutes():diap.getMinutes())
       });
-      this.publicaciones=res
+      //console.log((res.length-this.publicaciones.length)==3,res.length-3,res.length-(res.length-this.publicaciones.length))
+      let aNuevo =res.length - this.publicaciones.length==3? res.slice(res.length-3):res.slice(res.length-(res.length-this.publicaciones.length))
+      this.publicaciones=this.publicaciones.concat(aNuevo)
+
       console.log(res)
+      if(ref) ref.complete()
     })
   }
   estadoToast=true;
@@ -144,5 +149,25 @@ publicaciones=[]
     toast.onDidDismiss(() => {
       this.estadoToast=true
     });
+  }
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    
+      console.log('Async operation has ended');
+      setTimeout(()=>{
+
+        this.lstarPublicaciones(refresher)
+      },1000)
+      
+    
+  }
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      this.num=this.num+3
+      this.lstarPublicaciones(this.num,infiniteScroll)
+    }, 500);
   }
 }

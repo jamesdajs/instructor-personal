@@ -76,6 +76,7 @@ export class UsuarioProvider {
     let query=res=>res.where("instructor","==",true)
                       .orderBy('fullname')
                       .startAt(buscar)
+                      .limit(10)
     return this.getcollArrayconkey("cliente",query)
   }
   verMisinstuctor(){
@@ -301,12 +302,18 @@ modPublicasion(key,datos){
 eliminarPublicasion(key){
   return this.db.collection(`publicaciones`).doc(key).delete()
 }
-listarPublicasion(){
-  let query = res=>res.orderBy('fecha','desc').limit(5)   
+listarPublicasion(num){
+  let query = res=>res.orderBy('fecha','desc').limit(num)   
     return this.getcollArrayconkey(`publicaciones`,query)
 }
-listarMisPublicasion(){  
+listarMisPublicasion(){
   let query=res=>res.where("idcliente","==",this.authfb.auth.currentUser.uid)
+                          
+  return this.getcollArrayconkey(`publicaciones`,query)
+}
+listarPublicasionid(keyins,limit){  
+  let query=res=>res.where("idcliente","==",keyins)
+          .orderBy('fecha','desc').limit(limit) 
                           
   return this.getcollArrayconkey(`publicaciones`,query)
 }

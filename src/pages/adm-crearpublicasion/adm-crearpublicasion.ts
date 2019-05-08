@@ -35,13 +35,25 @@ export class AdmCrearpublicasionPage {
     semanas:"",
     meses:"",
     fecha:new Date,
-    estado:true
+    estado:true,
+    moneda:'dolares'
   }
 
 
   myForm:FormGroup
   imgCropUrl=[]
   imgurlsaf
+  dummyJson = {
+    
+    semanas:[
+        { description: 'Semanas', value: '' }
+      ],
+      meses:[
+        { description: 'Meses', value: '' }
+      ]
+    
+  
+  }
   constructor(public navCtrl: NavController, public navParams: NavParams ,public camera:Camera,
   
     private storage:AngularFireStorage,
@@ -65,6 +77,10 @@ export class AdmCrearpublicasionPage {
         costo:['', [Validators.required,Validators.maxLength(4)]],
         comentario: ['', [Validators.required,Validators.maxLength(300)]]
       });
+      for(let i=1;i<13;i++){
+        this.dummyJson.meses.push({ description: i+'', value: ''+i })
+        this.dummyJson.semanas.push({ description: i+'', value: ''+i })
+      }
   }
   
   ionViewDidLoad() {
@@ -243,19 +259,8 @@ imagenload(e){
 
 //funciones pa que no la cague
 
-dummyJson = {
-    
-  semanas:[
-      { description: 'Peso', value: '' }
-    ],
-    meses:[
-      { description: 'Repeticiones', value: '' }
-    ]
-  
 
-}
 modificarset(){
-  let i_semanas,i_meses
   
   this.selector.show({
     title: "Duración del curso",
@@ -265,6 +270,7 @@ modificarset(){
       this.dummyJson.semanas,
       this.dummyJson.meses
     ],
+    
     positiveButtonText: "Aceptar",
     negativeButtonText: "Cancelar",
 

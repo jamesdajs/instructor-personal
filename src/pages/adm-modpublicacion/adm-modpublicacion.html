@@ -42,7 +42,7 @@
             <ion-col>
               <ion-item [formGroup]="myForm">
                   <ion-label floating>Costo</ion-label>
-                  <ion-input type="text" [(ngModel)]="datos.costo" formControlName="costo" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"></ion-input>
+                  <ion-input type="number" [(ngModel)]="datos.costo" formControlName="costo" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col>
@@ -56,6 +56,16 @@
             </ion-col>
           </ion-row>
         </ion-grid>
+        <ion-item no-lines>
+            <button ion-button outline block clear (click)="modificarset()"> Duracion  &nbsp;  
+              <span *ngIf="datos.meses!=''">
+                   {{datos.meses}} mes(es)&nbsp;
+              </span>
+              <span *ngIf="datos.semanas!=''">
+                  {{datos.semanas}} semana(s)&nbsp;
+              </span>
+            </button>
+          </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>

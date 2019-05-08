@@ -21,6 +21,7 @@ export class AdmClientesPage {
   solicitudes=[]
   datosbuscado=[]
   publicaciones=[]
+  num=3
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private user:UsuarioProvider,
@@ -63,10 +64,10 @@ export class AdmClientesPage {
   verCliente(keycli){
     this.navCtrl.push(AdmDatosclientePage,keycli)
   }
-  lstarPublicaciones(){
+  lstarPublicaciones(infiniteScroll?){
     let mes=["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."]
     let hoy=new Date()
-    this.user.listarPublicasion()
+    this.user.listarPublicasion(this.num)
     .subscribe(res=>{
       res.forEach(element => {
         let prefi=""
@@ -84,8 +85,10 @@ export class AdmClientesPage {
 
         element["fecha2"]=prefi+" "+ diap.getHours()+":"+(diap.getMinutes()<9?"0"+diap.getMinutes():diap.getMinutes())
       });
-      this.publicaciones=res
+      let aNuevo =res.length - this.publicaciones.length==3? res.slice(res.length-3):res.slice(res.length-(res.length-this.publicaciones.length))
+      		this.publicaciones=this.publicaciones.concat(aNuevo)
       console.log(res)
+      if(infiniteScroll)infiniteScroll.complete()
     })
   }
   estadoToast=true;
@@ -110,5 +113,13 @@ export class AdmClientesPage {
 
   verInstructor(key){
     this.navCtrl.push(DatosinstructorPage,key)
+  }
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      this.num=this.num+3
+      this.lstarPublicaciones(infiniteScroll)
+    }, 500);
   }
 }

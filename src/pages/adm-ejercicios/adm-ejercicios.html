@@ -24,7 +24,7 @@
         <ion-item-sliding *ngFor="let item of list">
           <ion-item color="carts"  (click)="verDetalleEjercicio(item)">
             <ion-thumbnail item-start>
-              <img *ngIf="item.imagenes; else elseBlock" [src]="item.imagenes[0].url" />
+              <img *ngIf="item.imagenes.length!=0 ; else elseBlock" [src]="item.imagenes[0].url" />
               <ng-template #elseBlock>
                   <img  src="../../assets/imgs/defecto.jpeg" />
               </ng-template>
