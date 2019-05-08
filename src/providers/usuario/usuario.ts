@@ -76,6 +76,7 @@ export class UsuarioProvider {
     let query=res=>res.where("instructor","==",true)
                       .orderBy('fullname')
                       .startAt(buscar)
+                      .limit(10)
     return this.getcollArrayconkey("cliente",query)
   }
   verMisinstuctor(){

@@ -38,6 +38,7 @@ export class DatosinstructorPage {
 	estado = true
 	publicaciones = []
 	num=3
+	verdatos=true
 	constructor(public navCtrl: NavController,
 		public navParams: NavParams,
 		public user: UsuarioProvider,
