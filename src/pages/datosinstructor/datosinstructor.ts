@@ -114,7 +114,6 @@ export class DatosinstructorPage {
     	let hoy=new Date()
 		this.user.listarPublicasionid(this.key,this.num)
 		.subscribe(data=>{
-			this.publicaciones=data
 			data.forEach(element => {
 				let prefi=""
 				let diap=element.fecha.toDate()
@@ -131,6 +130,8 @@ export class DatosinstructorPage {
 		
 				element["fecha2"]=prefi+" "+ diap.getHours()+":"+(diap.getMinutes()<9?"0"+diap.getMinutes():diap.getMinutes())
 			  });
+			  let aNuevo = data.slice(data.length-3)
+      		this.publicaciones=this.publicaciones.concat(aNuevo)
 			if(infiniteScroll)infiniteScroll.complete()
 		})
 	}
