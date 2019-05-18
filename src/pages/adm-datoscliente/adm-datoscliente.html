@@ -4,57 +4,241 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+
 <ion-header>
+    <ion-navbar color="tabss">
+      <ion-title>Datos del cliente</ion-title>
+      <ion-buttons end>
+          <button ion-button clear item-end icon-only (click)=alerta()>
+              <ion-icon color="dark" name='information-circle'></ion-icon>
+          </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+<ion-toolbar>
+  <ion-segment [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">
+    <ion-segment-button value="first">
+      <ion-item>
+        <ion-avatar item-center>
+          <img [src]="datos.foto" />
+        </ion-avatar>
+      </ion-item>
+    </ion-segment-button>
+    <ion-segment-button value="second">
+      Rutinas
+    </ion-segment-button>
+    <ion-segment-button value="third">
+      Dietas
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
 
-  <ion-navbar color="tabss">
-    <ion-title>Datos del cliente</ion-title>
-    <ion-buttons end>
-        <button ion-button clear item-end icon-only (click)=alerta()>
-            <ion-icon color="dark" name='information-circle'></ion-icon>
-        </button>
-    </ion-buttons>
-  </ion-navbar>
+<ion-content padding> 
+  <ion-slides #mySlider (ionDidChange)="onSlideChanged($event)">
+    <ion-slide >
+            <ion-avatar>
+              <img class="img-alumno" [src]="datos.foto" />
+            </ion-avatar>
+            
+            <p>{{datos.nombre}}</p>
 
-</ion-header>
+            <ion-item  color="listdivisor">
+                
+            
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-8>Fecha de nacimiento:</ion-col>
+                    <ion-col col-4>{{edad}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-8>Género:</ion-col>
+                    <ion-col col-4>{{datos.genero}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-8>Peso: </ion-col>
+                    <ion-col col-4>{{datos.peso}} kg</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-8>Altura:</ion-col>
+                    <ion-col col-4> {{datos.altura}} cm</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-8>Teléfono:</ion-col>
+                    <ion-col col-4> {{datos.telefono}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-8>Email</ion-col>
+                    <ion-col col-4> {{datos.email}}</ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+    </ion-slide>
+    
+    <ion-slide>
+        <ion-fab right buttom class="slide-rutinas">
+            <button ion-fab mini (click)="crear()"><ion-icon name="add"></ion-icon></button>
+        </ion-fab>
+        <ion-item color="carts" (click)="verrutinasdef()" >
+            <h2>rutinas por defecto para asignar</h2>
+            <button ion-button clear item-end icon-only>
+                <ion-icon *ngIf="defestado; else Iconodefecto" color="dark" name='ios-arrow-up'></ion-icon>
+                <ng-template #Iconodefecto>
+                    <ion-icon  color="dark" name='ios-arrow-down'></ion-icon>
+                </ng-template>
+            </button> 
+        </ion-item>
+        <div *ngIf="defestado">
+            <ion-item color="listdivisor" *ngFor="let ejer of defecto; let o = index;"  (click)="alercontime(ejer)"> 
 
+                <ion-label>
+                        <h2>{{ejer.nombre}}</h2>
+                        <p>{{ejer.descorta}}</p>
+                </ion-label>
+          </ion-item>
+        </div>
+        
+        <ion-item color="carts">
+            <h2>rutinas asignadas al alumno
+            </h2>
+        </ion-item>
+          <div *ngIf="items.length!=0;else elseBlock">
+            <div *ngFor="let item of items" >
+                <ion-item-sliding  (click)="verejercicios(item.key)">
+                  <ion-item  color="listdivisor"  >
+                      <ion-label>
+                          <h2>{{item.nombre}} </h2>
+                          <p>{{item.descripcion}}</p>
+                          <p>inicio: {{item.fechainiS}} fin: {{item.fechafinS}}</p>
+                          <p>
+                              <span *ngFor="let dia of item.dias">
+                                  <span *ngIf="dia==0"> Domingo </span>
+                                  <span *ngIf="dia==1"> Lunes </span>
+                                  <span *ngIf="dia==2"> Martes </span>
+                                  <span *ngIf="dia==3"> Miercoles </span>
+                                  <span *ngIf="dia==4"> Jueves </span>
+                                  <span *ngIf="dia==5"> Viernes </span>
+                                  <span *ngIf="dia==6"> Sabado </span>
+                                  
+                                </span >
+                          </p>
+                          
+                          </ion-label>
+                          <button ion-button clear item-end icon-only>
+                              <ion-icon *ngIf="!ejers[item.key].estado; else t" color="dark" name='ios-arrow-down'></ion-icon>
+                              <ng-template #t>
+                                <ion-icon  color="dark" name='ios-arrow-up'></ion-icon>
+                              </ng-template>
+                          </button>
+                          <ion-toggle [(ngModel)]="!item.estado" (ngModelChange)="habilitarrutina(item.key,$event)"></ion-toggle>
+                          
+                  </ion-item>
+                  
+                    <ion-item-options >
+                        
+                        <button ion-button color="tabss" (click)="editar(item)" icon-start>
+                          <ion-icon name="paper"> </ion-icon>
+                          Modificar
+                        </button>
+                        
+                    </ion-item-options>
+                  </ion-item-sliding>
+                <div *ngIf="ejers[item.key].estado">
+                    <ion-item color="carts" *ngFor="let ejer of ejers[item.key]" (click)="verDetEjercicio(ejer)"> 
+                        <ion-avatar item-start>
+                            <img *ngIf="ejer.imagen!=''; else elseBlock" [src]="ejer.imagen.url" />
+                              <ng-template #elseBlock>
+                                  <img  src="../../assets/imgs/defecto.jpeg" />
+                          </ng-template>
+                          </ion-avatar>       
+                        <h2>{{ejer.nombre}} </h2>
+                        <p>{{ejer.tipo}}</p>
+                        <p>{{ejer.descorta}}</p>
+                        
+                        <button ion-button clear item-end icon-only>
+                            <ion-icon color="dark" name='ios-arrow-forward'></ion-icon>
+                        </button>
+                        
+                    </ion-item>
+                </div>
+                
+            </div>                
+          </div>
+          <ng-template #elseBlock>
+              <ion-item color="listdivisor">
+                <h2>No tiene rutinas en este curso </h2>
+              </ion-item>
+          </ng-template>
+          
+    </ion-slide>
+    <ion-slide>
+        <ion-list >
+            <div *ngIf="items1.length!=0;else elseBlock">
+              <div *ngFor="let item of items1" >
+                <ion-item-sliding >
+                  <ion-item color="listdivisor" (click)="verDietas(item)">
+                    <ion-label >
+                      <h2>{{item.nombre}} </h2>
+                      <p>{{item.descripcion}}</p>
+                      <p>inicio: {{item.fechainiS}} fin: {{item.fechafinS}}</p>
+                    </ion-label>
+                      <button ion-button clear item-end icon-only (click)="verDietas(item)">
+                          <ion-icon color="dark" name='ios-arrow-down'></ion-icon>
+                      </button>
+                      <ion-toggle [(ngModel)]="!item.estado" (ngModelChange)="habilitardieta(item.key,$event)"></ion-toggle>
+              
+                      
+                  </ion-item>
+                  <ion-item-options >
+                  
+                      <button ion-button color="tabss" (click)="editarDieta(item)" icon-start>
+                        <ion-icon name="paper"> </ion-icon>
+                        Modificar
+                      </button>
+                      
+                  </ion-item-options>
+                </ion-item-sliding>
+                  <div *ngIf="item.estadohiide">
+                      <ion-item color="carts" *ngFor="let ejer of ejers1[item.key]" (click)="verDetDieta(ejer)">        
+                          <ion-avatar item-start>
+                              <img *ngIf="ejer.imagen!='' || ejer.imagen; else elseBlock" [src]="ejer.imagen" />
+                                <ng-template #elseBlock>
+                                    <img  src="../../assets/imgs/defecto2.jpeg" />
+                            </ng-template>
+                            </ion-avatar>   
+                        <h2>{{ejer.nombre}} </h2>
+                        <p>{{ejer.tipo}}</p>
+                          <p>{{ejer.descorta}}</p>
+                          <button ion-button clear item-end icon-only>
+                              <ion-icon color="dark" name='ios-arrow-forward'></ion-icon>
+                          </button>
+                      </ion-item>
+                  </div>
+                  
+              </div>                
+            </div>
+            <ng-template #elseBlock>
+                <ion-item color="carts">
+                  <h2>No tiene dietas</h2>
+                </ion-item>
+            </ng-template>
+            
+          </ion-list>
+      <ion-fab right buttom class="slide-dietas">
+        <button ion-fab mini (click)="crearRutina()"><ion-icon name="add"></ion-icon></button>
+      </ion-fab>    
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+<style>
+  ion-scroll {
+    width: 100%;
+    height: 100%;
+  }
+</style>
 
+<!--
 <ion-content >    
     <ion-card >
-        <ion-card-content>
-            <ion-item>
-                <ion-avatar item-start>
-                  <img [src]="datos.foto" />
-                </ion-avatar>
-                <h2>{{datos.nombre}} </h2>
-              </ion-item>
-          <ion-card-title>
-            Datos personales
-          </ion-card-title>
-            <ion-grid>
-            <ion-row>
-              <ion-col col-5>Fecha de nacimiento</ion-col>
-              <ion-col col-7>{{edad}}</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-5>Género</ion-col>
-              <ion-col col-7>{{datos.genero}}</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-5>Peso {{datos.peso}}kg</ion-col>
-              <ion-col col-7>Altura: {{datos.altura}} centimetros</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-5>Teléfono</ion-col>
-              <ion-col col-7>{{datos.telefono}}</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-5>Email</ion-col>
-              <ion-col col-7>{{datos.email}}</ion-col>
-            </ion-row>
-            </ion-grid>
-        </ion-card-content>
-      </ion-card>
-  <ion-card >
       <ion-card-content>
        <ion-grid>
           <ion-row class="menu">
@@ -76,3 +260,4 @@
       </ion-card-content>
     </ion-card>
 </ion-content>
+-->
