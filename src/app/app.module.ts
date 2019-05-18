@@ -99,6 +99,15 @@ import { HistorialejerciciosPage } from '../pages/historialejercicios/historiale
 import { Network } from '@ionic-native/network';
 import { NetworkProvider } from '../providers/network/network';
 
+
+import { PayPal } from '@ionic-native/paypal'
+import { AdmHorarioPage } from '../pages/adm-horario/adm-horario';
+import {
+  GoogleMaps
+  
+} from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -144,7 +153,8 @@ import { NetworkProvider } from '../providers/network/network';
     AdmModrutinaclientePage,
     AdmModdietaclientePage,
     AdmCrearpublicasionPage,
-    AdmModpublicacionPage
+    AdmModpublicacionPage,
+    AdmHorarioPage
 
   ],
   imports: [
@@ -231,7 +241,8 @@ import { NetworkProvider } from '../providers/network/network';
     AdmModrutinaclientePage,
     AdmModdietaclientePage,
     AdmCrearpublicasionPage,
-    AdmModpublicacionPage
+    AdmModpublicacionPage,
+    AdmHorarioPage
     
   ],
   providers: [
@@ -253,7 +264,10 @@ import { NetworkProvider } from '../providers/network/network';
     WheelSelector,
     Network,
     NetworkProvider,
-    PhotoViewer
+    PhotoViewer,
+    PayPal,
+    GoogleMaps,
+    Geolocation
   ]
 })
 export class AppModule {}

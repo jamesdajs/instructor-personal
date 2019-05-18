@@ -6,13 +6,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {UsuarioProvider} from "../../providers/usuario/usuario"
 import { finalize } from 'rxjs/operators';
 import { WheelSelector } from '@ionic-native/wheel-selector';
+import { Geolocation } from '@ionic-native/geolocation';
 /**
  * Generated class for the AdmModpublicacionPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+declare var google: any;
 @IonicPage()
 @Component({
   selector: 'page-adm-modpublicacion',
@@ -27,7 +28,13 @@ export class AdmModpublicacionPage {
     titulo:"",
     costo:0,
     semanas:"",
-    meses:"",
+    horas:"",
+    coordenadas:{
+      lat:'',
+      lng:'',
+      zoom:''
+    },
+    direccion:''
   }
   key=""
   dummyJson = {
@@ -35,7 +42,7 @@ export class AdmModpublicacionPage {
     semanas:[
         { description: 'Semanas', value: '' }
       ],
-      meses:[
+      horas:[
         { description: 'Meses', value: '' }
       ]
     
@@ -48,7 +55,9 @@ export class AdmModpublicacionPage {
     public formb:FormBuilder,
     public user:UsuarioProvider,
     public loadCtrl:LoadingController,
-    public selector:WheelSelector
+    public selector:WheelSelector,
+    
+    public geolocation:Geolocation
 
     ) {
       this.datos.comentario=navParams.data.comentario
@@ -56,7 +65,9 @@ export class AdmModpublicacionPage {
       this.datos.titulo=navParams.data.titulo
       this.datos.costo=navParams.data.costo
       this.datos.semanas=navParams.data.semanas
-      this.datos.meses=navParams.data.meses
+      this.datos.horas=navParams.data.horas
+      this.datos.coordenadas=navParams.data.coordenadas
+      this.datos.direccion=navParams.data.direccion
       this.key=navParams.data.key
       this.myForm = this.formb.group({
         comentario: ['', [Validators.required,Validators.maxLength(300)]],
@@ -66,13 +77,14 @@ export class AdmModpublicacionPage {
         titulo:['', [Validators.required,Validators.maxLength(300)]]
       });
       for(let i=1;i<13;i++){
-        this.dummyJson.meses.push({ description: i+'', value: ''+i })
+        this.dummyJson.horas.push({ description: i+'', value: ''+i })
         this.dummyJson.semanas.push({ description: i+'', value: ''+i })
       }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdmModpublicacionPage', this.datos);
+    this.loadMap()
   }
   seleccionarImagen(){
     const options: CameraOptions = {
@@ -166,7 +178,7 @@ export class AdmModpublicacionPage {
       displayKey: 'description',
       items: [
         this.dummyJson.semanas,
-        this.dummyJson.meses
+        this.dummyJson.horas
       ],
       
       positiveButtonText: "Aceptar",
@@ -176,9 +188,9 @@ export class AdmModpublicacionPage {
     }).then(
       result => {
         if(this.dummyJson.semanas[result[0].index].value!='' || 
-          this.dummyJson.meses[result[1].index].value!=''){
+          this.dummyJson.horas[result[1].index].value!=''){
             this.datos.semanas=this.dummyJson.semanas[result[0].index].value
-            this.datos.meses=this.dummyJson.meses[result[1].index].value
+            this.datos.horas=this.dummyJson.horas[result[1].index].value
           }else{
             this.toastCtrl.create({
               message:"Debe colocar un tiempo de duración",
@@ -189,4 +201,56 @@ export class AdmModpublicacionPage {
       err => console.log('Error: ' + JSON.stringify(err))
       )
   }
+
+  async loadMap()  {
+    // This code is necessary for browser
+    let latlng={}
+    console.log(this.datos)
+    if(!this.datos.coordenadas){
+      let resp= await this.geolocation.getCurrentPosition()
+      latlng={lat:resp.coords.latitude, lng: resp.coords.longitude}
+    }else{
+      latlng={lat:this.datos.coordenadas.lat, lng: this.datos.coordenadas.lng}
+    }
+    let map
+      map = new google.maps.Map(document.getElementById('map_publi'), {
+        center: latlng,// this.datosins.nombregym+' '+this.datosins.ciudad+' '+this.datosins.departamento,
+        zoom: this.datos.coordenadas?this.datos.coordenadas.zoom:12,
+			  disableDefaultUI: true
+      });
+      var marker = new google.maps.Marker(
+        {
+          position:this.datos.coordenadas?latlng:'',
+          map: map,
+        }
+        )
+      let geocoder = new google.maps.Geocoder;
+      let _datosins=this.datos
+        map.addListener('click', function(event) {
+          marker.setPosition(event.latLng)
+          console.log(event)
+          _datosins.coordenadas={
+            lat:marker.getPosition().lat(),
+            lng:marker.getPosition().lng(),
+            zoom:map.getZoom()
+          }
+          geocoder.geocode({
+            'location': event.latLng
+          }, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+              if (results[0]) {
+      
+                //alert('place id: ' + results[0].place_id);
+                _datosins.direccion=results[0]['formatted_address'];
+      
+      
+              } else {
+                console.log('No results found');
+              }
+            } else {
+              console.log('Geocoder failed due to: ' + status);
+            }
+          });
+        });
+	}
 }

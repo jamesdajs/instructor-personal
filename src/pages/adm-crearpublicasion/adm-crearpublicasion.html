@@ -19,7 +19,7 @@
 
 
 <ion-content >
-  <ion-grid>
+  <ion-grid no-padding>
     <ion-row align-items-center>
       <ion-col >
           <div class="imagen"(click)="openImagePickerCrop()" *ngIf="imgCropUrl.length==0">
@@ -44,7 +44,6 @@
           <p class="msgerr" *ngIf="myForm.get('comentario').hasError('maxlength')">máximo de 300 caracteres</p> 
         </ion-item>
 
-        <ion-grid>
             <ion-row align-items-end>
               <ion-col>
                 <ion-item [formGroup]="myForm">
@@ -56,24 +55,31 @@
                   <ion-item>
                       <ion-label>Moneda</ion-label>
                       <ion-select [(ngModel)]="datos.moneda" interface="popover" text-wrap>
-                        <ion-option value="Sus" [selected]="true">$</ion-option>
-                        <ion-option value="Bs">Bs.</ion-option>
+                        <ion-option value="USD" [selected]="true">$</ion-option>
+                        <ion-option value="BS">Bs.</ion-option>
                       </ion-select>
                   </ion-item>
               </ion-col>
             </ion-row>
-          </ion-grid>
           <ion-item no-lines>
-            <button ion-button outline block clear (click)="modificarset()"> Duracion  &nbsp;  
-              <span *ngIf="datos.meses!=''">
-                   {{datos.meses}} mes(es)&nbsp;
+            <button ion-button outline block clear (click)="modificarset()"> 
+              <span *ngIf="datos.horas=='' && datos.semanas==''">
+                  Duracion  &nbsp; 
+              </span> 
+              <span *ngIf="datos.horas!=''">
+                   {{datos.horas}} hora(s) por semana durante&nbsp;
               </span>
               <span *ngIf="datos.semanas!=''">
                   {{datos.semanas}} semana(s)&nbsp;
               </span>
             </button>
           </ion-item>
+          
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-item no-lines>
+    <ion-label>{{datos.direccion}}</ion-label>
+  </ion-item>
+  <div id="map_publi" style="height: 200px;"></div>
 </ion-content>

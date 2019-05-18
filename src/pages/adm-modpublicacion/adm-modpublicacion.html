@@ -6,68 +6,76 @@
 -->
 <ion-header>
 
-    <ion-navbar color="tabss">
-        <ion-title>Crear publicasion</ion-title>
-        <ion-buttons end>
-            <button ion-button icon-only color="royal" (click)="guardar()">
-                    <ion-icon name="md-checkmark"></ion-icon>
-            </button>
-          </ion-buttons>
-      </ion-navbar>
+  <ion-navbar color="tabss">
+    <ion-title>Modificar publicasion</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="guardar()">
+        <ion-icon name="md-checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 
 </ion-header>
 
-<ion-content >
+<ion-content>
   <ion-grid>
     <ion-row align-items-center>
-      <ion-col >
-        <ion-slides pager >
-              <ion-slide *ngFor="let imagen of datos.imagenes">
-                  <img [src]="imagen.url" />
-              </ion-slide>
+      <ion-col>
+        <ion-slides pager>
+          <ion-slide *ngFor="let imagen of datos.imagenes">
+            <img [src]="imagen.url" />
+          </ion-slide>
         </ion-slides>
         <ion-item [formGroup]="myForm">
           <ion-label floating>Titulo</ion-label>
           <ion-input type="text" [(ngModel)]="datos.titulo" formControlName="titulo"></ion-input>
         </ion-item>
         <ion-item [formGroup]="myForm">
-            <ion-textarea [(ngModel)]="datos.comentario" formControlName="comentario" type="text" placeholder="Comentario" ></ion-textarea>
-        </ion-item>  
+          <ion-textarea [(ngModel)]="datos.comentario" formControlName="comentario" type="text"
+            placeholder="Comentario"></ion-textarea>
+        </ion-item>
         <ion-item *ngIf="myForm.get('comentario').errors && myForm.get('comentario').dirty">
-          <p class="msgerr" *ngIf="myForm.get('comentario').hasError('required')">Campo requerido</p> 
-          <p class="msgerr" *ngIf="myForm.get('comentario').hasError('maxlength')">máximo de 300 caracteres</p> 
+          <p class="msgerr" *ngIf="myForm.get('comentario').hasError('required')">Campo requerido</p>
+          <p class="msgerr" *ngIf="myForm.get('comentario').hasError('maxlength')">máximo de 300 caracteres</p>
         </ion-item>
         <ion-grid>
           <ion-row align-items-end>
             <ion-col>
               <ion-item [formGroup]="myForm">
-                  <ion-label floating>Costo</ion-label>
-                  <ion-input type="number" [(ngModel)]="datos.costo" formControlName="costo" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"></ion-input>
-                </ion-item>
+                <ion-label floating>Costo</ion-label>
+                <ion-input type="number" [(ngModel)]="datos.costo" formControlName="costo"
+                  ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"></ion-input>
+              </ion-item>
             </ion-col>
             <ion-col>
-                <ion-item>
-                    <ion-label>Moneda</ion-label>
-                    <ion-select [(ngModel)]="moneda" interface="popover" text-wrap>
-                      <ion-option value="dolares" [selected]="true">$</ion-option>
-                      <ion-option value="bolivianos">Bs.</ion-option>
-                    </ion-select>
-                </ion-item>
+              <ion-item>
+                <ion-label>Moneda</ion-label>
+                <ion-select [(ngModel)]="moneda" interface="popover" text-wrap>
+                  <ion-option value="dolares" [selected]="true">$</ion-option>
+                  <ion-option value="bolivianos">Bs.</ion-option>
+                </ion-select>
+              </ion-item>
             </ion-col>
           </ion-row>
         </ion-grid>
         <ion-item no-lines>
-            <button ion-button outline block clear (click)="modificarset()"> Duracion  &nbsp;  
-              <span *ngIf="datos.meses!=''">
-                   {{datos.meses}} mes(es)&nbsp;
-              </span>
-              <span *ngIf="datos.semanas!=''">
-                  {{datos.semanas}} semana(s)&nbsp;
-              </span>
-            </button>
-          </ion-item>
+          <button ion-button outline block clear (click)="modificarset()"> 
+            <span *ngIf="datos.horas=='' && datos.semanas==''">
+              Duracion &nbsp;
+            </span>
+            <span *ngIf="datos.horas!=''">
+              {{datos.horas}} hora(s) por semana durante&nbsp;
+            </span>
+            <span *ngIf="datos.semanas!=''">
+              {{datos.semanas}} semana(s)&nbsp;
+            </span>
+          </button>
+        </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
-
+  <ion-item no-lines>
+    <ion-label>{{datos.direccion}}</ion-label>
+  </ion-item>
+  <div id="map_publi" style="height: 200px;"></div>
 </ion-content>

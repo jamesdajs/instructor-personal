@@ -231,7 +231,7 @@ export class AdmCrearejercicioPage {
           this.imagePicker.getPictures({
 
             maximumImagesCount: 5,
-            quality: 25
+            quality: 10
           })
             .then(async (results) => {
               this.imgCropUrl = []

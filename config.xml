@@ -11,6 +11,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="loadUrlTimeoutValue" value="700000" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
@@ -104,10 +105,8 @@
     <plugin name="cordova-plugin-file" spec="6.0.1" />
     <plugin name="cordova-plugin-media-capture" spec="3.0.2" />
     <plugin name="com-badrit-base64" spec="0.2.0" />
-    <plugin name="cordova-plugin-googleplus" spec="7.0.0">
-        <variable name="REVERSED_CLIENT_ID" value="1:150980917345:ios:81fab74723f3663b" />
-        <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
-    </plugin>
     <plugin name="cordova-wheel-selector-plugin" spec="1.1.2" />
     <engine name="android" spec="7.1.4" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyCNUgok2RtofhpJbozUC_cxP6yRO-NtDN4" />
+    <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyDQnyHx_NscJEGeODm_OPLWeXXVC1eDHxE" />
 </widget>

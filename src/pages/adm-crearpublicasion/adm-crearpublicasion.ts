@@ -13,6 +13,8 @@ import {File} from "@ionic-native/file"
 
 import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { WheelSelector } from '@ionic-native/wheel-selector';
+import { Geolocation } from '@ionic-native/geolocation';
+declare var google: any;
 //import { IonicImageLoader } from 'ionic-image-loader';
 /**
  * Generated class for the AdmCrearpublicasionPage page.
@@ -33,10 +35,16 @@ export class AdmCrearpublicasionPage {
     titulo:"",
     costo:0,
     semanas:"",
-    meses:"",
+    horas:"",
     fecha:new Date,
     estado:true,
-    moneda:'dolares'
+    moneda:'dolares',
+    direccion:'',
+    coordenadas:{
+      lat:'',
+      lng:'',
+      zoom:''
+    }
   }
 
 
@@ -46,10 +54,10 @@ export class AdmCrearpublicasionPage {
   dummyJson = {
     
     semanas:[
-        { description: 'Semanas', value: '' }
+        { description: 'Horas', value: '' }
       ],
-      meses:[
-        { description: 'Meses', value: '' }
+      horas:[
+        { description: 'Semanas', value: '' }
       ]
     
   
@@ -66,7 +74,9 @@ export class AdmCrearpublicasionPage {
     private file:File,
     private photoViewer: PhotoViewer,
     private selector:WheelSelector,
-    private toasCtrl:ToastController
+    private toasCtrl:ToastController,
+    
+    public geolocation:Geolocation
     //private domSanitizer: DomSanitizer
     ) {
       this.datos["nombre"]=navParams.data.nombre
@@ -78,13 +88,14 @@ export class AdmCrearpublicasionPage {
         comentario: ['', [Validators.required,Validators.maxLength(300)]]
       });
       for(let i=1;i<13;i++){
-        this.dummyJson.meses.push({ description: i+'', value: ''+i })
+        this.dummyJson.horas.push({ description: i+'', value: ''+i })
         this.dummyJson.semanas.push({ description: i+'', value: ''+i })
       }
   }
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdmCrearpublicasionPage');
+    this.loadMap()
   }
   seleccionarImagen(){
     const options: CameraOptions = {
@@ -186,7 +197,7 @@ export class AdmCrearpublicasionPage {
         this.imagePicker.getPictures({
           
           maximumImagesCount: 5,
-          quality:25
+          quality:10
         })
         .then(async (results) => {
           this.imgCropUrl=[]
@@ -268,7 +279,7 @@ modificarset(){
     displayKey: 'description',
     items: [
       this.dummyJson.semanas,
-      this.dummyJson.meses
+      this.dummyJson.horas
     ],
     
     positiveButtonText: "Aceptar",
@@ -278,9 +289,9 @@ modificarset(){
   }).then(
     result => {
       if(this.dummyJson.semanas[result[0].index].value!='' || 
-        this.dummyJson.meses[result[1].index].value!=''){
+        this.dummyJson.horas[result[1].index].value!=''){
           this.datos.semanas=this.dummyJson.semanas[result[0].index].value
-          this.datos.meses=this.dummyJson.meses[result[1].index].value
+          this.datos.horas=this.dummyJson.horas[result[1].index].value
         }else{
           this.toasCtrl.create({
             message:"Debe colocar un tiempo de duración",
@@ -291,5 +302,55 @@ modificarset(){
     err => console.log('Error: ' + JSON.stringify(err))
     )
 }
-
+async loadMap()  {
+  // This code is necessary for browser
+  let latlng={}
+  console.log(this.datos)
+  if(this.datos.coordenadas.lat==''){
+    let resp= await this.geolocation.getCurrentPosition()
+    latlng={lat:resp.coords.latitude, lng: resp.coords.longitude}
+  }else{
+    latlng={lat:this.datos.coordenadas.lat, lng: this.datos.coordenadas.lng}
+  }
+  let map
+    map = new google.maps.Map(document.getElementById('map_publi'), {
+      center: latlng,// this.datosins.nombregym+' '+this.datosins.ciudad+' '+this.datosins.departamento,
+      zoom: this.datos.coordenadas.lat!=''?this.datos.coordenadas.zoom:12,
+      disableDefaultUI: true
+    });
+    var marker = new google.maps.Marker(
+      {
+        position:this.datos.coordenadas.lat!=''?latlng:'',
+        map: map,
+      }
+      )
+    let geocoder = new google.maps.Geocoder;
+    let _datosins=this.datos
+      map.addListener('click', function(event) {
+        marker.setPosition(event.latLng)
+        console.log(event)
+        _datosins.coordenadas={
+          lat:marker.getPosition().lat(),
+          lng:marker.getPosition().lng(),
+          zoom:map.getZoom()
+        }
+        geocoder.geocode({
+          'location': event.latLng
+        }, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+            if (results[0]) {
+    
+              //alert('place id: ' + results[0].place_id);
+              _datosins.direccion=results[0]['formatted_address'];
+    
+    
+            } else {
+              console.log('No results found');
+            }
+          } else {
+            console.log('Geocoder failed due to: ' + status);
+          }
+        });
+      });
+}
 }

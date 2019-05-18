@@ -7,68 +7,71 @@
 <ion-header>
 
   <ion-navbar color="tabss">
-    
-  <ion-title>Modificar usuario</ion-title>
-  <ion-buttons end>
-    <button ion-button icon-only color="royal" (click)="GurdarDatos()">
-      <ion-icon name="md-checkmark"></ion-icon>
-    </button>
-  </ion-buttons>
+
+    <ion-title>Modificar usuario</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="GurdarDatos()">
+        <ion-icon name="md-checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content>
   <ion-grid>
     <ion-row align-items-end>
       <ion-col col-12>
-        <ion-list   inset>
-        <div *ngIf="rol=='instructor'">
-            <ion-item >
-              <ion-label  floating>Descripción corta</ion-label>
-              <ion-input type="text"  [(ngModel)]="datosins.descorta"></ion-input>
+        <ion-list inset>
+          <div *ngIf="rol=='instructor'">
+            
+
+            <ion-item>
+              <ion-label floating>Descripción profesional</ion-label>
+              <ion-textarea type="text" [(ngModel)]="datosins.deslarga"></ion-textarea>
             </ion-item>
-            <ion-item >
-              <ion-label  floating>Descripción larga</ion-label>
-              <ion-textarea type="text"  [(ngModel)]="datosins.deslarga"></ion-textarea>
-            </ion-item>
-            <ion-item >
-              <ion-label  floating>Curso</ion-label>
-              <ion-textarea type="text"  [(ngModel)]="datosins.cursos"></ion-textarea>
-            </ion-item>
-        </div>
+
+            <ion-item>
+                <ion-label floating>Ubicacion</ion-label>
+                <ion-input type="text" [(ngModel)]="datosins.direccion"></ion-input>
+              </ion-item>
+            
+            <div id="map" style="height: 200px;"></div>
+          </div>
+
           <ion-item [formGroup]="myForm">
-            <ion-label  floating>Teléfono</ion-label>
-            <ion-input formControlName="telefono" type="tel"  [(ngModel)]="event.telefono"></ion-input>
+            <ion-label floating>Teléfono</ion-label>
+            <ion-input formControlName="telefono" type="tel" [(ngModel)]="event.telefono"></ion-input>
           </ion-item>
-          
+
           <ion-item *ngIf="myForm.get('telefono').errors && myForm.get('telefono').dirty">
-            <p class="msgerr" *ngIf="myForm.get('telefono').hasError('required')">Campo requerido</p> 
-            <p class="msgerr" *ngIf="myForm.get('telefono').hasError('minlength')">Mínimo de 7 digitos</p> 
-            <p class="msgerr" *ngIf="myForm.get('telefono').hasError('maxlength')">Máximo de 12 digitos</p> 
+            <p class="msgerr" *ngIf="myForm.get('telefono').hasError('required')">Campo requerido</p>
+            <p class="msgerr" *ngIf="myForm.get('telefono').hasError('minlength')">Mínimo de 7 digitos</p>
+            <p class="msgerr" *ngIf="myForm.get('telefono').hasError('maxlength')">Máximo de 12 digitos</p>
           </ion-item>
-        
+
           <ion-item>
             <ion-label stacked>Fecha de nacimiento:</ion-label>
-            <ion-datetime displayFormat="DD MMMM YYYY" min="1940" [(ngModel)]="fechanac" cancelText =Cancelar doneText=Ok></ion-datetime>
+            <ion-datetime displayFormat="DD MMMM YYYY" min="1940" [(ngModel)]="fechanac" cancelText=Cancelar
+              doneText=Ok></ion-datetime>
           </ion-item>
         </ion-list>
-        
-        <p class="txtmodfecha">Peso {{event.peso}} Kg</p>
-          <ion-list radio-group no-lines inset>
-            <ion-item>
-              <ion-range [(ngModel)]="event.peso" min="40" max="120" pin="true"  color="secondary">
 
-                </ion-range>
-            </ion-item>
-          </ion-list>
-        
+        <p class="txtmodfecha">Peso {{event.peso}} Kg</p>
+        <ion-list radio-group no-lines inset>
+          <ion-item>
+            <ion-range [(ngModel)]="event.peso" min="40" max="120" pin="true" color="secondary">
+
+            </ion-range>
+          </ion-item>
+        </ion-list>
+
         <p>Altura {{event.altura}} cm</p>
-          
-          <ion-list radio-group no-lines inset>
-            <ion-item>
-            <ion-range [(ngModel)]="event.altura" min="120" max="220" pin="true"  color="secondary">
-              </ion-range>
-            </ion-item>
-          </ion-list>
+
+        <ion-list radio-group no-lines inset>
+          <ion-item>
+            <ion-range [(ngModel)]="event.altura" min="120" max="220" pin="true" color="secondary">
+            </ion-range>
+          </ion-item>
+        </ion-list>
       </ion-col>
     </ion-row>
     <ion-row align-items-center>
@@ -76,23 +79,23 @@
         <p>Género</p>
       </ion-col>
       <ion-col col-8>
-          <ion-list radio-group no-lines inset [(ngModel)]="event.genero" >
-            
-              <ion-item>
-                <ion-icon name="man" item-start></ion-icon>
-                <ion-label>Masculino</ion-label>
-                <ion-radio color="secondary"  value="Masculino"></ion-radio>
-              </ion-item>
-            
-              <ion-item>
-                <ion-icon name="woman" item-start></ion-icon>
-                <ion-radio color="secondary" value="Femenino" ></ion-radio>
-                
-                <ion-label>Femenino</ion-label>
-              </ion-item>
-            
-            </ion-list>
-            
+        <ion-list radio-group no-lines inset [(ngModel)]="event.genero">
+
+          <ion-item>
+            <ion-icon name="man" item-start></ion-icon>
+            <ion-label>Masculino</ion-label>
+            <ion-radio color="secondary" value="Masculino"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="woman" item-start></ion-icon>
+            <ion-radio color="secondary" value="Femenino"></ion-radio>
+
+            <ion-label>Femenino</ion-label>
+          </ion-item>
+
+        </ion-list>
+
       </ion-col>
     </ion-row>
   </ion-grid>

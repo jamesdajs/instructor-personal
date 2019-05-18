@@ -8,6 +8,7 @@ import { DatosinstructorPage } from './datosinstructor';
   ],
   imports: [
     IonicPageModule.forChild(DatosinstructorPage),
-  ],
+    
+  ]
 })
 export class DatosinstructorPageModule {}

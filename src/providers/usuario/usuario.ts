@@ -327,4 +327,8 @@ cambiarEstadoPublicasion(){
     if(res.length!=0) return this.modPublicasion(res[0].key,{estado:false})
   })
 }
+guardarhorario(datos){
+    
+    return this.db.collection(`cliente/${this.authfb.auth.currentUser.uid}/horario`).doc("horario").set(datos,{ merge: true })
+}
 }
