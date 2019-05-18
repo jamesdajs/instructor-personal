@@ -98,6 +98,9 @@ import { HistorialejerciciosPage } from '../pages/historialejercicios/historiale
 
 import { Network } from '@ionic-native/network';
 import { NetworkProvider } from '../providers/network/network';
+import { VercursoPage } from '../pages/vercurso/vercurso';
+import { PagarPage } from '../pages/pagar/pagar';
+import { AdmAlumnosPage } from '../pages/adm-alumnos/adm-alumnos';
 
 @NgModule({
   declarations: [
@@ -144,7 +147,10 @@ import { NetworkProvider } from '../providers/network/network';
     AdmModrutinaclientePage,
     AdmModdietaclientePage,
     AdmCrearpublicasionPage,
-    AdmModpublicacionPage
+    AdmModpublicacionPage,
+    VercursoPage,
+    PagarPage,
+    AdmAlumnosPage
 
   ],
   imports: [
@@ -231,7 +237,10 @@ import { NetworkProvider } from '../providers/network/network';
     AdmModrutinaclientePage,
     AdmModdietaclientePage,
     AdmCrearpublicasionPage,
-    AdmModpublicacionPage
+    AdmModpublicacionPage,
+    VercursoPage,
+    PagarPage,
+    AdmAlumnosPage
     
   ],
   providers: [

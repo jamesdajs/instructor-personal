@@ -6,6 +6,7 @@ import { DatosinstructorPage } from '../../pages/datosinstructor/datosinstructor
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
+import { VercursoPage } from '../vercurso/vercurso';
 /**
  * Generated class for the InstructoresPage page.
  *
@@ -169,5 +170,10 @@ num=3
       this.num=this.num+3
       this.lstarPublicaciones(this.num,infiniteScroll)
     }, 500);
+  }
+
+  verCursoDetalle(key){
+    console.log('key'+key);
+    this.navCtrl.push(VercursoPage,key)
   }
 }
