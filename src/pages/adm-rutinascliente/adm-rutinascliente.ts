@@ -38,7 +38,6 @@ defestado=false
       this.key=navParams.data
   }
   
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad RutinasPage');
     this.listarutinas()

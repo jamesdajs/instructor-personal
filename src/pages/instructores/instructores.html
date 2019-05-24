@@ -17,9 +17,7 @@
 <ion-content>
 	<ion-list>
 		<ion-item color="listdivisor">
-
 			<h2>Instructores buscados </h2>
-
 		</ion-item>
 		<ion-scroll scrollX="true" scroll-avatar *ngIf="datosbuscado.length!=0;else elseBlock4">
 			<div class="itemsel" *ngFor="let item of datosbuscado" (click)="verInstructor(item.key)">
@@ -46,16 +44,13 @@
 		</ion-item>
 		<ion-scroll scrollX="true" scroll-avatar *ngIf="misInstructores.length!=0;else elseBlock3">
 			<div class="itemsel" *ngFor="let item of misInstructores" (click)="vercurso(item.idinstructor)">
-
 				<img *ngIf="keyslec!=item.idinstructor;else elseBlockIMG" class="selecionados" [src]="item.foto ">
 				<ng-template #elseBlockIMG>
 					<img class="selecionados activo" [src]="item.foto ">
-
 				</ng-template>
 				<div>
 					<p>{{item.fullname}}</p>
 				</div>
-
 			</div>
 
 		</ion-scroll>
@@ -71,14 +66,11 @@
 			<ion-col no-padding>
 				<ion-card>
 					<ion-item color="carts" (click)="verInstructor(p.idcliente)">
-
 						<ion-avatar item-start>
 							<img [src]="p.foto">
 						</ion-avatar>
-
 						<p>{{p.nombre}}</p>
 						<p>{{p.fecha2}}</p>
-
 					</ion-item>
 					<ion-slides pager>
 
@@ -93,31 +85,30 @@
 						</p>
 						<ion-grid class="pricing-post">
 							<ion-row>
-								<ion-col>
+								<ion-col class="duracion-post">
 									Duración
 									<span *ngIf="p.semanas!=''"> {{p.semanas}} semanas</span>
 									<span *ngIf="p.meses!=''"> {{p.meses}} meses</span>
+									<br>
+									Precio {{p.costo}} {{p.moneda}}
 								</ion-col>
-								<ion-col align-self-end>
-									<p float-right>Precio {{p.costo}} {{p.moneda}}
-									</p>
+								<ion-col col-auto align-left >
+										<button ion-button outline (click)="verCursoDetalle(p)">
+												Suscribirse
+										</button>
 								</ion-col>
 							</ion-row>
 						</ion-grid>
-
-
 					</ion-card-content>
-
-					<ion-item>
-						<button ion-button clear item-start (click)="verInstructor(p.idcliente)">
-							ver instructor
-						</button>
-						<button ion-button clear item-end>
-							<a href="https://wa.me/591{{p.telefono}}"> {{p.telefono}}
-							</a>
-							<ion-icon class="wtapp" name="logo-whatsapp"></ion-icon>
-						</button>
-					</ion-item>
+					<ion-row >
+							<button ion-button clear>
+									<ion-icon class="wtapp" name="logo-whatsapp"></ion-icon>
+									<a href="https://wa.me/591{{p.telefono}}"> {{p.telefono}}
+									</a>
+								</button>
+					</ion-row>
+						
+					
 				</ion-card>
 			</ion-col>
 		</ion-row>

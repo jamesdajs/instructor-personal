@@ -10,6 +10,7 @@ import { AdmClientesPage } from '../adm-clientes/adm-clientes';
 import { AdmRutinasdefPage } from '../adm-rutinasdef/adm-rutinasdef';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AdmAlumnosPage } from '../adm-alumnos/adm-alumnos';
 /**
  * Generated class for the InstructorPage tabs.
  *
@@ -41,7 +42,8 @@ export class InstructorPage {
   tab1Root = AdmRutinasdefPage;
   tab2Root = AdmTipoejercicioPage;
   tab3Root = AdmTipodietaPage;
-  tab4Root = DatospersonalesPage
+  tab4Root = DatospersonalesPage;
+  tab5Root = AdmAlumnosPage 
 
   constructor(public navCtrl: NavController,public event:Events ,public spalsh:SplashScreen,
     public platform:Platform,public alertCtrl:AlertController

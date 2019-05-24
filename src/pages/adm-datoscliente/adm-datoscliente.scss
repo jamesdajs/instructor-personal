@@ -4,9 +4,42 @@ page-adm-datoscliente {
     }
     img{
         border-radius: 50%;
-        width: 75px !important;
-        height: 75px !important;
+        width: 25px !important;
+        height: 25px !important;
         display:block;
-        margin: 0;
+        margin:auto;
+
+    }
+    .img-alumno{
+        border-radius: 50%;
+        width: 95px !important;
+        height: 95px !important;
+        display:block;
+        margin:auto;
+
+    }
+    ion-header{
+        z-index: 0 !important;
+    }
+    p{
+        text-align: center !important
+    }
+    .slide-zoom{
+        height: 100% !important;
+        text-align: left !important
+    }
+    .swiper-slide{
+        text-align: left !important
+    }
+    .col{
+        padding-top: 10px !important
+    }
+    .slide-rutinas{
+        position:absolute;
+        bottom:1px;
+    }
+    .slide-dietas{
+        position:absolute;
+        bottom:1px;
     }
 }

@@ -1,0 +1,28 @@
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>Mis Alumnos</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<p>Nuevas Suscripciones</p>
+	<hr>
+	<ion-item *ngFor="let item of solicitudes">
+		<ion-avatar item-start>
+			<img [src]="item.fotocli">
+		</ion-avatar>
+		<p>{{item.fullnamecli}}</p>
+		<button ion-button outline round>Ver</button>
+	</ion-item>
+	<p>Mis Alumnos</p>
+	<hr>
+	<ion-item *ngFor="let item of datosbuscado" (click)="verCliente(item.idcliente)">
+		<ion-avatar item-start>
+			<img [src]="item.fotocli">
+		</ion-avatar>
+		<p>{{item.fullnamecli}}</p>
+	</ion-item>
+</ion-content>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+  xmlns:ns1="http://servicios.comelec.ws.sintesis.com.bo/">
+  <SOAP-ENV:Body>
+    <ns1:registroPlan>
+      <datos>
+        <categoriaProducto>3</categoriaProducto>
+        <codigoComprador>231</codigoComprador>
+        <codigoRecaudacion>JA20160603232902</codigoRecaudacion>
+        <correoElectronico>hegaro@hegaro.com.bo</correoElectronico>
+        <descripcionRecaudacion>PAGO Prueba</descripcionRecaudacion>
+        <documentoIdentidadComprador/>
+        <fecha>20190522</fecha>
+        <fechaVencimiento>0</fechaVencimiento>
+        <hora>114000</hora>
+        <horaVencimiento>0</horaVencimiento>
+        <moneda>BS</moneda>
+        <nombreComprador>herlan garzon rodriguez</nombreComprador>
+        <planillas>
+          <descripcion>Pago de prueba</descripcion>
+          <montoCreditoFiscal></montoCreditoFiscal>
+          <montoPago></montoPago>
+          <nitFactura></nitFactura>
+          <nombreFactura></nombreFactura>
+          <numeroPago>1</numeroPago>
+        </planillas>
+        <precedenciaCobro>N</precedenciaCobro>
+        <transaccion>A</transaccion>
+      </datos>
+      <cuenta>wshegaro</cuenta>
+      <password>Wshegaro2019</password>
+    </ns1:registroPlan>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
+
+
+
+
+
+
+
+
+
+
+
+<?xml version='1.0' encoding='UTF-8'?>
+<S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\">
+  <S:Body>
+    <ns0:Fault xmlns:ns1=\"http://www.w3.org/2003/05/soap-envelope\" 
+      xmlns:ns0=\"http://schemas.xmlsoap.org/soap/envelope/\">
+      <faultcode>ns0:Server</faultcode>
+      <faultstring>Current state not START_ELEMENT, END_ELEMENT or ENTITY_REFERENCE</faultstring>
+    </ns0:Fault>
+  </S:Body>
+</S:Envelope>

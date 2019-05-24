@@ -4,7 +4,6 @@ import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angul
 import { UsuarioProvider } from "../../providers/usuario/usuario"
 import { DatosinstructorPage } from '../../pages/datosinstructor/datosinstructor'
 
-import { AdmDatosclientePage } from "../adm-datoscliente/adm-datoscliente"
 /**
  * Generated class for the AdmClientesPage page.
  *
@@ -35,20 +34,8 @@ export class AdmClientesPage {
   ionViewDidLoad() {
    //alert("La resolución de tu pantalla es: " + screen.width + " x " + screen.height)
     this.altodelIMG=screen.width
-    this.cargardatos()
   }
-  cargardatos(){
-    this.user.verMissolicitud(false,"cliente")
-    .subscribe(soli=>{
-      this.solicitudes=soli
-      console.log(soli)
-    })
-    this.user.verMissolicitud(true,"cliente")
-    .subscribe(soli=>{
-      this.datosbuscado=soli
-      console.log(soli)
-    })
-  }
+  
   aceptar(item){
     this.user.modificarinstructor_cliente(item.key,{estado:true})
     .then(()=>{
@@ -61,9 +48,7 @@ export class AdmClientesPage {
       console.log(err)
     })
   }
-  verCliente(keycli){
-    this.navCtrl.push(AdmDatosclientePage,keycli)
-  }
+  
   lstarPublicaciones(infiniteScroll?){
     let mes=["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."]
     let hoy=new Date()

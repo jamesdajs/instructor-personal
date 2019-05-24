@@ -6,112 +6,65 @@
 -->
 <ion-header>
 
-    <ion-navbar color="carts">
-        
-    <ion-title>Alumnos</ion-title>
-        <!--
+	<ion-navbar color="carts">
+
+		<ion-title>Alumnos</ion-title>
+		<!--
 <ion-searchbar [(ngModel)]="buscar" (search)="getItems($event)" placeholder="Buscar alumno"></ion-searchbar>
    
-        --> 
-    </ion-navbar>
-  </ion-header>
-  <ion-content >
-      <ion-list >
-          <ion-item color="listdivisor" >
-            <h2>Alumnos buscados </h2>
-            <button ion-button clear item-end icon-only (click)=alerta()>
-                <ion-icon color="dark" name='information-circle'></ion-icon>
-            </button>
+        -->
+	</ion-navbar>
+</ion-header>
+<ion-content>
 
-          </ion-item>
-            <ion-scroll scrollX="true" scroll-avatar *ngIf="datosbuscado.length!=0;else elseBlock">
-                <div class="itemsel" *ngFor="let item of datosbuscado" (click)="verCliente(item.idcliente)" >
+	<ion-grid no-padding>
+		<ion-row *ngFor="let p of publicaciones">
+			<ion-col no-padding>
+				<ion-card>
+					<ion-item (click)="verInstructor(p.idcliente)">
+						<ion-avatar item-start>
+							<img [src]="p.foto">
+						</ion-avatar>
 
-                    <img class="selecionados" [src]="item.fotocli ">
-                    
-                    <div>
-                        <p>{{item.fullnamecli}}</p>
-                    </div>
-                </div>
-            </ion-scroll>
-          <ng-template #elseBlock>
-              <ion-item color="carts">
-                <h2>No se encontro resultados</h2>
-              </ion-item>
-          </ng-template>
-            <hr>
-          <ion-item  color="listdivisor">
-              <h2>Solicitudes </h2>
-          </ion-item>
-          <div *ngIf="solicitudes.length!=0;else elseBlock2">
-              <ion-item color="carts" *ngFor="let item of solicitudes" >
-                    <ion-avatar item-start>
-                            <img [src]="item.fotocli ">
-                    </ion-avatar>
-                    <h2>{{item.fullnamecli}}</h2>
-                    <button ion-button color="normal" (click)="aceptar(item)">
-                        Aceptar solicitud
-                    </button>
-                </ion-item>
-            </div>
-            <ng-template #elseBlock2>
-                <ion-item color="carts">
-                    <h3>No tiene ninguna solicitud</h3>
-                </ion-item>
-            </ng-template>
-            
-            
-        </ion-list>
-        <ion-grid no-padding>
-                <ion-row *ngFor="let p of publicaciones">
-                    <ion-col no-padding>
-                            <ion-card>
-                                    <ion-item (click)="verInstructor(p.idcliente)">
-                                            <ion-avatar item-start>
-                                              <img [src]="p.foto">
-                                            </ion-avatar>
-                                            
-                                            <p >{{p.nombre}}</p>
-                                            <p>{{p.fecha2}}</p>
-                                    </ion-item>
-                                    <ion-slides pager >
-                                        
-                                        <ion-slide *ngFor="let imagen of p.imagenes">
-                                            <div>
-                                                <img  class="imgpubli"  [src]="imagen.url"  alt="">
-                                       
-                                            </div>
-                                        </ion-slide>
-                                        
-                                  </ion-slides>
-                                    <ion-card-content>
-                                      
-						                                <h3>{{p.titulo}}</h3>
-                                            <p class="descripcion-post">{{p.comentario}}
-                                                </p>
-                                                <ion-grid class="pricing-post">
-                                                    <ion-row >
-                                                      <ion-col>
-                                                        Duración
-                                                        <span *ngIf="p.semanas!=''"> {{p.semanas}} semanas</span>
-                                                        <span *ngIf="p.meses!=''"> {{p.meses}} meses</span> 
-                                                      </ion-col>
-                                                      <ion-col align-self-end>
-                                                          <p float-right>Precio {{p.costo}} {{p.moneda}}
-                                                            </p>
-                                                      </ion-col>
-                                                    </ion-row>
-                                                  </ion-grid>
-                                    </ion-card-content>
-                                    
-                                  </ion-card>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-            <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-                <ion-infinite-scroll-content
-                  loadingSpinner="bubbles"
-                  loadingText="Cargando mas datos...">
-                </ion-infinite-scroll-content>
-                </ion-infinite-scroll>
-  </ion-content>
+						<p>{{p.nombre}}</p>
+						<p>{{p.fecha2}}</p>
+					</ion-item>
+					<ion-slides pager>
+
+						<ion-slide *ngFor="let imagen of p.imagenes">
+							<div>
+								<img class="imgpubli" [src]="imagen.url" alt="">
+
+							</div>
+						</ion-slide>
+
+					</ion-slides>
+					<ion-card-content>
+
+						<h3>{{p.titulo}}</h3>
+						<p class="descripcion-post">{{p.comentario}}
+						</p>
+						<ion-grid class="pricing-post">
+							<ion-row>
+								<ion-col>
+									Duración
+									<span *ngIf="p.semanas!=''"> {{p.semanas}} semanas</span>
+									<span *ngIf="p.meses!=''"> {{p.meses}} meses</span>
+								</ion-col>
+								<ion-col align-self-end>
+									<p float-right>Precio {{p.costo}} {{p.moneda}}
+									</p>
+								</ion-col>
+							</ion-row>
+						</ion-grid>
+					</ion-card-content>
+
+				</ion-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		<ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando mas datos...">
+		</ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+</ion-content>

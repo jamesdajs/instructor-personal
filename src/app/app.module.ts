@@ -98,14 +98,13 @@ import { HistorialejerciciosPage } from '../pages/historialejercicios/historiale
 
 import { Network } from '@ionic-native/network';
 import { NetworkProvider } from '../providers/network/network';
+import { VercursoPage } from '../pages/vercurso/vercurso';
+import { PagarPage } from '../pages/pagar/pagar';
+import { AdmAlumnosPage } from '../pages/adm-alumnos/adm-alumnos';
 
 
 import { PayPal } from '@ionic-native/paypal'
 import { AdmHorarioPage } from '../pages/adm-horario/adm-horario';
-import {
-  GoogleMaps
-  
-} from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
@@ -154,6 +153,9 @@ import { Geolocation } from '@ionic-native/geolocation';
     AdmModdietaclientePage,
     AdmCrearpublicasionPage,
     AdmModpublicacionPage,
+    VercursoPage,
+    PagarPage,
+    AdmAlumnosPage,
     AdmHorarioPage
 
   ],
@@ -242,6 +244,9 @@ import { Geolocation } from '@ionic-native/geolocation';
     AdmModdietaclientePage,
     AdmCrearpublicasionPage,
     AdmModpublicacionPage,
+    VercursoPage,
+    PagarPage,
+    AdmAlumnosPage,
     AdmHorarioPage
     
   ],
@@ -266,7 +271,6 @@ import { Geolocation } from '@ionic-native/geolocation';
     NetworkProvider,
     PhotoViewer,
     PayPal,
-    GoogleMaps,
     Geolocation
   ]
 })

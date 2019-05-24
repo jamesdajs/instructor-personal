@@ -90,9 +90,11 @@
             </ion-grid>
         </ion-card-content>
     </ion-card>
-    
-    <div id="map" style="height: 200px;" *ngIf="datosins.coordenadas"></div>
 
+    <div id="map" style="height: 200px;" *ngIf="datosins.coordenadas"></div>
+    <ion-item>
+        Lista de cursos
+    </ion-item>
     <ion-grid no-padding>
         <ion-row *ngFor="let p of publicaciones">
             <ion-col no-padding>
@@ -111,13 +113,13 @@
 
                     </ion-slides>
                     <ion-card-content>
-                            <h3>{{p.titulo}}</h3>
+                        <h3>{{p.titulo}}</h3>
                         <p class="descripcion-post">{{p.comentario}}
                         </p>
                         <ion-grid class="pricing-post">
                             <ion-row>
                                 <ion-col>
-                                    
+
                                     Duración
                                     <span *ngIf="p.semanas!=''"> {{p.semanas}} semanas</span>
                                     <span *ngIf="p.meses!=''"> {{p.meses}} meses</span>
